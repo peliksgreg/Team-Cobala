@@ -1,0 +1,8 @@
+<?php
+$config = array(
+                ['location'=>'modules/clinic/hospital/delete_hospital.php',
+                'pre'=>'hospital_sst_delete.php',
+                'post'=>''],
+               );
+
+$_SESSION['sst']['tasks'] = $config;
