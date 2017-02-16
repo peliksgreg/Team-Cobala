@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/subject_detail/add_refsubjectofferingdtl.php',
+                ['location'=>'modules/Registrar/subject_offering_detail/add_refsubjectofferingdtl.php',
                 'pre'=>'refsubjectofferingdtl_sst_add.php',
                 'post'=>''],
                );

@@ -33,9 +33,9 @@ if(xsrf_guard())
         $object_name = 'dbh_employee';
         require 'components/create_form_data.php';
 
-        require_once 'subclasses/log_info.php';
-        $dbh_log_info = new log_info;
-        $dbh_log_info->delete_many($arr_form_data);
+        require_once 'subclasses/refempfamily.php';
+        $dbh_refempfamily = new refempfamily;
+        $dbh_refempfamily->delete_many($arr_form_data);
 
 
         $dbh_employee->delete($arr_form_data);

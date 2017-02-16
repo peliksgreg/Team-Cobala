@@ -581,12 +581,7 @@ class refstudent_dd
     static function load_relationships()
     {
         $relations = array(array('type'=>'1-M',
-                                 'table'=>'xrefstudentschedule',
-                                 'link_parent'=>'student_id',
-                                 'link_child'=>'student_id',
-                                 'where_clause'=>''),
-                           array('type'=>'1-M',
-                                 'table'=>'log_info',
+                                 'table'=>'refstudentfamily',
                                  'link_parent'=>'student_id',
                                  'link_child'=>'student_id',
                                  'where_clause'=>''));

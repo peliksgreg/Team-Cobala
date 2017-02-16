@@ -98,10 +98,10 @@ class refstudentfamily extends data_abstraction
     {
         $this->set_parameters($param);
         $this->set_query_type('DELETE');
-        $this->set_where("");
+        $this->set_where("student_id = ?");
 
-        $bind_params = array('',
-                             );
+        $bind_params = array('s',
+                             &$this->fields['student_id']['value']);
 
         $this->stmt_prepare($bind_params);
         $this->stmt_execute();

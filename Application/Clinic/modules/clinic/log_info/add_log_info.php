@@ -46,7 +46,20 @@ if(xsrf_guard())
         if($message=="")
         {
             $dbh_log_info->add($arr_form_data);
-            
+            $log_id = $dbh_log_info->auto_id;
+            require_once 'subclasses/log_detail.php';
+            $dbh_log_info = new log_detail;
+            for($a=0; $a<$log_detail_count;$a++)
+            {
+                
+                $param = array(
+                               'log_detail_id'=>$log_id,
+                               'medicine_id'=>$cf_log_detail_medicine_id[$a],
+                               'qty'=>$cf_log_detail_qty[$a]
+                              );
+                $dbh_log_info->add($param);
+            }
+
 
             redirect("listview_log_info.php?$query_string");
         }

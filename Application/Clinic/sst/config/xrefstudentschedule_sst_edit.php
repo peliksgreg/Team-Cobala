@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/student_schedule/edit_xrefstudentschedule.php',
+                ['location'=>'modules/Registrar/student_schedule/edit_xrefstudentschedule.php',
                 'pre'=>'xrefstudentschedule_sst_edit.php',
                 'post'=>''],
                );

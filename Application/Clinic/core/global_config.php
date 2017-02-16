@@ -1,6 +1,6 @@
 <?php
-define('GLOBAL_PROJECT_NAME', 'APC Clinic System');
-define('GLOBAL_SESSION_NAME', 'C6b08f15c');
+define('GLOBAL_PROJECT_NAME', 'APC Clinic Management System');
+define('GLOBAL_SESSION_NAME', 'C7bd2a395');
 
 //Default database settings
 define('DEFAULT_DB_HOST','localhost');
@@ -9,7 +9,7 @@ define('DEFAULT_DB_PASS','');
 define('DEFAULT_DB_USE' ,'clinic');
 
 //Paths and directory names
-define('BASE_DIRECTORY', 'Clinic');
+define('BASE_DIRECTORY', 'clinic');
 define('FULLPATH_CORE', dirname(__FILE__) . "/");
 define('GRAPH_CREATOR_FONTDIR', FULLPATH_CORE . 'fonts/');
 define('LOGIN_PAGE', '/' . BASE_DIRECTORY . '/login.php');

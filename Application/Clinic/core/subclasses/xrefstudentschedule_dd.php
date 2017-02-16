@@ -39,7 +39,7 @@ class xrefstudentschedule_dd
                                           'data_type'=>'varchar',
                                           'length'=>11,
                                           'required'=>TRUE,
-                                          'attribute'=>'primary&foreign key',
+                                          'attribute'=>'primary key',
                                           'control_type'=>'textbox',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
@@ -120,11 +120,11 @@ class xrefstudentschedule_dd
                                           'data_type'=>'varchar',
                                           'length'=>250,
                                           'required'=>TRUE,
-                                          'attribute'=>'foreign key',
-                                          'control_type'=>'drop-down list',
+                                          'attribute'=>'none',
+                                          'control_type'=>'textbox',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Term',
+                                          'label'=>'Term ID',
                                           'extra'=>'',
                                           'companion'=>'',
                                           'in_listview'=>TRUE,
@@ -136,11 +136,8 @@ class xrefstudentschedule_dd
                                           'valid_set'=>array(),
                                           'date_elements'=>array('','',''),
                                           'date_default'=>'',
-                                          'list_type'=>'sql generated',
-                                          'list_settings'=>array('query' => "SELECT term.term_id AS `Queried_term_id`, term.term FROM term ORDER BY `term`",
-                                                                     'list_value' => 'Queried_term_id',
-                                                                     'list_items' => array('term'),
-                                                                     'list_separators' => array()),
+                                          'list_type'=>'',
+                                          'list_settings'=>array(''),
                                           'rpt_in_report'=>TRUE,
                                           'rpt_column_format'=>'normal',
                                           'rpt_column_alignment'=>'center',
@@ -178,20 +175,7 @@ class xrefstudentschedule_dd
 
     static function load_relationships()
     {
-        $relations = array(array('type'=>'1-1',
-                                 'table'=>'term',
-                                 'alias'=>'',
-                                 'link_parent'=>'term_id',
-                                 'link_child'=>'term_id',
-                                 'link_subtext'=>array('term'),
-                                 'where_clause'=>''),
-                           array('type'=>'M-1',
-                             'table'=>'refstudent',
-                             'alias'=>'',
-                             'link_parent'=>'student_id',
-                             'link_child'=>'student_id',
-                             'minimum'=>1,
-                             'where_clause'=>''));
+        $relations = array();
 
         return $relations;
     }

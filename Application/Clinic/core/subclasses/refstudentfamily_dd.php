@@ -56,9 +56,9 @@ class refstudentfamily_dd
                                           'date_elements'=>array('','',''),
                                           'date_default'=>'',
                                           'list_type'=>'sql generated',
-                                          'list_settings'=>array('query' => "SELECT refstudent.student_id AS `Queried_student_id`, refstudent.student_last_name, refstudent.student_first_name, refstudent.student_middle_name FROM refstudent ORDER BY `Queried_student_id`, `student_last_name`, `student_first_name`, `student_middle_name`",
+                                          'list_settings'=>array('query' => "SELECT refstudent.student_id AS `Queried_student_id` FROM refstudent ORDER BY `Queried_student_id`",
                                                                      'list_value' => 'Queried_student_id',
-                                                                     'list_items' => array('Queried_student_id', 'student_last_name', 'student_first_name', 'student_middle_name'),
+                                                                     'list_items' => array('Queried_student_id'),
                                                                      'list_separators' => array()),
                                           'rpt_in_report'=>TRUE,
                                           'rpt_column_format'=>'normal',
@@ -372,8 +372,15 @@ class refstudentfamily_dd
                                  'alias'=>'',
                                  'link_parent'=>'student_id',
                                  'link_child'=>'student_id',
-                                 'link_subtext'=>array('student_id','student_last_name','student_first_name','student_middle_name'),
-                                 'where_clause'=>''));
+                                 'link_subtext'=>array('student_id'),
+                                 'where_clause'=>''),
+                           array('type'=>'M-1',
+                             'table'=>'refstudent',
+                             'alias'=>'',
+                             'link_parent'=>'student_id',
+                             'link_child'=>'student_id',
+                             'minimum'=>1,
+                             'where_clause'=>''));
 
         return $relations;
     }

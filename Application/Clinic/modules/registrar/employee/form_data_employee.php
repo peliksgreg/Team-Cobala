@@ -32,24 +32,26 @@ if($result = $dbh_employee->make_query()->result)
     }
 }
 
-require_once 'subclasses/log_info.php';
-$dbh_log_info = new log_info;
-$dbh_log_info->set_fields('date, time, complaints, medicine_id, student_id');
-$dbh_log_info->set_where("emp_id='" . quote_smart($emp_id) . "'");
-if($result = $dbh_log_info->make_query()->result)
+require_once 'subclasses/refempfamily.php';
+$dbh_refempfamily = new refempfamily;
+$dbh_refempfamily->set_fields('relationship, name, email, email_status, address_type, address, postal_code, mobile_num1, tel_num, mobile_num2');
+$dbh_refempfamily->set_where("emp_id='" . quote_smart($emp_id) . "'");
+if($result = $dbh_refempfamily->make_query()->result)
 {
-    $num_log_info = $dbh_log_info->num_rows;
-    for($a=0; $a<$num_log_info; $a++)
+    $num_refempfamily = $dbh_refempfamily->num_rows;
+    for($a=0; $a<$num_refempfamily; $a++)
     {
         $data = $result->fetch_row();
-        $data_temp_cf_date = explode('-',$data[0]);
-        $cf_log_info_date_year[$a] = $data_temp_cf_date[0];
-        $cf_log_info_date_month[$a] = $data_temp_cf_date[1];
-        $cf_log_info_date_day[$a] = $data_temp_cf_date[2];
-        $cf_log_info_time[$a] = $data[1];
-        $cf_log_info_complaints[$a] = $data[2];
-        $cf_log_info_medicine_id[$a] = $data[3];
-        $cf_log_info_student_id[$a] = $data[4];
+        $cf_refempfamily_relationship[$a] = $data[0];
+        $cf_refempfamily_name[$a] = $data[1];
+        $cf_refempfamily_email[$a] = $data[2];
+        $cf_refempfamily_email_status[$a] = $data[3];
+        $cf_refempfamily_address_type[$a] = $data[4];
+        $cf_refempfamily_address[$a] = $data[5];
+        $cf_refempfamily_postal_code[$a] = $data[6];
+        $cf_refempfamily_mobile_num1[$a] = $data[7];
+        $cf_refempfamily_tel_num[$a] = $data[8];
+        $cf_refempfamily_mobile_num2[$a] = $data[9];
     }
 }
 

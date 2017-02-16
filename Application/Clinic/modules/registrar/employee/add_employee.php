@@ -47,19 +47,23 @@ if(xsrf_guard())
         {
             $dbh_employee->add($arr_form_data);
             
-            require_once 'subclasses/log_info.php';
-            $dbh_employee = new log_info;
-            for($a=0; $a<$log_info_count;$a++)
+            require_once 'subclasses/refempfamily.php';
+            $dbh_employee = new refempfamily;
+            for($a=0; $a<$refempfamily_count;$a++)
             {
-                $cf_log_info_date[$a] = $cf_log_info_date_year[$a] . '-' . $cf_log_info_date_month[$a] . '-' . $cf_log_info_date_day[$a];
-               
+                
                 $param = array(
-                               'date'=>$cf_log_info_date[$a],
-                               'time'=>$cf_log_info_time[$a],
-                               'complaints'=>$cf_log_info_complaints[$a],
-                               'medicine_id'=>$cf_log_info_medicine_id[$a],
-                               'student_id'=>$cf_log_info_student_id[$a],
-                               'emp_id'=>$emp_id
+                               'emp_id'=>$emp_id,
+                               'relationship'=>$cf_refempfamily_relationship[$a],
+                               'name'=>$cf_refempfamily_name[$a],
+                               'email'=>$cf_refempfamily_email[$a],
+                               'email_status'=>$cf_refempfamily_email_status[$a],
+                               'address_type'=>$cf_refempfamily_address_type[$a],
+                               'address'=>$cf_refempfamily_address[$a],
+                               'postal_code'=>$cf_refempfamily_postal_code[$a],
+                               'mobile_num1'=>$cf_refempfamily_mobile_num1[$a],
+                               'tel_num'=>$cf_refempfamily_tel_num[$a],
+                               'mobile_num2'=>$cf_refempfamily_mobile_num2[$a]
                               );
                 $dbh_employee->add($param);
             }

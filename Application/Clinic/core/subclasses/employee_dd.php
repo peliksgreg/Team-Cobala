@@ -689,7 +689,7 @@ class employee_dd
     static function load_relationships()
     {
         $relations = array(array('type'=>'1-M',
-                                 'table'=>'log_info',
+                                 'table'=>'refempfamily',
                                  'link_parent'=>'emp_id',
                                  'link_child'=>'emp_id',
                                  'where_clause'=>''));

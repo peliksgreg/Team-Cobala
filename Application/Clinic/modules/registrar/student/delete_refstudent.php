@@ -33,13 +33,9 @@ if(xsrf_guard())
         $object_name = 'dbh_refstudent';
         require 'components/create_form_data.php';
 
-        require_once 'subclasses/xrefstudentschedule.php';
-        $dbh_xrefstudentschedule = new xrefstudentschedule;
-        $dbh_xrefstudentschedule->delete_many($arr_form_data);
-
-        require_once 'subclasses/log_info.php';
-        $dbh_log_info = new log_info;
-        $dbh_log_info->delete_many($arr_form_data);
+        require_once 'subclasses/refstudentfamily.php';
+        $dbh_refstudentfamily = new refstudentfamily;
+        $dbh_refstudentfamily->delete_many($arr_form_data);
 
 
         $dbh_refstudent->delete($arr_form_data);

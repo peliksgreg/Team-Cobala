@@ -88,10 +88,10 @@ class refstudentclearance extends data_abstraction
     {
         $this->set_parameters($param);
         $this->set_query_type('DELETE');
-        $this->set_where("dept_id = ?");
+        $this->set_where("");
 
-        $bind_params = array('s',
-                             &$this->fields['dept_id']['value']);
+        $bind_params = array('',
+                             );
 
         $this->stmt_prepare($bind_params);
         $this->stmt_execute();

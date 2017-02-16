@@ -47,36 +47,24 @@ if(xsrf_guard())
         {
             $dbh_refstudent->add($arr_form_data);
             
-            require_once 'subclasses/xrefstudentschedule.php';
-            $dbh_refstudent = new xrefstudentschedule;
-            for($a=0; $a<$xrefstudentschedule_count;$a++)
+            require_once 'subclasses/refstudentfamily.php';
+            $dbh_refstudent = new refstudentfamily;
+            for($a=0; $a<$refstudentfamily_count;$a++)
             {
-                $cf_xrefstudentschedule_date[$a] = $cf_xrefstudentschedule_date_year[$a] . '-' . $cf_xrefstudentschedule_date_month[$a] . '-' . $cf_xrefstudentschedule_date_day[$a];
-               
+                
                 $param = array(
-                               'subject_offering_id'=>$cf_xrefstudentschedule_subject_offering_id[$a],
                                'student_id'=>$student_id,
-                               'enrollment_status'=>$cf_xrefstudentschedule_enrollment_status[$a],
-                               'date'=>$cf_xrefstudentschedule_date[$a],
-                               'term_id'=>$cf_xrefstudentschedule_term_id[$a],
-                               'subject_code'=>$cf_xrefstudentschedule_subject_code[$a]
-                              );
-                $dbh_refstudent->add($param);
-            }
-
-            require_once 'subclasses/log_info.php';
-            $dbh_refstudent = new log_info;
-            for($a=0; $a<$log_info_count;$a++)
-            {
-                $cf_log_info_date[$a] = $cf_log_info_date_year[$a] . '-' . $cf_log_info_date_month[$a] . '-' . $cf_log_info_date_day[$a];
-               
-                $param = array(
-                               'date'=>$cf_log_info_date[$a],
-                               'time'=>$cf_log_info_time[$a],
-                               'complaints'=>$cf_log_info_complaints[$a],
-                               'medicine_id'=>$cf_log_info_medicine_id[$a],
-                               'student_id'=>$student_id,
-                               'emp_id'=>$cf_log_info_emp_id[$a]
+                               'relationship'=>$cf_refstudentfamily_relationship[$a],
+                               'name'=>$cf_refstudentfamily_name[$a],
+                               'email'=>$cf_refstudentfamily_email[$a],
+                               'email_status'=>$cf_refstudentfamily_email_status[$a],
+                               'address_type'=>$cf_refstudentfamily_address_type[$a],
+                               'address'=>$cf_refstudentfamily_address[$a],
+                               'postal_code'=>$cf_refstudentfamily_postal_code[$a],
+                               'tel_num'=>$cf_refstudentfamily_tel_num[$a],
+                               'mobile_num1'=>$cf_refstudentfamily_mobile_num1[$a],
+                               'mobile_num2'=>$cf_refstudentfamily_mobile_num2[$a],
+                               'attended'=>$cf_refstudentfamily_attended[$a]
                               );
                 $dbh_refstudent->add($param);
             }

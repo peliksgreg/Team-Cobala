@@ -51,6 +51,21 @@ if(xsrf_guard())
 
         if($message=="")
         {
+            require_once 'subclasses/log_detail.php';
+            $dbh_log_detail = new log_detail;
+            $dbh_log_detail->delete_many($arr_form_data);
+
+            for($a=0; $a<$log_detail_count;$a++)
+            {
+                
+                $param = array(
+                               'log_detail_id'=>$log_id,
+                               'medicine_id'=>$cf_log_detail_medicine_id[$a],
+                               'qty'=>$cf_log_detail_qty[$a]
+                              );
+                $dbh_log_detail->add($param);
+            }
+
 
             $dbh_log_info->edit($arr_form_data);
 

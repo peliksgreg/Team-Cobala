@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/subject_header/edit_refsubjectofferinghdr.php',
+                ['location'=>'modules/Registrar/subject_offering_header/edit_refsubjectofferinghdr.php',
                 'pre'=>'refsubjectofferinghdr_sst_edit.php',
                 'post'=>''],
                );

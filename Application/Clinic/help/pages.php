@@ -6,6 +6,7 @@ $content_pages = array(
         'emergencycase_doc'=>'emergencycase',
         'employee_doc'=>'employee',
         'hospital_doc'=>'hospital',
+        'log_detail_doc'=>'log_detail',
         'log_info_doc'=>'log_info',
         'medicine_doc'=>'medicine',
         'refempfamily_doc'=>'refempfamily',

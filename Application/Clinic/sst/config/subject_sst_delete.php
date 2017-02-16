@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/subject/delete_subject.php',
+                ['location'=>'modules/Registrar/subject/delete_subject.php',
                 'pre'=>'subject_sst_delete.php',
                 'post'=>''],
                );

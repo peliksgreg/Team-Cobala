@@ -33,10 +33,6 @@ if(xsrf_guard())
         $object_name = 'dbh_dept';
         require 'components/create_form_data.php';
 
-        require_once 'subclasses/refstudentclearance.php';
-        $dbh_refstudentclearance = new refstudentclearance;
-        $dbh_refstudentclearance->delete_many($arr_form_data);
-
 
         $dbh_dept->delete($arr_form_data);
 

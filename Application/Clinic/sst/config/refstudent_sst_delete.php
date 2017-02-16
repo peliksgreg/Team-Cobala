@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/student/delete_refstudent.php',
+                ['location'=>'modules/Registrar/student/delete_refstudent.php',
                 'pre'=>'refstudent_sst_delete.php',
                 'post'=>''],
                );

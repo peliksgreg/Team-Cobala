@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/clinic/hospital/detailview_hospital.php',
+                ['location'=>'modules/Clinic/hospital/detailview_hospital.php',
                 'pre'=>'hospital_sst_detailview.php',
                 'post'=>''],
                );

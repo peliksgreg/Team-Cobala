@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/department/add_dept.php',
+                ['location'=>'modules/Registrar/department/add_dept.php',
                 'pre'=>'dept_sst_add.php',
                 'post'=>''],
                );

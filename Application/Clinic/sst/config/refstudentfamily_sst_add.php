@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/student_family/add_refstudentfamily.php',
+                ['location'=>'modules/Registrar/student_family/add_refstudentfamily.php',
                 'pre'=>'refstudentfamily_sst_add.php',
                 'post'=>''],
                );

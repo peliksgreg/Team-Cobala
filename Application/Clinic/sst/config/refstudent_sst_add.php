@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/student/add_refstudent.php',
+                ['location'=>'modules/Registrar/student/add_refstudent.php',
                 'pre'=>'refstudent_sst_add.php',
                 'post'=>''],
                );

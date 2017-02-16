@@ -51,26 +51,6 @@ if(xsrf_guard())
 
         if($message=="")
         {
-            require_once 'subclasses/refstudentclearance.php';
-            $dbh_refstudentclearance = new refstudentclearance;
-            $dbh_refstudentclearance->delete_many($arr_form_data);
-
-            for($a=0; $a<$refstudentclearance_count;$a++)
-            {
-                $cf_refstudentclearance_date[$a] = $cf_refstudentclearance_date_year[$a] . '-' . $cf_refstudentclearance_date_month[$a] . '-' . $cf_refstudentclearance_date_day[$a];
-               
-                $param = array(
-                               'term_id'=>$cf_refstudentclearance_term_id[$a],
-                               'date'=>$cf_refstudentclearance_date[$a],
-                               'student_id'=>$cf_refstudentclearance_student_id[$a],
-                               'remarks'=>$cf_refstudentclearance_remarks[$a],
-                               'is_clear'=>$cf_refstudentclearance_is_clear[$a],
-                               'emp_id'=>$cf_refstudentclearance_emp_id[$a],
-                               'dept_id'=>$dept_id
-                              );
-                $dbh_refstudentclearance->add($param);
-            }
-
 
             $dbh_dept->edit($arr_form_data);
 

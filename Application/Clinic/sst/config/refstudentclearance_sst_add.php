@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/student_clearance/add_refstudentclearance.php',
+                ['location'=>'modules/Registrar/clearance/add_refstudentclearance.php',
                 'pre'=>'refstudentclearance_sst_add.php',
                 'post'=>''],
                );

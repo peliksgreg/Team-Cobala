@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/employee/add_employee.php',
+                ['location'=>'modules/Registrar/employee/add_employee.php',
                 'pre'=>'employee_sst_add.php',
                 'post'=>''],
                );

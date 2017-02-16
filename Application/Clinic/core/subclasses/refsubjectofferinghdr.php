@@ -45,15 +45,16 @@ class refsubjectofferinghdr extends data_abstraction
         if($this->stmt_template=='')
         {
             $this->set_query_type('UPDATE');
-            $this->set_update("term_id = ?, subject_id = ?, section = ?, subject_code = ?");
+            $this->set_update("subject_offering_id = ?, term_id = ?, subject_id = ?, section = ?, subject_code = ?");
             $this->set_where("subject_offering_id = ?");
 
-            $bind_params = array('iissi',
+            $bind_params = array('iiissi',
+                                 &$this->fields['subject_offering_id']['value'],
                                  &$this->fields['term_id']['value'],
                                  &$this->fields['subject_id']['value'],
                                  &$this->fields['section']['value'],
                                  &$this->fields['subject_code']['value'],
-                                 &$this->fields['subject_offering_id']['value']);
+                                 $param['orig_subject_offering_id']);
 
             $this->stmt_prepare($bind_params);
         }
@@ -82,10 +83,10 @@ class refsubjectofferinghdr extends data_abstraction
     {
         $this->set_parameters($param);
         $this->set_query_type('DELETE');
-        $this->set_where("");
+        $this->set_where("subject_offering_id = ?");
 
-        $bind_params = array('',
-                             );
+        $bind_params = array('i',
+                             &$this->fields['subject_offering_id']['value']);
 
         $this->stmt_prepare($bind_params);
         $this->stmt_execute();
@@ -123,13 +124,14 @@ class refsubjectofferinghdr extends data_abstraction
     function check_uniqueness_for_editing($param)
     {
         $this->set_parameters($param);
-
+        //Next two lines just to get the orig_ pkey(s) from $param
+        $this->escape_arguments($param);
+        extract($param);
 
         $this->set_query_type('SELECT');
-        $this->set_where("subject_offering_id = ? AND (subject_offering_id != ?)");
+        $this->set_where("subject_offering_id = ? AND (subject_offering_id != '$orig_subject_offering_id')");
 
-        $bind_params = array('ii',
-                             &$this->fields['subject_offering_id']['value'],
+        $bind_params = array('i',
                              &$this->fields['subject_offering_id']['value']);
 
         $this->stmt_prepare($bind_params);

@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/employee_family/detailview_refempfamily.php',
+                ['location'=>'modules/Registrar/employee_family/detailview_refempfamily.php',
                 'pre'=>'refempfamily_sst_detailview.php',
                 'post'=>''],
                );

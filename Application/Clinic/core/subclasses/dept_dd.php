@@ -148,11 +148,7 @@ class dept_dd
 
     static function load_relationships()
     {
-        $relations = array(array('type'=>'1-M',
-                                 'table'=>'refstudentclearance',
-                                 'link_parent'=>'dept_id',
-                                 'link_child'=>'dept_id',
-                                 'where_clause'=>''));
+        $relations = array();
 
         return $relations;
     }

@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/registrar/term/delete_term.php',
+                ['location'=>'modules/Registrar/term/delete_term.php',
                 'pre'=>'term_sst_delete.php',
                 'post'=>''],
                );

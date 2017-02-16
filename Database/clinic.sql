@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2017 at 03:37 PM
+-- Generation Time: Feb 16, 2017 at 05:38 PM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -137,6 +137,18 @@ CREATE TABLE `hospital` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `log_detail`
+--
+
+CREATE TABLE `log_detail` (
+  `log_detail_id` int(11) NOT NULL,
+  `medicine_id` int(11) NOT NULL,
+  `qty` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `log_info`
 --
 
@@ -144,8 +156,8 @@ CREATE TABLE `log_info` (
   `log_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
+  `log_detail_id` int(11) NOT NULL,
   `complaints` varchar(255) NOT NULL,
-  `medicine_id` int(11) NOT NULL,
   `student_id` char(11) DEFAULT NULL,
   `emp_id` char(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -445,7 +457,19 @@ INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`
 (70, '::1', 'root', '2017-02-16 15:12:38', 'Pressed cancel button', '/clinic/modules/Registrar/student_schedule/add_xrefstudentschedule.php'),
 (71, '::1', 'root', '2017-02-16 15:24:35', 'Logged in', '/clinic/login.php'),
 (72, '::1', 'root', '2017-02-16 15:26:19', 'Logged in', '/clinic/login.php'),
-(73, '::1', 'root', '2017-02-16 15:31:08', 'Logged in', '/clinic/login.php');
+(73, '::1', 'root', '2017-02-16 15:31:08', 'Logged in', '/clinic/login.php'),
+(74, '::1', 'root', '2017-02-16 23:08:07', 'Logged in', '/Clinic/login.php'),
+(75, '::1', 'root', '2017-02-16 23:17:24', 'Logged in', '/clinic/login.php'),
+(76, '::1', 'root', '2017-02-16 23:38:58', 'Logged in', '/clinic/login.php'),
+(77, '::1', 'root', '2017-02-16 23:44:58', 'Pressed cancel button', '/clinic/sysadmin/edit_user_passport_groups.php'),
+(78, '::1', 'root', '2017-02-16 23:58:52', 'Logged in', '/clinic/login.php'),
+(79, '::1', 'root', '2017-02-17 00:02:21', 'Logged in', '/clinic/login.php'),
+(80, '::1', 'root', '2017-02-17 00:05:07', 'Logged in', '/clinic/login.php'),
+(81, '::1', 'root', '2017-02-17 00:14:50', 'Logged in', '/clinic/login.php'),
+(82, '::1', 'root', '2017-02-17 00:15:34', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(83, '::1', 'root', '2017-02-17 00:18:58', 'Logged in', '/clinic/login.php'),
+(84, '::1', 'root', '2017-02-17 00:24:06', 'Logged in', '/clinic/login.php'),
+(85, '::1', 'root', '2017-02-17 00:35:57', 'Logged in', '/clinic/login.php');
 
 -- --------------------------------------------------------
 
@@ -1135,13 +1159,19 @@ ALTER TABLE `hospital`
   ADD PRIMARY KEY (`hospital_id`);
 
 --
+-- Indexes for table `log_detail`
+--
+ALTER TABLE `log_detail`
+  ADD PRIMARY KEY (`log_detail_id`);
+
+--
 -- Indexes for table `log_info`
 --
 ALTER TABLE `log_info`
   ADD PRIMARY KEY (`log_id`),
-  ADD KEY `medicine_id` (`medicine_id`),
   ADD KEY `student_id` (`student_id`),
-  ADD KEY `emp_id` (`emp_id`);
+  ADD KEY `emp_id` (`emp_id`),
+  ADD KEY `log_detail_id` (`log_detail_id`);
 
 --
 -- Indexes for table `medicine`
@@ -1306,6 +1336,11 @@ ALTER TABLE `emergencycase`
 ALTER TABLE `hospital`
   MODIFY `hospital_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `log_detail`
+--
+ALTER TABLE `log_detail`
+  MODIFY `log_detail_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `log_info`
 --
 ALTER TABLE `log_info`
@@ -1354,7 +1389,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT for table `system_skins`
 --

@@ -12,11 +12,11 @@ class medicine_dd
                                           'data_type'=>'integer',
                                           'length'=>20,
                                           'required'=>FALSE,
-                                          'attribute'=>'primary&foreign key',
-                                          'control_type'=>'drop-down list',
+                                          'attribute'=>'primary key',
+                                          'control_type'=>'textbox',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Medicine',
+                                          'label'=>'Medicine ID',
                                           'extra'=>'',
                                           'companion'=>'',
                                           'in_listview'=>FALSE,
@@ -28,11 +28,8 @@ class medicine_dd
                                           'valid_set'=>array(),
                                           'date_elements'=>array('','',''),
                                           'date_default'=>'',
-                                          'list_type'=>'sql generated',
-                                          'list_settings'=>array('query' => "SELECT medicine.medicine_id AS `Queried_medicine_id`, medicine.medicine_name FROM medicine ORDER BY `medicine_name`",
-                                                                     'list_value' => 'Queried_medicine_id',
-                                                                     'list_items' => array('medicine_name'),
-                                                                     'list_separators' => array()),
+                                          'list_type'=>'',
+                                          'list_settings'=>array(''),
                                           'rpt_in_report'=>TRUE,
                                           'rpt_column_format'=>'normal',
                                           'rpt_column_alignment'=>'center',
@@ -97,13 +94,7 @@ class medicine_dd
 
     static function load_relationships()
     {
-        $relations = array(array('type'=>'1-1',
-                                 'table'=>'medicine',
-                                 'alias'=>'',
-                                 'link_parent'=>'medicine_id',
-                                 'link_child'=>'medicine_id',
-                                 'link_subtext'=>array('medicine_name'),
-                                 'where_clause'=>''));
+        $relations = array();
 
         return $relations;
     }

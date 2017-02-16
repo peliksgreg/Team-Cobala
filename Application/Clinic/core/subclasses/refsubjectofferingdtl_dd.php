@@ -12,11 +12,11 @@ class refsubjectofferingdtl_dd
                                           'data_type'=>'integer',
                                           'length'=>20,
                                           'required'=>TRUE,
-                                          'attribute'=>'primary key',
-                                          'control_type'=>'textbox',
+                                          'attribute'=>'foreign key',
+                                          'control_type'=>'drop-down list',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Subject Offering ID',
+                                          'label'=>'Subject Offering',
                                           'extra'=>'',
                                           'companion'=>'',
                                           'in_listview'=>TRUE,
@@ -28,8 +28,11 @@ class refsubjectofferingdtl_dd
                                           'valid_set'=>array(),
                                           'date_elements'=>array('','',''),
                                           'date_default'=>'',
-                                          'list_type'=>'',
-                                          'list_settings'=>array(''),
+                                          'list_type'=>'sql generated',
+                                          'list_settings'=>array('query' => "SELECT refsubjectofferinghdr.subject_offering_id AS `Queried_subject_offering_id`, refsubjectofferinghdr.subject_code FROM refsubjectofferinghdr ORDER BY `subject_code`",
+                                                                     'list_value' => 'Queried_subject_offering_id',
+                                                                     'list_items' => array('subject_code'),
+                                                                     'list_separators' => array()),
                                           'rpt_in_report'=>TRUE,
                                           'rpt_column_format'=>'normal',
                                           'rpt_column_alignment'=>'center',
@@ -202,11 +205,20 @@ class refsubjectofferingdtl_dd
 
     static function load_relationships()
     {
-        $relations = array(array('type'=>'1-M',
+        $relations = array(array('type'=>'1-1',
                                  'table'=>'refsubjectofferinghdr',
+                                 'alias'=>'',
                                  'link_parent'=>'subject_offering_id',
                                  'link_child'=>'subject_offering_id',
-                                 'where_clause'=>''));
+                                 'link_subtext'=>array('subject_code'),
+                                 'where_clause'=>''),
+                           array('type'=>'M-1',
+                             'table'=>'refsubjectofferinghdr',
+                             'alias'=>'',
+                             'link_parent'=>'subject_offering_id',
+                             'link_child'=>'subject_offering_id',
+                             'minimum'=>1,
+                             'where_clause'=>''));
 
         return $relations;
     }

@@ -33,6 +33,10 @@ if(xsrf_guard())
         $object_name = 'dbh_log_info';
         require 'components/create_form_data.php';
 
+        require_once 'subclasses/log_detail.php';
+        $dbh_log_detail = new log_detail;
+        $dbh_log_detail->delete_many($arr_form_data);
+
 
         $dbh_log_info->delete($arr_form_data);
 

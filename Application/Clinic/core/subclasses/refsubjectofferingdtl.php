@@ -48,17 +48,16 @@ class refsubjectofferingdtl extends data_abstraction
         {
             $this->set_query_type('UPDATE');
             $this->set_update("subject_offering_id = ?, time = ?, time_start = ?, time_end = ?, day = ?, room = ?, room_type = ?");
-            $this->set_where("subject_offering_id = ?");
+            $this->set_where("");
 
-            $bind_params = array('isiisssi',
+            $bind_params = array('isiisss',
                                  &$this->fields['subject_offering_id']['value'],
                                  &$this->fields['time']['value'],
                                  &$this->fields['time_start']['value'],
                                  &$this->fields['time_end']['value'],
                                  &$this->fields['day']['value'],
                                  &$this->fields['room']['value'],
-                                 &$this->fields['room_type']['value'],
-                                 $param['orig_subject_offering_id']);
+                                 &$this->fields['room_type']['value']);
 
             $this->stmt_prepare($bind_params);
         }
@@ -71,10 +70,10 @@ class refsubjectofferingdtl extends data_abstraction
     {
         $this->set_parameters($param);
         $this->set_query_type('DELETE');
-        $this->set_where("subject_offering_id = ?");
+        $this->set_where("");
 
-        $bind_params = array('i',
-                             &$this->fields['subject_offering_id']['value']);
+        $bind_params = array('',
+                             );
 
         $this->stmt_prepare($bind_params);
         $this->stmt_execute();
@@ -110,10 +109,10 @@ class refsubjectofferingdtl extends data_abstraction
     {
         $this->set_parameters($param);
         $this->set_query_type('SELECT');
-        $this->set_where("subject_offering_id = ?");
+        $this->set_where("");
 
-        $bind_params = array('i',
-                             &$this->fields['subject_offering_id']['value']);
+        $bind_params = array('',
+                             );
 
         $this->stmt_prepare($bind_params);
         $this->stmt_execute();
@@ -128,15 +127,13 @@ class refsubjectofferingdtl extends data_abstraction
     function check_uniqueness_for_editing($param)
     {
         $this->set_parameters($param);
-        //Next two lines just to get the orig_ pkey(s) from $param
-        $this->escape_arguments($param);
-        extract($param);
+
 
         $this->set_query_type('SELECT');
-        $this->set_where("subject_offering_id = ? AND (subject_offering_id != '$orig_subject_offering_id')");
+        $this->set_where(" AND ()");
 
-        $bind_params = array('i',
-                             &$this->fields['subject_offering_id']['value']);
+        $bind_params = array('',
+                             );
 
         $this->stmt_prepare($bind_params);
         $this->stmt_execute();
