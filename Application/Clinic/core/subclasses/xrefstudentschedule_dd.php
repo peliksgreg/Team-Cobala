@@ -2,7 +2,7 @@
 class xrefstudentschedule_dd
 {
     static $table_name = 'xrefstudentschedule';
-    static $readable_name = 'Xrefstudentschedule';
+    static $readable_name = 'Student Schedule';
 
     static function load_dictionary()
     {

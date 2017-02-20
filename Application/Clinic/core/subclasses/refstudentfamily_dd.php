@@ -2,7 +2,7 @@
 class refstudentfamily_dd
 {
     static $table_name = 'refstudentfamily';
-    static $readable_name = 'Refstudentfamily';
+    static $readable_name = 'Student Family';
 
     static function load_dictionary()
     {
@@ -258,11 +258,11 @@ class refstudentfamily_dd
                                           'data_type'=>'varchar',
                                           'length'=>250,
                                           'required'=>TRUE,
-                                          'attribute'=>'',
+                                          'attribute'=>'none',
                                           'control_type'=>'textbox',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Tel Num',
+                                          'label'=>'Telephone No.',
                                           'extra'=>'',
                                           'companion'=>'',
                                           'in_listview'=>FALSE,

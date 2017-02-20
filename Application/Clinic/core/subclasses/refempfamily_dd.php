@@ -2,7 +2,7 @@
 class refempfamily_dd
 {
     static $table_name = 'refempfamily';
-    static $readable_name = 'Refempfamily';
+    static $readable_name = 'Employee Family';
 
     static function load_dictionary()
     {
