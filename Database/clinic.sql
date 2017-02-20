@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2017 at 02:35 AM
+-- Generation Time: Feb 20, 2017 at 08:37 AM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- PHP Version: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -85,6 +85,13 @@ CREATE TABLE `emergencycase` (
   `escorted_by` varchar(255) DEFAULT NULL,
   `guarantee_control_no` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `emergencycase`
+--
+
+INSERT INTO `emergencycase` (`id`, `date`, `type`, `name`, `id_number`, `location`, `diagnosis`, `hospital_id`, `escorted_by`, `guarantee_control_no`) VALUES
+(46, '2017-02-20 00:00:00', 'Severe', 'Justine Mark Siccion', '2014-100450', 'Gym', 'Broken legs', 5, 'Daveson Romblon', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -513,7 +520,20 @@ INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`
 (111, '::1', 'root', '2017-02-20 09:32:07', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
 (112, '::1', 'root', '2017-02-20 09:32:09', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/listview_medicine.php'),
 (113, '::1', 'root', '2017-02-20 09:34:28', 'Pressed submit button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
-(114, '::1', 'root', '2017-02-20 09:34:28', 'Query Executed: INSERT INTO hospital(hospital_id, hospital_name, tel_number, mobile_number, address) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Asian Hospital and Medical Center\n    [3] => 8765748\n    [4] => +6327719000\n    [5] => 2205 Civic Dr, Alabang, Muntinlupa, 1780 Metro Manila, Philippines\n)\n', '/clinic/modules/Clinic/hospital/add_hospital.php');
+(114, '::1', 'root', '2017-02-20 09:34:28', 'Query Executed: INSERT INTO hospital(hospital_id, hospital_name, tel_number, mobile_number, address) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Asian Hospital and Medical Center\n    [3] => 8765748\n    [4] => +6327719000\n    [5] => 2205 Civic Dr, Alabang, Muntinlupa, 1780 Metro Manila, Philippines\n)\n', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(115, '::1', 'root', '2017-02-20 14:24:58', 'Pressed submit button', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(116, '::1', 'root', '2017-02-20 14:24:58', 'Query Executed: INSERT INTO emergencycase(id, date, type, name, id_number, location, diagnosis, hospital_id, escorted_by, guarantee_control_no) VALUES(?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issssssiss\n    [1] => \n    [2] => 2017-02-20\n    [3] => Severe\n    [4] => Justine Mark Siccion\n    [5] => 2014-100450\n    [6] => Gym\n    [7] => Broken legs\n    [8] => 5\n    [9] => Daveson Romblon\n    [10] => N/A\n)\n', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(117, '::1', 'root', '2017-02-20 14:33:29', 'Pressed cancel button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(118, '::1', 'root', '2017-02-20 14:40:10', 'Logged in', '/clinic/login.php'),
+(119, '::1', 'root', '2017-02-20 14:43:50', 'Logged in', '/clinic/login.php'),
+(120, '::1', 'root', '2017-02-20 14:44:43', 'Logged in', '/clinic/login.php'),
+(121, '::1', 'root', '2017-02-20 14:46:26', 'Pressed submit button', '/clinic/modules/Registrar/department/add_dept.php'),
+(122, '::1', 'root', '2017-02-20 14:52:23', 'Logged in', '/clinic/login.php'),
+(123, '::1', 'root', '2017-02-20 14:54:59', 'Pressed submit button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(124, '::1', 'root', '2017-02-20 14:55:06', 'Pressed submit button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(125, '::1', 'root', '2017-02-20 15:09:13', 'Logged in', '/clinic/login.php'),
+(126, '::1', 'root', '2017-02-20 15:10:06', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(127, '::1', 'root', '2017-02-20 15:25:07', 'Logged in', '/clinic/login.php');
 
 -- --------------------------------------------------------
 
@@ -1373,7 +1393,7 @@ ALTER TABLE `dept`
 -- AUTO_INCREMENT for table `emergencycase`
 --
 ALTER TABLE `emergencycase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `hospital`
 --
@@ -1433,7 +1453,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 --
 -- AUTO_INCREMENT for table `system_skins`
 --
