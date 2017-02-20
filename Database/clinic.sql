@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2017 at 05:38 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: Feb 20, 2017 at 02:35 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -134,6 +134,17 @@ CREATE TABLE `hospital` (
   `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `hospital`
+--
+
+INSERT INTO `hospital` (`hospital_id`, `hospital_name`, `tel_number`, `mobile_number`, `address`) VALUES
+(1, 'Makati Medical Center', '888899', '8888999', 'No. 2, Amorsolo St., Legaspi Village, Makati City, Makati, 1229 Metro Manila'),
+(2, 'St. Luke''s Medical Center - Global City', '7897700', '7897700', 'Rizal Drive cor. 32nd St. and 5th Ave., Taguig, 1634 Metro Manila'),
+(3, 'Fort Bonifacio General Hospital', '4607431', '4607431', 'Barangay Pinagsama, Taguig, Metro Manila'),
+(4, 'Unihealth-Paranaque Hospital & Medical Center', '8320636', '8320636', 'Sucat Rd, Parañaque, Metro Manila'),
+(5, 'Asian Hospital and Medical Center', '8765748', '+6327719000', '2205 Civic Dr, Alabang, Muntinlupa, 1780 Metro Manila, Philippines');
+
 -- --------------------------------------------------------
 
 --
@@ -179,7 +190,11 @@ CREATE TABLE `medicine` (
 --
 
 INSERT INTO `medicine` (`medicine_id`, `medicine_name`, `qty`) VALUES
-(1, 'Paracetamol', '1');
+(1, 'Paracetamol', '5'),
+(2, 'Ibuprofen', '5'),
+(3, 'Cetirizine', '5'),
+(4, 'Imodium', '5'),
+(5, 'Decolgen', '5');
 
 -- --------------------------------------------------------
 
@@ -469,7 +484,36 @@ INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`
 (82, '::1', 'root', '2017-02-17 00:15:34', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
 (83, '::1', 'root', '2017-02-17 00:18:58', 'Logged in', '/clinic/login.php'),
 (84, '::1', 'root', '2017-02-17 00:24:06', 'Logged in', '/clinic/login.php'),
-(85, '::1', 'root', '2017-02-17 00:35:57', 'Logged in', '/clinic/login.php');
+(85, '::1', 'root', '2017-02-17 00:35:57', 'Logged in', '/clinic/login.php'),
+(86, '::1', 'root', '2017-02-20 09:14:29', 'Logged in', '/clinic/login.php'),
+(87, '::1', 'root', '2017-02-20 09:17:41', 'Pressed submit button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(88, '::1', 'root', '2017-02-20 09:18:05', 'Pressed submit button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(89, '::1', 'root', '2017-02-20 09:18:05', 'Query Executed: INSERT INTO hospital(hospital_id, hospital_name, tel_number, mobile_number, address) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Makati Medical Center\n    [3] => 888899\n    [4] => 8888999\n    [5] => No. 2, Amorsolo St., Legaspi Village, Makati City, Makati, 1229 Metro Manila\n)\n', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(90, '::1', 'root', '2017-02-20 09:19:37', 'Pressed submit button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(91, '::1', 'root', '2017-02-20 09:19:37', 'Query Executed: INSERT INTO hospital(hospital_id, hospital_name, tel_number, mobile_number, address) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => St. Luke''s Medical Center - Global City\n    [3] => 7897700\n    [4] => 7897700\n    [5] => Rizal Drive cor. 32nd St. and 5th Ave., Taguig, 1634 Metro Manila\n)\n', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(92, '::1', 'root', '2017-02-20 09:20:22', 'Pressed submit button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(93, '::1', 'root', '2017-02-20 09:20:22', 'Query Executed: INSERT INTO hospital(hospital_id, hospital_name, tel_number, mobile_number, address) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Fort Bonifacio General Hospital\n    [3] => 4607431\n    [4] => 4607431\n    [5] => Barangay Pinagsama, Taguig, Metro Manila\n)\n', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(94, '::1', 'root', '2017-02-20 09:21:26', 'Pressed submit button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(95, '::1', 'root', '2017-02-20 09:21:26', 'Query Executed: INSERT INTO hospital(hospital_id, hospital_name, tel_number, mobile_number, address) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Unihealth-Paranaque Hospital & Medical Center\n    [3] => 8320636\n    [4] => 8320636\n    [5] => Sucat Rd, Parañaque, Metro Manila\n)\n', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(96, '::1', 'root', '2017-02-20 09:22:44', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(97, '::1', 'root', '2017-02-20 09:22:45', 'Query Executed: UPDATE medicine SET medicine_id = ?, medicine_name = ?, qty = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => issi\n    [1] => 1\n    [2] => Paracetamol\n    [3] => 5\n    [4] => 1\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(98, '::1', 'root', '2017-02-20 09:24:37', 'Pressed submit button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(99, '::1', 'root', '2017-02-20 09:24:38', 'Query Executed: INSERT INTO medicine(medicine_id, medicine_name, qty) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => 2\n    [2] => ibuprofen\n    [3] => 5\n)\n', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(100, '::1', 'root', '2017-02-20 09:24:45', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(101, '::1', 'root', '2017-02-20 09:24:46', 'Query Executed: UPDATE medicine SET medicine_id = ?, medicine_name = ?, qty = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => issi\n    [1] => 2\n    [2] => Ibuprofen\n    [3] => 5\n    [4] => 2\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(102, '::1', 'root', '2017-02-20 09:25:25', 'Pressed submit button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(103, '::1', 'root', '2017-02-20 09:25:25', 'Query Executed: INSERT INTO medicine(medicine_id, medicine_name, qty) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => 3\n    [2] => Cetirizine\n    [3] => 5\n)\n', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(104, '::1', 'root', '2017-02-20 09:26:00', 'Pressed submit button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(105, '::1', 'root', '2017-02-20 09:26:00', 'Query Executed: INSERT INTO medicine(medicine_id, medicine_name, qty) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => 4\n    [2] => Imodium\n    [3] => 5\n)\n', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(106, '::1', 'root', '2017-02-20 09:27:57', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(107, '::1', 'root', '2017-02-20 09:28:22', 'Pressed submit button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(108, '::1', 'root', '2017-02-20 09:28:22', 'Query Executed: INSERT INTO medicine(medicine_id, medicine_name, qty) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => 5\n    [2] => Decolgen\n    [3] => 5\n)\n', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(109, '::1', 'root', '2017-02-20 09:29:46', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(110, '::1', 'root', '2017-02-20 09:30:19', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/listview_medicine.php'),
+(111, '::1', 'root', '2017-02-20 09:32:07', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(112, '::1', 'root', '2017-02-20 09:32:09', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/listview_medicine.php'),
+(113, '::1', 'root', '2017-02-20 09:34:28', 'Pressed submit button', '/clinic/modules/Clinic/hospital/add_hospital.php'),
+(114, '::1', 'root', '2017-02-20 09:34:28', 'Query Executed: INSERT INTO hospital(hospital_id, hospital_name, tel_number, mobile_number, address) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Asian Hospital and Medical Center\n    [3] => 8765748\n    [4] => +6327719000\n    [5] => 2205 Civic Dr, Alabang, Muntinlupa, 1780 Metro Manila, Philippines\n)\n', '/clinic/modules/Clinic/hospital/add_hospital.php');
 
 -- --------------------------------------------------------
 
@@ -1334,7 +1378,7 @@ ALTER TABLE `emergencycase`
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
-  MODIFY `hospital_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `hospital_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `log_detail`
 --
@@ -1349,7 +1393,7 @@ ALTER TABLE `log_info`
 -- AUTO_INCREMENT for table `medicine`
 --
 ALTER TABLE `medicine`
-  MODIFY `medicine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `medicine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `person`
 --
@@ -1389,7 +1433,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 --
 -- AUTO_INCREMENT for table `system_skins`
 --
