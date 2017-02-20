@@ -2,7 +2,7 @@
 class refstudentclearance_dd
 {
     static $table_name = 'refstudentclearance';
-    static $readable_name = 'Refstudentclearance';
+    static $readable_name = 'Student Clearance';
 
     static function load_dictionary()
     {

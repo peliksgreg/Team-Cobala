@@ -2,7 +2,7 @@
 class emergencycase_dd
 {
     static $table_name = 'emergencycase';
-    static $readable_name = 'Emergencycase';
+    static $readable_name = 'Emergency Case';
 
     static function load_dictionary()
     {

@@ -2,7 +2,7 @@
 class dept_dd
 {
     static $table_name = 'dept';
-    static $readable_name = 'Dept';
+    static $readable_name = 'Department';
 
     static function load_dictionary()
     {
@@ -66,11 +66,11 @@ class dept_dd
                                           'data_type'=>'varchar',
                                           'length'=>75,
                                           'required'=>TRUE,
-                                          'attribute'=>'',
+                                          'attribute'=>'none',
                                           'control_type'=>'textbox',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Dept Description',
+                                          'label'=>'Description',
                                           'extra'=>'',
                                           'companion'=>'',
                                           'in_listview'=>TRUE,
