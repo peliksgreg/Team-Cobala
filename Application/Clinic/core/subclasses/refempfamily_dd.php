@@ -2,7 +2,7 @@
 class refempfamily_dd
 {
     static $table_name = 'refempfamily';
-    static $readable_name = 'Employee Family';
+    static $readable_name = 'Employee Family Information';
 
     static function load_dictionary()
     {
@@ -181,8 +181,8 @@ class refempfamily_dd
                                           'data_type'=>'varchar',
                                           'length'=>255,
                                           'required'=>TRUE,
-                                          'attribute'=>'',
-                                          'control_type'=>'textbox',
+                                          'attribute'=>'none',
+                                          'control_type'=>'drop-down list',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
                                           'label'=>'Address Type',
@@ -197,8 +197,10 @@ class refempfamily_dd
                                           'valid_set'=>array(),
                                           'date_elements'=>array('','',''),
                                           'date_default'=>'',
-                                          'list_type'=>'',
-                                          'list_settings'=>array(''),
+                                      'list_type'=>'predefined',
+                                      'list_settings'=>array('per_line'=>TRUE,
+                                                             'items'  =>array('Office ','Home'),
+                                                             'values' =>array('Office ','Home')),
                                           'rpt_in_report'=>TRUE,
                                           'rpt_column_format'=>'normal',
                                           'rpt_column_alignment'=>'left',
@@ -234,7 +236,7 @@ class refempfamily_dd
                                           'nullable'=>TRUE,
                                           'data_type'=>'varchar',
                                           'length'=>4,
-                                          'required'=>TRUE,
+                                          'required'=>FALSE,
                                           'attribute'=>'none',
                                           'control_type'=>'textbox',
                                           'size'=>'30',
@@ -315,7 +317,7 @@ class refempfamily_dd
                                           'nullable'=>TRUE,
                                           'data_type'=>'varchar',
                                           'length'=>255,
-                                          'required'=>TRUE,
+                                          'required'=>FALSE,
                                           'attribute'=>'none',
                                           'control_type'=>'textbox',
                                           'size'=>'20',

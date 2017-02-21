@@ -2,7 +2,7 @@
 class emergencycase_dd
 {
     static $table_name = 'emergencycase';
-    static $readable_name = 'Emergency Case';
+    static $readable_name = 'Emergencycase';
 
     static function load_dictionary()
     {
@@ -238,7 +238,7 @@ class emergencycase_dd
                                           'label'=>'Escorted By',
                                           'extra'=>'',
                                           'companion'=>'',
-                                          'in_listview'=>FALSE,
+                                          'in_listview'=>TRUE,
                                           'char_set_method'=>'',
                                           'char_set_allow_space'=>TRUE,
                                           'extra_chars_allowed'=>'',

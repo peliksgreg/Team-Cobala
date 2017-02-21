@@ -2,7 +2,7 @@
 class refsubjectofferingdtl_dd
 {
     static $table_name = 'refsubjectofferingdtl';
-    static $readable_name = 'Subject Offering Detail';
+    static $readable_name = 'Subject Offering Details';
 
     static function load_dictionary()
     {

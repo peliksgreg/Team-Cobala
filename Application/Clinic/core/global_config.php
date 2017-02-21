@@ -1,6 +1,6 @@
 <?php
 define('GLOBAL_PROJECT_NAME', 'APC Clinic Management System');
-define('GLOBAL_SESSION_NAME', 'C7bd2a395');
+define('GLOBAL_SESSION_NAME', 'Cef3426de');
 
 //Default database settings
 define('DEFAULT_DB_HOST','localhost');

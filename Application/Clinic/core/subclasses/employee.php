@@ -24,7 +24,7 @@ class employee extends data_abstraction
             $this->set_fields('emp_id, emp_last_name, emp_first_name, emp_middle_name, email, emp_status, emp_group, address, postal_code, tel_num, mobile_num, hiring_date, resignation_date, gender, civil_status, birth_date, birth_place, religion, is_deleted, ATM_num, BDO_ATM_num, SSS_num, PhilHealth_num, TIN_num, PagIbig_num');
             $this->set_values("?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?");
 
-            $bind_params = array('sssssiissssssssssssssssss',
+            $bind_params = array('ssssssissssssssssssssssss',
                                  &$this->fields['emp_id']['value'],
                                  &$this->fields['emp_last_name']['value'],
                                  &$this->fields['emp_first_name']['value'],
@@ -68,7 +68,7 @@ class employee extends data_abstraction
             $this->set_update("emp_id = ?, emp_last_name = ?, emp_first_name = ?, emp_middle_name = ?, email = ?, emp_status = ?, emp_group = ?, address = ?, postal_code = ?, tel_num = ?, mobile_num = ?, hiring_date = ?, resignation_date = ?, gender = ?, civil_status = ?, birth_date = ?, birth_place = ?, religion = ?, is_deleted = ?, ATM_num = ?, BDO_ATM_num = ?, SSS_num = ?, PhilHealth_num = ?, TIN_num = ?, PagIbig_num = ?");
             $this->set_where("emp_id = ?");
 
-            $bind_params = array('sssssiisssssssssssssssssss',
+            $bind_params = array('ssssssisssssssssssssssssss',
                                  &$this->fields['emp_id']['value'],
                                  &$this->fields['emp_last_name']['value'],
                                  &$this->fields['emp_first_name']['value'],

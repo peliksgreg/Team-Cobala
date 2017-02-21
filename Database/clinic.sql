@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2017 at 08:37 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Generation Time: Feb 21, 2017 at 07:13 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -67,6 +67,15 @@ CREATE TABLE `dept` (
   `is_deleted` enum('Yes','No') DEFAULT 'No'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Master List of Functional Units of APC';
 
+--
+-- Dumping data for table `dept`
+--
+
+INSERT INTO `dept` (`dept_id`, `dept_code`, `dept_description`, `dept_assign`, `is_deleted`) VALUES
+(53, 'ITRO', 'Information Technology Resource Center', '', 'No'),
+(54, 'Clinic', 'APC Clinic', '', 'No'),
+(55, 'Registrar', 'Registrar', '', 'No');
+
 -- --------------------------------------------------------
 
 --
@@ -91,7 +100,8 @@ CREATE TABLE `emergencycase` (
 --
 
 INSERT INTO `emergencycase` (`id`, `date`, `type`, `name`, `id_number`, `location`, `diagnosis`, `hospital_id`, `escorted_by`, `guarantee_control_no`) VALUES
-(46, '2017-02-20 00:00:00', 'Severe', 'Justine Mark Siccion', '2014-100450', 'Gym', 'Broken legs', 5, 'Daveson Romblon', 'N/A');
+(46, '2017-02-20 00:00:00', 'Severe', 'Justine Mark Siccion', '2014-100450', 'Gym', 'Broken legs', 5, 'Daveson Romblon', 'N/A'),
+(47, '2017-02-22 00:00:00', 'test', 'Felix Gregorio', '2014-100360', 'MPH1', 'Broken limbs', 3, 'Jonathan Abalon', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -126,6 +136,13 @@ CREATE TABLE `employee` (
   `TIN_num` varchar(25) NOT NULL,
   `PagIbig_num` varchar(25) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Master List of Employees in APC';
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`emp_id`, `emp_last_name`, `emp_first_name`, `emp_middle_name`, `email`, `emp_status`, `emp_group`, `address`, `postal_code`, `tel_num`, `mobile_num`, `hiring_date`, `resignation_date`, `gender`, `civil_status`, `birth_date`, `birth_place`, `religion`, `is_deleted`, `ATM_num`, `BDO_ATM_num`, `SSS_num`, `PhilHealth_num`, `TIN_num`, `PagIbig_num`) VALUES
+('2014-10030', 'Gregorio', 'Felix', 'Villacruel', 'fvgregorio@student.apc.ed', 0, 0, 'asdasd', '', '123123', '1231231', '2017-02-21', '2017-02-21', 'Male', 'Single', '2017-02-21', 'asasd', 'asd', NULL, '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -164,6 +181,14 @@ CREATE TABLE `log_detail` (
   `qty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `log_detail`
+--
+
+INSERT INTO `log_detail` (`log_detail_id`, `medicine_id`, `qty`) VALUES
+(1, 1, 1),
+(2, 4, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -179,6 +204,14 @@ CREATE TABLE `log_info` (
   `student_id` char(11) DEFAULT NULL,
   `emp_id` char(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `log_info`
+--
+
+INSERT INTO `log_info` (`log_id`, `date`, `time`, `log_detail_id`, `complaints`, `student_id`, `emp_id`) VALUES
+(1, '2017-02-22', '05:30:00', 0, 'Headache', '2014-100360', '2014-10030'),
+(2, '2017-02-22', '07:30:00', 0, 'Small cut', '2014-100360', '2014-10030');
 
 -- --------------------------------------------------------
 
@@ -197,11 +230,11 @@ CREATE TABLE `medicine` (
 --
 
 INSERT INTO `medicine` (`medicine_id`, `medicine_name`, `qty`) VALUES
-(1, 'Paracetamol', '5'),
-(2, 'Ibuprofen', '5'),
-(3, 'Cetirizine', '5'),
-(4, 'Imodium', '5'),
-(5, 'Decolgen', '5');
+(1, 'Paracetamol', '1'),
+(2, 'Ibuprofen', '1'),
+(3, 'Cetirizine', '1'),
+(4, 'Imodium', '1'),
+(5, 'Decolgen', '1');
 
 -- --------------------------------------------------------
 
@@ -222,7 +255,9 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`person_id`, `first_name`, `middle_name`, `last_name`, `gender`) VALUES
-(1, 'Super User', 'X', 'Root', 'Male');
+(1, 'Super User', 'X', 'Root', 'Male'),
+(2, 'Nurse', 'Nurse', 'Nurse', 'Female'),
+(3, 'Doctor', 'Doctor', 'Doctor', 'Female');
 
 -- --------------------------------------------------------
 
@@ -244,6 +279,14 @@ CREATE TABLE `refempfamily` (
   `tel_num` varchar(255) DEFAULT NULL,
   `mobile_num2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `refempfamily`
+--
+
+INSERT INTO `refempfamily` (`family_id`, `emp_id`, `relationship`, `name`, `email`, `email_status`, `address_type`, `address`, `postal_code`, `mobile_num1`, `tel_num`, `mobile_num2`) VALUES
+(1, '2014-10030', 'FATHER', 'Felix Gregorio JR.', 'fasdsad', 'Inactive', 'Office', 'asdsdas', '123', '123', '123', '12312312321'),
+(2, '2014-10030', 'MOTHER', 'Lolinie Gregorio', 'centuryleni@gmail.com', 'Active', 'Office', '123 Mabuhay Ave.', '2012', '24123123', '12312312', '');
 
 -- --------------------------------------------------------
 
@@ -274,6 +317,13 @@ CREATE TABLE `refstudent` (
   `civil_status` enum('Single','Married','Separated','Widowed') CHARACTER SET latin1 NOT NULL DEFAULT 'Single',
   `box_num` varchar(250) CHARACTER SET latin1 NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Masterlist of Student Main Profile';
+
+--
+-- Dumping data for table `refstudent`
+--
+
+INSERT INTO `refstudent` (`student_id`, `student_last_name`, `student_first_name`, `student_middle_name`, `birth_date`, `birth_place`, `admission_date`, `entry_level`, `admission_credential`, `mail_grades_to`, `exit_level`, `nationality`, `gender`, `address`, `postal_code`, `tel_num`, `mobile_num`, `email`, `religion`, `civil_status`, `box_num`) VALUES
+('2015-100016', 'Romblon', 'Daveson', 'Kitane', '2017-02-22', 'San Juan City', '2017-02-22', '', '', '', '', 'Filipino', 'Male', 'Aven.ts 231 gsts', '2314', '213412', '412312', 'dave@gmail.com', 'Catholic', 'Single', '');
 
 -- --------------------------------------------------------
 
@@ -313,6 +363,13 @@ CREATE TABLE `refstudentfamily` (
   `mobile_num2` varchar(250) NOT NULL,
   `attended` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Masterlist of Student Family';
+
+--
+-- Dumping data for table `refstudentfamily`
+--
+
+INSERT INTO `refstudentfamily` (`family_id`, `student_id`, `relationship`, `name`, `email`, `email_status`, `address_type`, `address`, `postal_code`, `tel_num`, `mobile_num1`, `mobile_num2`, `attended`) VALUES
+(20650, '2015-100016', 'MOTHER', 'LMAO', 'LMAO@gmail.com', 'Active', '', 'LMAO srtsts ave.,', '2331', '124123', '21412312', '123123123', 'Active');
 
 -- --------------------------------------------------------
 
@@ -533,7 +590,328 @@ INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`
 (124, '::1', 'root', '2017-02-20 14:55:06', 'Pressed submit button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
 (125, '::1', 'root', '2017-02-20 15:09:13', 'Logged in', '/clinic/login.php'),
 (126, '::1', 'root', '2017-02-20 15:10:06', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
-(127, '::1', 'root', '2017-02-20 15:25:07', 'Logged in', '/clinic/login.php');
+(127, '::1', 'root', '2017-02-20 15:25:07', 'Logged in', '/clinic/login.php'),
+(128, '::1', 'root', '2017-02-21 21:49:59', 'Logged in', '/clinic/login.php'),
+(129, '::1', 'root', '2017-02-21 21:51:19', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(130, '::1', 'root', '2017-02-21 22:01:56', 'Logged in', '/clinic/login.php'),
+(131, '::1', 'root', '2017-02-21 22:02:14', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(132, '::1', 'root', '2017-02-21 22:14:52', 'Logged in', '/clinic/login.php'),
+(133, '::1', 'root', '2017-02-21 22:15:00', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(134, '::1', 'root', '2017-02-21 22:16:36', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(135, '::1', 'root', '2017-02-21 22:24:01', 'Logged in', '/clinic/login.php'),
+(136, '::1', 'root', '2017-02-21 22:24:07', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(137, '::1', 'root', '2017-02-21 22:44:49', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(138, '::1', 'root', '2017-02-21 22:49:36', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(139, '::1', 'root', '2017-02-21 22:49:36', 'Query Executed: INSERT INTO employee(emp_id, emp_last_name, emp_first_name, emp_middle_name, email, emp_status, emp_group, address, postal_code, tel_num, mobile_num, hiring_date, resignation_date, gender, civil_status, birth_date, birth_place, religion, is_deleted, ATM_num, BDO_ATM_num, SSS_num, PhilHealth_num, TIN_num, PagIbig_num) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => ssssssissssssssssssssssss\n    [1] => 2014-10030\n    [2] => Gregorio\n    [3] => Felix\n    [4] => Villacruel\n    [5] => fvgregorio@student.apc.ed\n    [6] => Active\n    [7] => \n    [8] => asdasd\n    [9] => \n    [10] => 123123\n    [11] => 1231231\n    [12] => 2017-02-21\n    [13] => 2017-02-21\n    [14] => Male\n    [15] => Single\n    [16] => 2017-02-21\n    [17] => asasd\n    [18] => asd\n    [19] => \n    [20] => \n    [21] => \n    [22] => \n    [23] => \n    [24] => \n    [25] => \n)\n', '/clinic/modules/Registrar/employee/add_employee.php'),
+(140, '::1', 'root', '2017-02-21 22:49:36', 'Query Executed: INSERT INTO refempfamily(family_id, emp_id, relationship, name, email, email_status, address_type, address, postal_code, mobile_num1, tel_num, mobile_num2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => isssssssssss\n    [1] => \n    [2] => 2014-10030\n    [3] => Father\n    [4] => Felix Gregorio JR.\n    [5] => fasdsad\n    [6] => Inactive\n    [7] => Office\n    [8] => asdsdas\n    [9] => 123\n    [10] => 123\n    [11] => 123\n    [12] => 12312312321\n)\n', '/clinic/modules/Registrar/employee/add_employee.php'),
+(141, '::1', 'root', '2017-02-21 23:11:27', 'Pressed submit button', '/clinic/modules/Registrar/employee_family/add_refempfamily.php'),
+(142, '::1', 'root', '2017-02-21 23:11:33', 'Pressed submit button', '/clinic/modules/Registrar/employee/add_employee.php'),
+(143, '::1', 'root', '2017-02-22 00:48:59', 'Logged in', '/clinic/login.php'),
+(144, '::1', 'root', '2017-02-22 00:51:23', 'Pressed submit button', '/clinic/sysadmin/add_person.php'),
+(145, '::1', 'root', '2017-02-22 00:51:23', 'Query Executed: INSERT INTO person(person_id, first_name, middle_name, last_name, gender) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Nurse\n    [3] => Nurse\n    [4] => Nurse\n    [5] => Female\n)\n', '/clinic/sysadmin/add_person.php'),
+(146, '::1', 'root', '2017-02-22 00:51:34', 'Pressed submit button', '/clinic/sysadmin/add_person.php'),
+(147, '::1', 'root', '2017-02-22 00:51:34', 'Query Executed: INSERT INTO person(person_id, first_name, middle_name, last_name, gender) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Doctor\n    [3] => Doctor\n    [4] => Doctor\n    [5] => Female\n)\n', '/clinic/sysadmin/add_person.php'),
+(148, '::1', 'root', '2017-02-22 00:52:15', 'Pressed submit button', '/clinic/sysadmin/add_user_role.php'),
+(149, '::1', 'root', '2017-02-22 00:52:15', 'Query Executed: INSERT INTO user_role(role_id, role, description) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => \n    [2] => Nurse\n    [3] => Uses APC Clinic Management System\n)\n', '/clinic/sysadmin/add_user_role.php'),
+(150, '::1', 'root', '2017-02-22 00:52:21', 'Pressed submit button', '/clinic/sysadmin/add_user_role.php'),
+(151, '::1', 'root', '2017-02-22 00:52:22', 'Query Executed: INSERT INTO user_role(role_id, role, description) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => \n    [2] => Doctor\n    [3] => Uses APC Clinic Management System\n)\n', '/clinic/sysadmin/add_user_role.php'),
+(152, '::1', 'root', '2017-02-22 00:53:17', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3'' AND link_id IN (''87'',''99'')', '/clinic/sysadmin/role_permissions.php'),
+(153, '::1', 'root', '2017-02-22 00:53:17', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''87'')', '/clinic/sysadmin/role_permissions.php'),
+(154, '::1', 'root', '2017-02-22 00:53:17', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(155, '::1', 'root', '2017-02-22 00:53:24', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3'' AND link_id IN (''43'',''55'')', '/clinic/sysadmin/role_permissions.php'),
+(156, '::1', 'root', '2017-02-22 00:53:24', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(157, '::1', 'root', '2017-02-22 00:53:24', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(158, '::1', 'root', '2017-02-22 00:53:30', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3'' AND link_id IN (''47'',''63'',''67'',''75'')', '/clinic/sysadmin/role_permissions.php'),
+(159, '::1', 'root', '2017-02-22 00:53:30', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''47'')', '/clinic/sysadmin/role_permissions.php'),
+(160, '::1', 'root', '2017-02-22 00:53:30', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(161, '::1', 'root', '2017-02-22 00:53:30', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''67'')', '/clinic/sysadmin/role_permissions.php'),
+(162, '::1', 'root', '2017-02-22 00:53:31', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''75'')', '/clinic/sysadmin/role_permissions.php'),
+(163, '::1', 'root', '2017-02-22 00:53:36', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3'' AND link_id IN (''71'')', '/clinic/sysadmin/role_permissions.php'),
+(164, '::1', 'root', '2017-02-22 00:53:36', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(165, '::1', 'root', '2017-02-22 00:53:50', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/role_permissions.php'),
+(166, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(167, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''47'')', '/clinic/sysadmin/role_permissions.php'),
+(168, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(169, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(170, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''87'')', '/clinic/sysadmin/role_permissions.php'),
+(171, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''67'')', '/clinic/sysadmin/role_permissions.php'),
+(172, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(173, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''75'')', '/clinic/sysadmin/role_permissions.php'),
+(174, '::1', 'root', '2017-02-22 00:53:51', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(175, '::1', 'root', '2017-02-22 00:54:15', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(176, '::1', 'root', '2017-02-22 00:54:24', 'Pressed cancel button', '/clinic/sysadmin/add_user_role.php'),
+(177, '::1', 'root', '2017-02-22 00:54:43', 'Pressed submit button', '/clinic/sysadmin/add_user.php'),
+(178, '::1', 'root', '2017-02-22 00:54:43', 'Query Executed: INSERT INTO user(username, password, salt, iteration, method, person_id, role_id, skin_id) VALUES(?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => sssisiii\n    [1] => nurse\n    [2] => $2y$12$pxuwB7LWk18IfmgAA6kJBeJxVGrw77LA2y7/CkapBcHDqgUl2K/06\n    [3] => pxuwB7LWk18IfmgAA6kJBg\n    [4] => 12\n    [5] => blowfish\n    [6] => 2\n    [7] => 3\n    [8] => 12\n)\n', '/clinic/sysadmin/add_user.php'),
+(179, '::1', 'root', '2017-02-22 00:54:43', 'Query executed: INSERT `user_passport` SELECT ''nurse'', `link_id` FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/add_user.php'),
+(180, '::1', 'root', '2017-02-22 00:54:56', 'Pressed submit button', '/clinic/sysadmin/add_user.php'),
+(181, '::1', 'root', '2017-02-22 00:54:57', 'Query Executed: INSERT INTO user(username, password, salt, iteration, method, person_id, role_id, skin_id) VALUES(?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => sssisiii\n    [1] => doctor\n    [2] => $2y$12$UsZcXA9NrQ6W6uJFFQX96.GZPuomOlB2/KVspODmUhCGTXD1lnpky\n    [3] => UsZcXA9NrQ6W6uJFFQX96A\n    [4] => 12\n    [5] => blowfish\n    [6] => 3\n    [7] => 4\n    [8] => 2\n)\n', '/clinic/sysadmin/add_user.php'),
+(182, '::1', 'root', '2017-02-22 00:54:57', 'Query executed: INSERT `user_passport` SELECT ''doctor'', `link_id` FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/add_user.php'),
+(183, '::1', 'root', '2017-02-22 00:55:05', 'Query executed: DELETE FROM user_passport WHERE username IN (''nurse'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(184, '::1', 'root', '2017-02-22 00:55:05', 'Query executed: INSERT `user_passport` SELECT ''nurse'', `link_id` FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(185, '::1', 'root', '2017-02-22 00:55:06', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(186, '::1', 'root', '2017-02-22 00:55:08', 'Query executed: DELETE FROM user_passport WHERE username IN (''doctor'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(187, '::1', 'root', '2017-02-22 00:55:09', 'Query executed: INSERT `user_passport` SELECT ''doctor'', `link_id` FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(188, '::1', 'root', '2017-02-22 00:55:09', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(189, '::1', 'root', '2017-02-22 00:55:18', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4'' AND link_id IN (''87'',''99'')', '/clinic/sysadmin/role_permissions.php'),
+(190, '::1', 'root', '2017-02-22 00:55:18', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''87'')', '/clinic/sysadmin/role_permissions.php'),
+(191, '::1', 'root', '2017-02-22 00:55:18', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(192, '::1', 'root', '2017-02-22 00:55:22', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4'' AND link_id IN (''43'',''55'')', '/clinic/sysadmin/role_permissions.php'),
+(193, '::1', 'root', '2017-02-22 00:55:22', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(194, '::1', 'root', '2017-02-22 00:55:22', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(195, '::1', 'root', '2017-02-22 00:55:27', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4'' AND link_id IN (''47'',''63'',''67'',''75'')', '/clinic/sysadmin/role_permissions.php'),
+(196, '::1', 'root', '2017-02-22 00:55:27', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''47'')', '/clinic/sysadmin/role_permissions.php'),
+(197, '::1', 'root', '2017-02-22 00:55:28', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(198, '::1', 'root', '2017-02-22 00:55:28', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''67'')', '/clinic/sysadmin/role_permissions.php'),
+(199, '::1', 'root', '2017-02-22 00:55:28', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''75'')', '/clinic/sysadmin/role_permissions.php'),
+(200, '::1', 'root', '2017-02-22 00:55:33', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4'' AND link_id IN (''71'')', '/clinic/sysadmin/role_permissions.php'),
+(201, '::1', 'root', '2017-02-22 00:55:33', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(202, '::1', 'root', '2017-02-22 00:55:34', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4'' AND link_id IN (''71'')', '/clinic/sysadmin/role_permissions.php'),
+(203, '::1', 'root', '2017-02-22 00:55:35', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(204, '::1', 'root', '2017-02-22 00:55:40', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/role_permissions.php'),
+(205, '::1', 'root', '2017-02-22 00:55:40', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(206, '::1', 'root', '2017-02-22 00:55:40', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''47'')', '/clinic/sysadmin/role_permissions.php'),
+(207, '::1', 'root', '2017-02-22 00:55:40', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(208, '::1', 'root', '2017-02-22 00:55:40', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(209, '::1', 'root', '2017-02-22 00:55:40', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''87'')', '/clinic/sysadmin/role_permissions.php'),
+(210, '::1', 'root', '2017-02-22 00:55:41', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''67'')', '/clinic/sysadmin/role_permissions.php'),
+(211, '::1', 'root', '2017-02-22 00:55:41', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(212, '::1', 'root', '2017-02-22 00:55:41', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''75'')', '/clinic/sysadmin/role_permissions.php'),
+(213, '::1', 'root', '2017-02-22 00:55:41', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(214, '::1', 'root', '2017-02-22 00:55:45', 'Query executed: DELETE FROM user_passport WHERE username IN (''doctor'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(215, '::1', 'root', '2017-02-22 00:55:45', 'Query executed: INSERT `user_passport` SELECT ''doctor'', `link_id` FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(216, '::1', 'root', '2017-02-22 00:55:46', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(217, '::1', 'root', '2017-02-22 00:55:49', 'Logged out', '/clinic/end.php'),
+(218, '::1', 'nurse', '2017-02-22 00:55:53', 'Logged in', '/clinic/login.php'),
+(219, '::1', 'nurse', '2017-02-22 00:56:21', 'Logged out', '/clinic/end.php'),
+(220, '::1', 'root', '2017-02-22 00:56:29', 'Logged in', '/clinic/login.php'),
+(221, '::1', 'root', '2017-02-22 00:56:46', 'Pressed submit button', '/clinic/sysadmin/edit_user.php'),
+(222, '::1', 'root', '2017-02-22 00:56:46', 'Query Executed: UPDATE user SET username = ?, person_id = ?, role_id = ?, skin_id = ? WHERE username = ?\r\nArray\n(\n    [0] => siiis\n    [1] => nurse\n    [2] => 2\n    [3] => 3\n    [4] => 9\n    [5] => nurse\n)\n', '/clinic/sysadmin/edit_user.php'),
+(223, '::1', 'root', '2017-02-22 00:56:46', 'Query executed: DELETE FROM user_passport WHERE username = ''nurse''', '/clinic/sysadmin/edit_user.php'),
+(224, '::1', 'root', '2017-02-22 00:56:46', 'Query executed: INSERT `user_passport` SELECT ''nurse'', `link_id` FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/edit_user.php'),
+(225, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/role_permissions.php'),
+(226, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''41'')', '/clinic/sysadmin/role_permissions.php'),
+(227, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''49'')', '/clinic/sysadmin/role_permissions.php'),
+(228, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''53'')', '/clinic/sysadmin/role_permissions.php'),
+(229, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''57'')', '/clinic/sysadmin/role_permissions.php'),
+(230, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''85'')', '/clinic/sysadmin/role_permissions.php'),
+(231, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''42'')', '/clinic/sysadmin/role_permissions.php'),
+(232, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''50'')', '/clinic/sysadmin/role_permissions.php'),
+(233, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''54'')', '/clinic/sysadmin/role_permissions.php'),
+(234, '::1', 'root', '2017-02-22 00:59:10', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''58'')', '/clinic/sysadmin/role_permissions.php'),
+(235, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''62'')', '/clinic/sysadmin/role_permissions.php'),
+(236, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''66'')', '/clinic/sysadmin/role_permissions.php'),
+(237, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''70'')', '/clinic/sysadmin/role_permissions.php'),
+(238, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''74'')', '/clinic/sysadmin/role_permissions.php'),
+(239, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''78'')', '/clinic/sysadmin/role_permissions.php'),
+(240, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''82'')', '/clinic/sysadmin/role_permissions.php'),
+(241, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''86'')', '/clinic/sysadmin/role_permissions.php'),
+(242, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(243, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''47'')', '/clinic/sysadmin/role_permissions.php'),
+(244, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(245, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''51'')', '/clinic/sysadmin/role_permissions.php'),
+(246, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(247, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''59'')', '/clinic/sysadmin/role_permissions.php'),
+(248, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''87'')', '/clinic/sysadmin/role_permissions.php'),
+(249, '::1', 'root', '2017-02-22 00:59:11', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''67'')', '/clinic/sysadmin/role_permissions.php'),
+(250, '::1', 'root', '2017-02-22 00:59:12', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(251, '::1', 'root', '2017-02-22 00:59:12', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''75'')', '/clinic/sysadmin/role_permissions.php'),
+(252, '::1', 'root', '2017-02-22 00:59:12', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''99'')', '/clinic/sysadmin/role_permissions.php');
+INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`, `module`) VALUES
+(253, '::1', 'root', '2017-02-22 01:00:33', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/role_permissions.php'),
+(254, '::1', 'root', '2017-02-22 01:00:33', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''49'')', '/clinic/sysadmin/role_permissions.php'),
+(255, '::1', 'root', '2017-02-22 01:00:33', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''53'')', '/clinic/sysadmin/role_permissions.php'),
+(256, '::1', 'root', '2017-02-22 01:00:33', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''57'')', '/clinic/sysadmin/role_permissions.php'),
+(257, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''85'')', '/clinic/sysadmin/role_permissions.php'),
+(258, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''50'')', '/clinic/sysadmin/role_permissions.php'),
+(259, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''54'')', '/clinic/sysadmin/role_permissions.php'),
+(260, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''58'')', '/clinic/sysadmin/role_permissions.php'),
+(261, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''86'')', '/clinic/sysadmin/role_permissions.php'),
+(262, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(263, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''47'')', '/clinic/sysadmin/role_permissions.php'),
+(264, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(265, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''51'')', '/clinic/sysadmin/role_permissions.php'),
+(266, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(267, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''59'')', '/clinic/sysadmin/role_permissions.php'),
+(268, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''87'')', '/clinic/sysadmin/role_permissions.php'),
+(269, '::1', 'root', '2017-02-22 01:00:34', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''67'')', '/clinic/sysadmin/role_permissions.php'),
+(270, '::1', 'root', '2017-02-22 01:00:35', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(271, '::1', 'root', '2017-02-22 01:00:35', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''75'')', '/clinic/sysadmin/role_permissions.php'),
+(272, '::1', 'root', '2017-02-22 01:00:35', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(273, '::1', 'root', '2017-02-22 01:00:38', 'Query executed: DELETE FROM user_passport WHERE username IN (''doctor'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(274, '::1', 'root', '2017-02-22 01:00:38', 'Query executed: INSERT `user_passport` SELECT ''doctor'', `link_id` FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(275, '::1', 'root', '2017-02-22 01:00:39', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(276, '::1', 'root', '2017-02-22 01:00:41', 'Query executed: DELETE FROM user_passport WHERE username IN (''nurse'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(277, '::1', 'root', '2017-02-22 01:00:42', 'Query executed: INSERT `user_passport` SELECT ''nurse'', `link_id` FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(278, '::1', 'root', '2017-02-22 01:00:43', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(279, '::1', 'root', '2017-02-22 01:00:45', 'Logged out', '/clinic/end.php'),
+(280, '::1', 'nurse', '2017-02-22 01:00:54', 'Logged in', '/clinic/login.php'),
+(281, '::1', 'nurse', '2017-02-22 01:01:33', 'Pressed cancel button', '/clinic/modules/Registrar/employee/detailview_employee.php'),
+(282, '::1', 'nurse', '2017-02-22 01:03:19', 'Logged out', '/clinic/end.php'),
+(283, '::1', 'root', '2017-02-22 01:03:22', 'Logged in', '/clinic/login.php'),
+(284, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/role_permissions.php'),
+(285, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''41'')', '/clinic/sysadmin/role_permissions.php'),
+(286, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''49'')', '/clinic/sysadmin/role_permissions.php'),
+(287, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''53'')', '/clinic/sysadmin/role_permissions.php'),
+(288, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''57'')', '/clinic/sysadmin/role_permissions.php'),
+(289, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''69'')', '/clinic/sysadmin/role_permissions.php'),
+(290, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''85'')', '/clinic/sysadmin/role_permissions.php'),
+(291, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''42'')', '/clinic/sysadmin/role_permissions.php'),
+(292, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''50'')', '/clinic/sysadmin/role_permissions.php'),
+(293, '::1', 'root', '2017-02-22 01:03:42', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''54'')', '/clinic/sysadmin/role_permissions.php'),
+(294, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''58'')', '/clinic/sysadmin/role_permissions.php'),
+(295, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''62'')', '/clinic/sysadmin/role_permissions.php'),
+(296, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''66'')', '/clinic/sysadmin/role_permissions.php'),
+(297, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''70'')', '/clinic/sysadmin/role_permissions.php'),
+(298, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''74'')', '/clinic/sysadmin/role_permissions.php'),
+(299, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''78'')', '/clinic/sysadmin/role_permissions.php'),
+(300, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''82'')', '/clinic/sysadmin/role_permissions.php'),
+(301, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''86'')', '/clinic/sysadmin/role_permissions.php'),
+(302, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(303, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''47'')', '/clinic/sysadmin/role_permissions.php'),
+(304, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(305, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''51'')', '/clinic/sysadmin/role_permissions.php'),
+(306, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(307, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''59'')', '/clinic/sysadmin/role_permissions.php'),
+(308, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''87'')', '/clinic/sysadmin/role_permissions.php'),
+(309, '::1', 'root', '2017-02-22 01:03:43', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''67'')', '/clinic/sysadmin/role_permissions.php'),
+(310, '::1', 'root', '2017-02-22 01:03:44', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(311, '::1', 'root', '2017-02-22 01:03:44', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''75'')', '/clinic/sysadmin/role_permissions.php'),
+(312, '::1', 'root', '2017-02-22 01:03:44', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(313, '::1', 'root', '2017-02-22 01:03:51', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/role_permissions.php'),
+(314, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''49'')', '/clinic/sysadmin/role_permissions.php'),
+(315, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''53'')', '/clinic/sysadmin/role_permissions.php'),
+(316, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''57'')', '/clinic/sysadmin/role_permissions.php'),
+(317, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''69'')', '/clinic/sysadmin/role_permissions.php'),
+(318, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''85'')', '/clinic/sysadmin/role_permissions.php'),
+(319, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''50'')', '/clinic/sysadmin/role_permissions.php'),
+(320, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''54'')', '/clinic/sysadmin/role_permissions.php'),
+(321, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''58'')', '/clinic/sysadmin/role_permissions.php'),
+(322, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''86'')', '/clinic/sysadmin/role_permissions.php'),
+(323, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(324, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''47'')', '/clinic/sysadmin/role_permissions.php'),
+(325, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(326, '::1', 'root', '2017-02-22 01:03:52', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''51'')', '/clinic/sysadmin/role_permissions.php'),
+(327, '::1', 'root', '2017-02-22 01:03:53', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(328, '::1', 'root', '2017-02-22 01:03:53', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''59'')', '/clinic/sysadmin/role_permissions.php'),
+(329, '::1', 'root', '2017-02-22 01:03:53', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''87'')', '/clinic/sysadmin/role_permissions.php'),
+(330, '::1', 'root', '2017-02-22 01:03:53', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''67'')', '/clinic/sysadmin/role_permissions.php'),
+(331, '::1', 'root', '2017-02-22 01:03:53', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(332, '::1', 'root', '2017-02-22 01:03:53', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''75'')', '/clinic/sysadmin/role_permissions.php'),
+(333, '::1', 'root', '2017-02-22 01:03:53', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(334, '::1', 'root', '2017-02-22 01:04:03', 'Query executed: DELETE FROM user_passport WHERE username IN (''nurse'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(335, '::1', 'root', '2017-02-22 01:04:04', 'Query executed: INSERT `user_passport` SELECT ''nurse'', `link_id` FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(336, '::1', 'root', '2017-02-22 01:04:05', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(337, '::1', 'root', '2017-02-22 01:04:07', 'Query executed: DELETE FROM user_passport WHERE username IN (''doctor'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(338, '::1', 'root', '2017-02-22 01:04:07', 'Query executed: INSERT `user_passport` SELECT ''doctor'', `link_id` FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(339, '::1', 'root', '2017-02-22 01:04:09', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(340, '::1', 'root', '2017-02-22 01:04:59', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(341, '::1', 'root', '2017-02-22 01:04:59', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Add hospital\n    [2] => modules/Clinic/hospital/add_hospital.php\n    [3] => Add Hospital\n    [4] => \n    [5] => 3\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 49\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(342, '::1', 'root', '2017-02-22 01:05:05', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(343, '::1', 'root', '2017-02-22 01:05:06', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Edit hospital\n    [2] => modules/Clinic/hospital/edit_hospital.php\n    [3] => Edit Hospital\n    [4] => \n    [5] => 3\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 50\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(344, '::1', 'root', '2017-02-22 01:05:11', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(345, '::1', 'root', '2017-02-22 01:05:11', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => View hospital\n    [2] => modules/Clinic/hospital/listview_hospital.php\n    [3] => Hospital\n    [4] => \n    [5] => 3\n    [6] => Yes\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 51\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(346, '::1', 'root', '2017-02-22 01:05:15', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(347, '::1', 'root', '2017-02-22 01:05:15', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Delete hospital\n    [2] => modules/Clinic/hospital/delete_hospital.php\n    [3] => Delete Hospital\n    [4] => \n    [5] => 3\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 52\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(348, '::1', 'root', '2017-02-22 01:05:39', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(349, '::1', 'root', '2017-02-22 01:05:40', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Add medicine\n    [2] => modules/Clinic/medicine/add_medicine.php\n    [3] => Add Medicine\n    [4] => \n    [5] => 3\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 57\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(350, '::1', 'root', '2017-02-22 01:05:47', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(351, '::1', 'root', '2017-02-22 01:05:47', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Edit medicine\n    [2] => modules/Clinic/medicine/edit_medicine.php\n    [3] => Edit Medicine\n    [4] => \n    [5] => 3\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 58\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(352, '::1', 'root', '2017-02-22 01:05:53', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(353, '::1', 'root', '2017-02-22 01:05:53', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => View medicine\n    [2] => modules/Clinic/medicine/listview_medicine.php\n    [3] => Medicine\n    [4] => \n    [5] => 3\n    [6] => Yes\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 59\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(354, '::1', 'root', '2017-02-22 01:05:57', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(355, '::1', 'root', '2017-02-22 01:05:57', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Delete medicine\n    [2] => modules/Clinic/medicine/delete_medicine.php\n    [3] => Delete Medicine\n    [4] => \n    [5] => 3\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 60\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(356, '::1', 'root', '2017-02-22 01:06:36', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(357, '::1', 'root', '2017-02-22 01:06:36', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Add dept\n    [2] => modules/Registrar/department/add_dept.php\n    [3] => Add Dept\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 37\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(358, '::1', 'root', '2017-02-22 01:06:40', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(359, '::1', 'root', '2017-02-22 01:06:40', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Edit dept\n    [2] => modules/Registrar/department/edit_dept.php\n    [3] => Edit Dept\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 38\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(360, '::1', 'root', '2017-02-22 01:06:44', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(361, '::1', 'root', '2017-02-22 01:06:44', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => View dept\n    [2] => modules/Registrar/department/listview_dept.php\n    [3] => Department\n    [4] => \n    [5] => 5\n    [6] => Yes\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 39\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(362, '::1', 'root', '2017-02-22 01:06:48', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(363, '::1', 'root', '2017-02-22 01:06:48', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Delete dept\n    [2] => modules/Registrar/department/delete_dept.php\n    [3] => Delete Dept\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 40\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(364, '::1', 'root', '2017-02-22 01:06:54', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(365, '::1', 'root', '2017-02-22 01:06:54', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Add term\n    [2] => modules/Registrar/term/add_term.php\n    [3] => Add Term\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 93\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(366, '::1', 'root', '2017-02-22 01:06:58', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(367, '::1', 'root', '2017-02-22 01:06:59', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Edit term\n    [2] => modules/Registrar/term/edit_term.php\n    [3] => Edit Term\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 94\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(368, '::1', 'root', '2017-02-22 01:07:03', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(369, '::1', 'root', '2017-02-22 01:07:03', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => View term\n    [2] => modules/Registrar/term/listview_term.php\n    [3] => Term\n    [4] => \n    [5] => 5\n    [6] => Yes\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 95\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(370, '::1', 'root', '2017-02-22 01:07:08', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(371, '::1', 'root', '2017-02-22 01:07:08', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Delete term\n    [2] => modules/Registrar/term/delete_term.php\n    [3] => Delete Term\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 96\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(372, '::1', 'root', '2017-02-22 01:07:41', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(373, '::1', 'root', '2017-02-22 01:07:41', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Add refsubjectofferingdtl\n    [2] => modules/Registrar/subject_offering_detail/add_refsubjectofferingdtl.php\n    [3] => Add Refsubjectofferingdtl\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 77\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(374, '::1', 'root', '2017-02-22 01:07:46', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(375, '::1', 'root', '2017-02-22 01:07:46', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Edit refsubjectofferingdtl\n    [2] => modules/Registrar/subject_offering_detail/edit_refsubjectofferingdtl.php\n    [3] => Edit Refsubjectofferingdtl\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 78\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(376, '::1', 'root', '2017-02-22 01:07:50', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(377, '::1', 'root', '2017-02-22 01:07:50', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => View refsubjectofferingdtl\n    [2] => modules/Registrar/subject_offering_detail/listview_refsubjectofferingdtl.php\n    [3] => Subject Offering Details\n    [4] => \n    [5] => 5\n    [6] => Yes\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 79\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(378, '::1', 'root', '2017-02-22 01:07:55', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(379, '::1', 'root', '2017-02-22 01:07:55', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Delete refsubjectofferingdtl\n    [2] => modules/Registrar/subject_offering_detail/delete_refsubjectofferingdtl.php\n    [3] => Delete Refsubjectofferingdtl\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 80\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(380, '::1', 'root', '2017-02-22 01:08:00', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(381, '::1', 'root', '2017-02-22 01:08:00', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Add refsubjectofferinghdr\n    [2] => modules/Registrar/subject_offering_header/add_refsubjectofferinghdr.php\n    [3] => Add Refsubjectofferinghdr\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 81\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(382, '::1', 'root', '2017-02-22 01:09:21', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(383, '::1', 'root', '2017-02-22 01:09:21', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Edit refsubjectofferinghdr\n    [2] => modules/Registrar/subject_offering_header/edit_refsubjectofferinghdr.php\n    [3] => Edit Refsubjectofferinghdr\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 82\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(384, '::1', 'root', '2017-02-22 01:09:26', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(385, '::1', 'root', '2017-02-22 01:09:26', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => View refsubjectofferinghdr\n    [2] => modules/Registrar/subject_offering_header/listview_refsubjectofferinghdr.php\n    [3] => Subject Offering Header\n    [4] => \n    [5] => 5\n    [6] => Yes\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 83\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(386, '::1', 'root', '2017-02-22 01:09:32', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(387, '::1', 'root', '2017-02-22 01:09:32', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Delete refsubjectofferinghdr\n    [2] => modules/Registrar/subject_offering_header/delete_refsubjectofferinghdr.php\n    [3] => Delete Refsubjectofferinghdr\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 84\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(388, '::1', 'root', '2017-02-22 01:09:37', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(389, '::1', 'root', '2017-02-22 01:09:37', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Add subject\n    [2] => modules/Registrar/subject/add_subject.php\n    [3] => Add Subject\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 89\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(390, '::1', 'root', '2017-02-22 01:09:42', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(391, '::1', 'root', '2017-02-22 01:09:42', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Edit subject\n    [2] => modules/Registrar/subject/edit_subject.php\n    [3] => Edit Subject\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 90\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(392, '::1', 'root', '2017-02-22 01:09:47', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(393, '::1', 'root', '2017-02-22 01:09:48', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => View subject\n    [2] => modules/Registrar/subject/listview_subject.php\n    [3] => Subject\n    [4] => \n    [5] => 5\n    [6] => Yes\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 91\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(394, '::1', 'root', '2017-02-22 01:09:59', 'Pressed submit button', '/clinic/sysadmin/edit_user_links.php'),
+(395, '::1', 'root', '2017-02-22 01:09:59', 'Query Executed: UPDATE user_links SET name = ?, target = ?, descriptive_title = ?, description = ?, passport_group_id = ?, show_in_tasklist = ?, status = ?, icon = ?, priority = ? WHERE link_id = ?\r\nArray\n(\n    [0] => ssssisssii\n    [1] => Delete subject\n    [2] => modules/Registrar/subject/delete_subject.php\n    [3] => Delete Subject\n    [4] => \n    [5] => 5\n    [6] => No\n    [7] => On\n    [8] => form3.png\n    [9] => 0\n    [10] => 92\n)\n', '/clinic/sysadmin/edit_user_links.php'),
+(396, '::1', 'root', '2017-02-22 01:11:08', 'Logged out', '/clinic/end.php'),
+(397, '::1', 'root', '2017-02-22 01:11:11', 'Logged in', '/clinic/login.php'),
+(398, '::1', 'root', '2017-02-22 01:11:16', 'Logged out', '/clinic/end.php'),
+(399, '::1', 'nurse', '2017-02-22 01:11:19', 'Logged in', '/clinic/login.php'),
+(400, '::1', 'nurse', '2017-02-22 01:11:24', 'Logged out', '/clinic/end.php'),
+(401, '::1', 'root', '2017-02-22 01:11:31', 'Logged in', '/clinic/login.php'),
+(402, '::1', 'root', '2017-02-22 01:12:12', 'Pressed submit button', '/clinic/modules/Registrar/employee_family/add_refempfamily.php'),
+(403, '::1', 'root', '2017-02-22 01:12:12', 'Query Executed: INSERT INTO refempfamily(family_id, emp_id, relationship, name, email, email_status, address_type, address, postal_code, mobile_num1, tel_num, mobile_num2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => isssssssssss\n    [1] => \n    [2] => 2014-10030\n    [3] => Mother\n    [4] => Lolinie Gregorio\n    [5] => centuryleni@gmail.com\n    [6] => Active\n    [7] => Office\n    [8] => 123 Mabuhay Ave.\n    [9] => 2012\n    [10] => 24123123\n    [11] => 12312312\n    [12] => \n)\n', '/clinic/modules/Registrar/employee_family/add_refempfamily.php'),
+(404, '::1', 'root', '2017-02-22 01:17:27', 'Pressed submit button', '/clinic/modules/Registrar/student/add_refstudent.php'),
+(405, '::1', 'root', '2017-02-22 01:47:26', 'Pressed submit button', '/clinic/modules/Registrar/student/add_refstudent.php'),
+(406, '::1', 'root', '2017-02-22 01:47:26', 'Query Executed: INSERT INTO refstudent(student_id, student_last_name, student_first_name, student_middle_name, birth_date, birth_place, admission_date, entry_level, admission_credential, mail_grades_to, exit_level, nationality, gender, address, postal_code, tel_num, mobile_num, email, religion, civil_status, box_num) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => sssssssssssssssssssss\n    [1] => 2015-100016\n    [2] => Romblon\n    [3] => Daveson\n    [4] => Kitane\n    [5] => 2017-02-22\n    [6] => San Juan City\n    [7] => 2017-02-22\n    [8] => \n    [9] => \n    [10] => \n    [11] => \n    [12] => Filipino\n    [13] => Male\n    [14] => Aven.ts 231 gsts\n    [15] => 2314\n    [16] => 213412\n    [17] => 412312\n    [18] => dave@gmail.com\n    [19] => Catholic\n    [20] => Single\n    [21] => \n)\n', '/clinic/modules/Registrar/student/add_refstudent.php'),
+(407, '::1', 'root', '2017-02-22 01:47:26', 'Query Executed: INSERT INTO refstudentfamily(family_id, student_id, relationship, name, email, email_status, address_type, address, postal_code, tel_num, mobile_num1, mobile_num2, attended) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issssssssssss\n    [1] => \n    [2] => 2015-100016\n    [3] => Mother\n    [4] => LMAO\n    [5] => LMAO@gmail.com\n    [6] => Active\n    [7] => Word\n    [8] => LMAO srtsts ave.,\n    [9] => 2331\n    [10] => 124123\n    [11] => 21412312\n    [12] => 123123123\n    [13] => Active\n)\n', '/clinic/modules/Registrar/student/add_refstudent.php'),
+(408, '::1', 'root', '2017-02-22 01:54:41', 'Pressed submit button', '/clinic/modules/Registrar/department/add_dept.php'),
+(409, '::1', 'root', '2017-02-22 01:54:41', 'Query Executed: INSERT INTO dept(dept_id, dept_code, dept_description, dept_assign, is_deleted) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => ITRO\n    [3] => Information Technology Resource Center\n    [4] => \n    [5] => No\n)\n', '/clinic/modules/Registrar/department/add_dept.php'),
+(410, '::1', 'root', '2017-02-22 01:54:52', 'Pressed submit button', '/clinic/modules/Registrar/department/add_dept.php'),
+(411, '::1', 'root', '2017-02-22 01:54:52', 'Query Executed: INSERT INTO dept(dept_id, dept_code, dept_description, dept_assign, is_deleted) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Clinic\n    [3] => APC Clinic\n    [4] => \n    [5] => No\n)\n', '/clinic/modules/Registrar/department/add_dept.php'),
+(412, '::1', 'root', '2017-02-22 01:55:04', 'Pressed submit button', '/clinic/modules/Registrar/department/add_dept.php'),
+(413, '::1', 'root', '2017-02-22 01:55:04', 'Query Executed: INSERT INTO dept(dept_id, dept_code, dept_description, dept_assign, is_deleted) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => issss\n    [1] => \n    [2] => Registrar\n    [3] => Registrar\n    [4] => \n    [5] => No\n)\n', '/clinic/modules/Registrar/department/add_dept.php'),
+(414, '::1', 'root', '2017-02-22 01:55:57', 'Pressed submit button', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(415, '::1', 'root', '2017-02-22 01:55:57', 'Query Executed: INSERT INTO emergencycase(id, date, type, name, id_number, location, diagnosis, hospital_id, escorted_by, guarantee_control_no) VALUES(?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issssssiss\n    [1] => \n    [2] => 2017-02-22\n    [3] => test\n    [4] => Felix Gregorio\n    [5] => 2014-100360\n    [6] => MPH1\n    [7] => Broken limbs\n    [8] => 3\n    [9] => Jonathan Abalon\n    [10] => N/A\n)\n', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(416, '::1', 'root', '2017-02-22 01:56:54', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/detailview_medicine.php'),
+(417, '::1', 'root', '2017-02-22 01:56:57', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(418, '::1', 'root', '2017-02-22 01:56:57', 'Query Executed: UPDATE medicine SET medicine_id = ?, medicine_name = ?, qty = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => issi\n    [1] => 1\n    [2] => Paracetamol\n    [3] => 1\n    [4] => 1\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(419, '::1', 'root', '2017-02-22 01:57:01', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(420, '::1', 'root', '2017-02-22 01:57:01', 'Query Executed: UPDATE medicine SET medicine_id = ?, medicine_name = ?, qty = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => issi\n    [1] => 2\n    [2] => Ibuprofen\n    [3] => 1\n    [4] => 2\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(421, '::1', 'root', '2017-02-22 01:57:03', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(422, '::1', 'root', '2017-02-22 01:57:03', 'Query Executed: UPDATE medicine SET medicine_id = ?, medicine_name = ?, qty = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => issi\n    [1] => 3\n    [2] => Cetirizine\n    [3] => 1\n    [4] => 3\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(423, '::1', 'root', '2017-02-22 01:57:06', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(424, '::1', 'root', '2017-02-22 01:57:06', 'Query Executed: UPDATE medicine SET medicine_id = ?, medicine_name = ?, qty = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => issi\n    [1] => 4\n    [2] => Imodium\n    [3] => 1\n    [4] => 4\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(425, '::1', 'root', '2017-02-22 01:57:08', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(426, '::1', 'root', '2017-02-22 01:57:08', 'Query Executed: UPDATE medicine SET medicine_id = ?, medicine_name = ?, qty = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => issi\n    [1] => 5\n    [2] => Decolgen\n    [3] => 1\n    [4] => 5\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
+(427, '::1', 'root', '2017-02-22 01:57:10', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/listview_medicine.php'),
+(428, '::1', 'root', '2017-02-22 02:01:16', 'Pressed submit button', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(429, '::1', 'root', '2017-02-22 02:02:15', 'Pressed submit button', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(430, '::1', 'root', '2017-02-22 02:03:10', 'Pressed submit button', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(431, '::1', 'root', '2017-02-22 02:03:10', 'Query Executed: INSERT INTO log_info(log_id, date, time, log_detail_id, complaints, student_id, emp_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => ississs\n    [1] => \n    [2] => 2017-02-22\n    [3] => 5:30 PM\n    [4] => \n    [5] => Headache\n    [6] => 2014-100360\n    [7] => 2014-10030\n)\n', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(432, '::1', 'root', '2017-02-22 02:03:11', 'Query Executed: INSERT INTO log_detail(log_detail_id, medicine_id, qty) VALUES(?,?,?)\r\nArray\n(\n    [0] => iii\n    [1] => 1\n    [2] => 1\n    [3] => 1\n)\n', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(433, '::1', 'root', '2017-02-22 02:03:54', 'Pressed delete button', '/clinic/modules/Clinic/log_info/delete_log_info.php'),
+(434, '::1', 'root', '2017-02-22 02:04:01', 'Pressed delete button', '/clinic/modules/Clinic/log_info/delete_log_info.php'),
+(435, '::1', 'root', '2017-02-22 02:04:04', 'Pressed cancel button', '/clinic/modules/Clinic/log_info/delete_log_info.php'),
+(436, '::1', 'root', '2017-02-22 02:06:23', 'Pressed submit button', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(437, '::1', 'root', '2017-02-22 02:07:10', 'Pressed submit button', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(438, '::1', 'root', '2017-02-22 02:07:25', 'Pressed submit button', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(439, '::1', 'root', '2017-02-22 02:07:25', 'Query Executed: INSERT INTO log_info(log_id, date, time, log_detail_id, complaints, student_id, emp_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => ississs\n    [1] => \n    [2] => 2017-02-22\n    [3] => 7:30 PM\n    [4] => \n    [5] => Small cut\n    [6] => 2014-100360\n    [7] => 2014-10030\n)\n', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(440, '::1', 'root', '2017-02-22 02:07:25', 'Query Executed: INSERT INTO log_detail(log_detail_id, medicine_id, qty) VALUES(?,?,?)\r\nArray\n(\n    [0] => iii\n    [1] => 2\n    [2] => 4\n    [3] => 1\n)\n', '/clinic/modules/Clinic/log_info/add_log_info.php'),
+(441, '::1', 'root', '2017-02-22 02:09:12', 'Pressed submit button', '/clinic/modules/Clinic/log_info/edit_log_info.php'),
+(442, '::1', 'root', '2017-02-22 02:09:15', 'Pressed submit button', '/clinic/modules/Clinic/log_info/edit_log_info.php'),
+(443, '::1', 'root', '2017-02-22 02:11:37', 'Pressed cancel button', '/clinic/modules/Clinic/log_info/detailview_log_info.php'),
+(444, '::1', 'root', '2017-02-22 02:11:54', 'Pressed submit button', '/clinic/modules/Clinic/log_info/edit_log_info.php'),
+(445, '::1', 'root', '2017-02-22 02:11:58', 'Pressed cancel button', '/clinic/modules/Clinic/log_info/edit_log_info.php'),
+(446, '::1', 'root', '2017-02-22 02:12:39', 'Logged out', '/clinic/end.php'),
+(447, '::1', 'nurse', '2017-02-22 02:12:53', 'Logged in', '/clinic/login.php');
 
 -- --------------------------------------------------------
 
@@ -724,6 +1102,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `salt`, `iteration`, `method`, `person_id`, `role_id`, `skin_id`) VALUES
+('doctor', '$2y$12$UsZcXA9NrQ6W6uJFFQX96.GZPuomOlB2/KVspODmUhCGTXD1lnpky', 'UsZcXA9NrQ6W6uJFFQX96A', 12, 'blowfish', 3, 4, 2),
+('nurse', '$2y$12$pxuwB7LWk18IfmgAA6kJBeJxVGrw77LA2y7/CkapBcHDqgUl2K/06', 'pxuwB7LWk18IfmgAA6kJBg', 12, 'blowfish', 2, 3, 9),
 ('root', '$2y$12$QU29gqrc8P.IkjvVNG6DB.7JXbCmLhKm.vh1Ci9mnpnuD7eDm3P6a', 'QU29gqrc8P+IkjvVNG6DBA', 12, 'blowfish', 1, 1, 1);
 
 -- --------------------------------------------------------
@@ -786,10 +1166,10 @@ INSERT INTO `user_links` (`link_id`, `name`, `target`, `descriptive_title`, `des
 (34, 'Edit cobalt sst', 'sst/edit_cobalt_sst.php', 'Edit Cobalt SST', '', 2, 'No', 'On', 'form3.png', 0),
 (35, 'View cobalt sst', 'sst/listview_cobalt_sst.php', 'Cobalt SST', '', 2, 'Yes', 'On', 'form3.png', 0),
 (36, 'Delete cobalt sst', 'sst/delete_cobalt_sst.php', 'Delete Cobalt SST', '', 2, 'No', 'On', 'form3.png', 0),
-(37, 'Add dept', 'modules/Registrar/department/add_dept.php', 'Add Dept', '', 1, 'No', 'On', 'form3.png', 0),
-(38, 'Edit dept', 'modules/Registrar/department/edit_dept.php', 'Edit Dept', '', 1, 'No', 'On', 'form3.png', 0),
-(39, 'View dept', 'modules/Registrar/department/listview_dept.php', 'Department', '', 1, 'Yes', 'On', 'form3.png', 0),
-(40, 'Delete dept', 'modules/Registrar/department/delete_dept.php', 'Delete Dept', '', 1, 'No', 'On', 'form3.png', 0),
+(37, 'Add dept', 'modules/Registrar/department/add_dept.php', 'Add Dept', '', 5, 'No', 'On', 'form3.png', 0),
+(38, 'Edit dept', 'modules/Registrar/department/edit_dept.php', 'Edit Dept', '', 5, 'No', 'On', 'form3.png', 0),
+(39, 'View dept', 'modules/Registrar/department/listview_dept.php', 'Department', '', 5, 'Yes', 'On', 'form3.png', 0),
+(40, 'Delete dept', 'modules/Registrar/department/delete_dept.php', 'Delete Dept', '', 5, 'No', 'On', 'form3.png', 0),
 (41, 'Add emergencycase', 'modules/Clinic/emergency_case/add_emergencycase.php', 'Add Emergencycase', '', 1, 'No', 'On', 'form3.png', 0),
 (42, 'Edit emergencycase', 'modules/Clinic/emergency_case/edit_emergencycase.php', 'Edit Emergencycase', '', 1, 'No', 'On', 'form3.png', 0),
 (43, 'View emergencycase', 'modules/Clinic/emergency_case/listview_emergencycase.php', 'Emergency Case', '', 3, 'Yes', 'On', 'form3.png', 0),
@@ -798,18 +1178,18 @@ INSERT INTO `user_links` (`link_id`, `name`, `target`, `descriptive_title`, `des
 (46, 'Edit employee', 'modules/Registrar/employee/edit_employee.php', 'Edit Employee', '', 1, 'No', 'On', 'form3.png', 0),
 (47, 'View employee', 'modules/Registrar/employee/listview_employee.php', 'Employee', '', 7, 'Yes', 'On', 'form3.png', 0),
 (48, 'Delete employee', 'modules/Registrar/employee/delete_employee.php', 'Delete Employee', '', 1, 'No', 'On', 'form3.png', 0),
-(49, 'Add hospital', 'modules/Clinic/hospital/add_hospital.php', 'Add Hospital', '', 1, 'No', 'On', 'form3.png', 0),
-(50, 'Edit hospital', 'modules/Clinic/hospital/edit_hospital.php', 'Edit Hospital', '', 1, 'No', 'On', 'form3.png', 0),
-(51, 'View hospital', 'modules/Clinic/hospital/listview_hospital.php', 'Hospital', '', 1, 'Yes', 'On', 'form3.png', 0),
-(52, 'Delete hospital', 'modules/Clinic/hospital/delete_hospital.php', 'Delete Hospital', '', 1, 'No', 'On', 'form3.png', 0),
+(49, 'Add hospital', 'modules/Clinic/hospital/add_hospital.php', 'Add Hospital', '', 3, 'No', 'On', 'form3.png', 0),
+(50, 'Edit hospital', 'modules/Clinic/hospital/edit_hospital.php', 'Edit Hospital', '', 3, 'No', 'On', 'form3.png', 0),
+(51, 'View hospital', 'modules/Clinic/hospital/listview_hospital.php', 'Hospital', '', 3, 'Yes', 'On', 'form3.png', 0),
+(52, 'Delete hospital', 'modules/Clinic/hospital/delete_hospital.php', 'Delete Hospital', '', 3, 'No', 'On', 'form3.png', 0),
 (53, 'Add log info', 'modules/Clinic/log_info/add_log_info.php', 'Add Log Info', '', 1, 'No', 'On', 'form3.png', 0),
 (54, 'Edit log info', 'modules/Clinic/log_info/edit_log_info.php', 'Edit Log Info', '', 1, 'No', 'On', 'form3.png', 0),
 (55, 'View log info', 'modules/Clinic/log_info/listview_log_info.php', 'Log Info', '', 3, 'Yes', 'On', 'form3.png', 0),
 (56, 'Delete log info', 'modules/Clinic/log_info/delete_log_info.php', 'Delete Log Info', '', 1, 'No', 'On', 'form3.png', 0),
-(57, 'Add medicine', 'modules/Clinic/medicine/add_medicine.php', 'Add Medicine', '', 1, 'No', 'On', 'form3.png', 0),
-(58, 'Edit medicine', 'modules/Clinic/medicine/edit_medicine.php', 'Edit Medicine', '', 1, 'No', 'On', 'form3.png', 0),
-(59, 'View medicine', 'modules/Clinic/medicine/listview_medicine.php', 'Medicine', '', 1, 'Yes', 'On', 'form3.png', 0),
-(60, 'Delete medicine', 'modules/Clinic/medicine/delete_medicine.php', 'Delete Medicine', '', 1, 'No', 'On', 'form3.png', 0),
+(57, 'Add medicine', 'modules/Clinic/medicine/add_medicine.php', 'Add Medicine', '', 3, 'No', 'On', 'form3.png', 0),
+(58, 'Edit medicine', 'modules/Clinic/medicine/edit_medicine.php', 'Edit Medicine', '', 3, 'No', 'On', 'form3.png', 0),
+(59, 'View medicine', 'modules/Clinic/medicine/listview_medicine.php', 'Medicine', '', 3, 'Yes', 'On', 'form3.png', 0),
+(60, 'Delete medicine', 'modules/Clinic/medicine/delete_medicine.php', 'Delete Medicine', '', 3, 'No', 'On', 'form3.png', 0),
 (61, 'Add refempfamily', 'modules/Registrar/employee_family/add_refempfamily.php', 'Add Refempfamily', '', 1, 'No', 'On', 'form3.png', 0),
 (62, 'Edit refempfamily', 'modules/Registrar/employee_family/edit_refempfamily.php', 'Edit Refempfamily', '', 1, 'No', 'On', 'form3.png', 0),
 (63, 'View refempfamily', 'modules/Registrar/employee_family/listview_refempfamily.php', 'Employee Family', '', 7, 'Yes', 'On', 'form3.png', 0),
@@ -826,26 +1206,26 @@ INSERT INTO `user_links` (`link_id`, `name`, `target`, `descriptive_title`, `des
 (74, 'Edit refstudentfamily', 'modules/Registrar/student_family/edit_refstudentfamily.php', 'Edit Refstudentfamily', '', 1, 'No', 'On', 'form3.png', 0),
 (75, 'View refstudentfamily', 'modules/Registrar/student_family/listview_refstudentfamily.php', 'Student Family', '', 7, 'Yes', 'On', 'form3.png', 0),
 (76, 'Delete refstudentfamily', 'modules/Registrar/student_family/delete_refstudentfamily.php', 'Delete Refstudentfamily', '', 1, 'No', 'On', 'form3.png', 0),
-(77, 'Add refsubjectofferingdtl', 'modules/Registrar/subject_offering_detail/add_refsubjectofferingdtl.php', 'Add Refsubjectofferingdtl', '', 1, 'No', 'On', 'form3.png', 0),
-(78, 'Edit refsubjectofferingdtl', 'modules/Registrar/subject_offering_detail/edit_refsubjectofferingdtl.php', 'Edit Refsubjectofferingdtl', '', 1, 'No', 'On', 'form3.png', 0),
-(79, 'View refsubjectofferingdtl', 'modules/Registrar/subject_offering_detail/listview_refsubjectofferingdtl.php', 'Subject Offering Details', '', 1, 'Yes', 'On', 'form3.png', 0),
-(80, 'Delete refsubjectofferingdtl', 'modules/Registrar/subject_offering_detail/delete_refsubjectofferingdtl.php', 'Delete Refsubjectofferingdtl', '', 1, 'No', 'On', 'form3.png', 0),
-(81, 'Add refsubjectofferinghdr', 'modules/Registrar/subject_offering_header/add_refsubjectofferinghdr.php', 'Add Refsubjectofferinghdr', '', 1, 'No', 'On', 'form3.png', 0),
-(82, 'Edit refsubjectofferinghdr', 'modules/Registrar/subject_offering_header/edit_refsubjectofferinghdr.php', 'Edit Refsubjectofferinghdr', '', 1, 'No', 'On', 'form3.png', 0),
-(83, 'View refsubjectofferinghdr', 'modules/Registrar/subject_offering_header/listview_refsubjectofferinghdr.php', 'Subject Offering Header', '', 1, 'Yes', 'On', 'form3.png', 0),
-(84, 'Delete refsubjectofferinghdr', 'modules/Registrar/subject_offering_header/delete_refsubjectofferinghdr.php', 'Delete Refsubjectofferinghdr', '', 1, 'No', 'On', 'form3.png', 0),
+(77, 'Add refsubjectofferingdtl', 'modules/Registrar/subject_offering_detail/add_refsubjectofferingdtl.php', 'Add Refsubjectofferingdtl', '', 5, 'No', 'On', 'form3.png', 0),
+(78, 'Edit refsubjectofferingdtl', 'modules/Registrar/subject_offering_detail/edit_refsubjectofferingdtl.php', 'Edit Refsubjectofferingdtl', '', 5, 'No', 'On', 'form3.png', 0),
+(79, 'View refsubjectofferingdtl', 'modules/Registrar/subject_offering_detail/listview_refsubjectofferingdtl.php', 'Subject Offering Details', '', 5, 'Yes', 'On', 'form3.png', 0),
+(80, 'Delete refsubjectofferingdtl', 'modules/Registrar/subject_offering_detail/delete_refsubjectofferingdtl.php', 'Delete Refsubjectofferingdtl', '', 5, 'No', 'On', 'form3.png', 0),
+(81, 'Add refsubjectofferinghdr', 'modules/Registrar/subject_offering_header/add_refsubjectofferinghdr.php', 'Add Refsubjectofferinghdr', '', 5, 'No', 'On', 'form3.png', 0),
+(82, 'Edit refsubjectofferinghdr', 'modules/Registrar/subject_offering_header/edit_refsubjectofferinghdr.php', 'Edit Refsubjectofferinghdr', '', 5, 'No', 'On', 'form3.png', 0),
+(83, 'View refsubjectofferinghdr', 'modules/Registrar/subject_offering_header/listview_refsubjectofferinghdr.php', 'Subject Offering Header', '', 5, 'Yes', 'On', 'form3.png', 0),
+(84, 'Delete refsubjectofferinghdr', 'modules/Registrar/subject_offering_header/delete_refsubjectofferinghdr.php', 'Delete Refsubjectofferinghdr', '', 5, 'No', 'On', 'form3.png', 0),
 (85, 'Add required appointment', 'modules/Clinic/required_appointment/add_required_appointment.php', 'Add Required Appointment', '', 1, 'No', 'On', 'form3.png', 0),
 (86, 'Edit required appointment', 'modules/Clinic/required_appointment/edit_required_appointment.php', 'Edit Required Appointment', '', 1, 'No', 'On', 'form3.png', 0),
 (87, 'View required appointment', 'modules/Clinic/required_appointment/listview_required_appointment.php', 'Required Appointment', '', 4, 'Yes', 'On', 'form3.png', 0),
 (88, 'Delete required appointment', 'modules/Clinic/required_appointment/delete_required_appointment.php', 'Delete Required Appointment', '', 1, 'No', 'On', 'form3.png', 0),
-(89, 'Add subject', 'modules/Registrar/subject/add_subject.php', 'Add Subject', '', 1, 'No', 'On', 'form3.png', 0),
-(90, 'Edit subject', 'modules/Registrar/subject/edit_subject.php', 'Edit Subject', '', 1, 'No', 'On', 'form3.png', 0),
-(91, 'View subject', 'modules/Registrar/subject/listview_subject.php', 'Subject', '', 1, 'Yes', 'On', 'form3.png', 0),
-(92, 'Delete subject', 'modules/Registrar/subject/delete_subject.php', 'Delete Subject', '', 1, 'No', 'On', 'form3.png', 0),
-(93, 'Add term', 'modules/Registrar/term/add_term.php', 'Add Term', '', 1, 'No', 'On', 'form3.png', 0),
-(94, 'Edit term', 'modules/Registrar/term/edit_term.php', 'Edit Term', '', 1, 'No', 'On', 'form3.png', 0),
-(95, 'View term', 'modules/Registrar/term/listview_term.php', 'Term', '', 1, 'Yes', 'On', 'form3.png', 0),
-(96, 'Delete term', 'modules/Registrar/term/delete_term.php', 'Delete Term', '', 1, 'No', 'On', 'form3.png', 0),
+(89, 'Add subject', 'modules/Registrar/subject/add_subject.php', 'Add Subject', '', 5, 'No', 'On', 'form3.png', 0),
+(90, 'Edit subject', 'modules/Registrar/subject/edit_subject.php', 'Edit Subject', '', 5, 'No', 'On', 'form3.png', 0),
+(91, 'View subject', 'modules/Registrar/subject/listview_subject.php', 'Subject', '', 5, 'Yes', 'On', 'form3.png', 0),
+(92, 'Delete subject', 'modules/Registrar/subject/delete_subject.php', 'Delete Subject', '', 5, 'No', 'On', 'form3.png', 0),
+(93, 'Add term', 'modules/Registrar/term/add_term.php', 'Add Term', '', 5, 'No', 'On', 'form3.png', 0),
+(94, 'Edit term', 'modules/Registrar/term/edit_term.php', 'Edit Term', '', 5, 'No', 'On', 'form3.png', 0),
+(95, 'View term', 'modules/Registrar/term/listview_term.php', 'Term', '', 5, 'Yes', 'On', 'form3.png', 0),
+(96, 'Delete term', 'modules/Registrar/term/delete_term.php', 'Delete Term', '', 5, 'No', 'On', 'form3.png', 0),
 (97, 'Add xrefstudentschedule', 'modules/Registrar/student_schedule/add_xrefstudentschedule.php', 'Add Xrefstudentschedule', '', 1, 'No', 'On', 'form3.png', 0),
 (98, 'Edit xrefstudentschedule', 'modules/Registrar/student_schedule/edit_xrefstudentschedule.php', 'Edit Xrefstudentschedule', '', 1, 'No', 'On', 'form3.png', 0),
 (99, 'View xrefstudentschedule', 'modules/Registrar/student_schedule/listview_xrefstudentschedule.php', 'Student Schedule', '', 4, 'Yes', 'On', 'form3.png', 0),
@@ -867,6 +1247,54 @@ CREATE TABLE `user_passport` (
 --
 
 INSERT INTO `user_passport` (`username`, `link_id`) VALUES
+('doctor', 43),
+('doctor', 47),
+('doctor', 49),
+('doctor', 50),
+('doctor', 51),
+('doctor', 53),
+('doctor', 54),
+('doctor', 55),
+('doctor', 57),
+('doctor', 58),
+('doctor', 59),
+('doctor', 63),
+('doctor', 67),
+('doctor', 69),
+('doctor', 71),
+('doctor', 75),
+('doctor', 85),
+('doctor', 86),
+('doctor', 87),
+('doctor', 99),
+('nurse', 41),
+('nurse', 42),
+('nurse', 43),
+('nurse', 47),
+('nurse', 49),
+('nurse', 50),
+('nurse', 51),
+('nurse', 53),
+('nurse', 54),
+('nurse', 55),
+('nurse', 57),
+('nurse', 58),
+('nurse', 59),
+('nurse', 62),
+('nurse', 63),
+('nurse', 66),
+('nurse', 67),
+('nurse', 69),
+('nurse', 70),
+('nurse', 71),
+('nurse', 74),
+('nurse', 75),
+('nurse', 78),
+('nurse', 82),
+('nurse', 85),
+('nurse', 86),
+('nurse', 87),
+('nurse', 99),
 ('root', 1),
 ('root', 2),
 ('root', 3),
@@ -1011,7 +1439,9 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`role_id`, `role`, `description`) VALUES
 (1, 'Super Admin', 'Super admin role with 100% system privileges'),
-(2, 'System Admin', 'System admin role with all sysadmin permissions');
+(2, 'System Admin', 'System admin role with all sysadmin permissions'),
+(3, 'Nurse', 'Uses APC Clinic Management System'),
+(4, 'Doctor', 'Uses APC Clinic Management System');
 
 -- --------------------------------------------------------
 
@@ -1164,7 +1594,55 @@ INSERT INTO `user_role_links` (`role_id`, `link_id`) VALUES
 (2, 33),
 (2, 34),
 (2, 35),
-(2, 36);
+(2, 36),
+(3, 41),
+(3, 42),
+(3, 43),
+(3, 47),
+(3, 49),
+(3, 50),
+(3, 51),
+(3, 53),
+(3, 54),
+(3, 55),
+(3, 57),
+(3, 58),
+(3, 59),
+(3, 62),
+(3, 63),
+(3, 66),
+(3, 67),
+(3, 69),
+(3, 70),
+(3, 71),
+(3, 74),
+(3, 75),
+(3, 78),
+(3, 82),
+(3, 85),
+(3, 86),
+(3, 87),
+(3, 99),
+(4, 43),
+(4, 47),
+(4, 49),
+(4, 50),
+(4, 51),
+(4, 53),
+(4, 54),
+(4, 55),
+(4, 57),
+(4, 58),
+(4, 59),
+(4, 63),
+(4, 67),
+(4, 69),
+(4, 71),
+(4, 75),
+(4, 85),
+(4, 86),
+(4, 87),
+(4, 99);
 
 -- --------------------------------------------------------
 
@@ -1388,12 +1866,12 @@ ALTER TABLE `cobalt_sst`
 -- AUTO_INCREMENT for table `dept`
 --
 ALTER TABLE `dept`
-  MODIFY `dept_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `dept_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `emergencycase`
 --
 ALTER TABLE `emergencycase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `hospital`
 --
@@ -1403,12 +1881,12 @@ ALTER TABLE `hospital`
 -- AUTO_INCREMENT for table `log_detail`
 --
 ALTER TABLE `log_detail`
-  MODIFY `log_detail_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `log_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `log_info`
 --
 ALTER TABLE `log_info`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `medicine`
 --
@@ -1418,12 +1896,12 @@ ALTER TABLE `medicine`
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `person_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `refempfamily`
 --
 ALTER TABLE `refempfamily`
-  MODIFY `family_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `family_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `refstudentclearance`
 --
@@ -1433,7 +1911,7 @@ ALTER TABLE `refstudentclearance`
 -- AUTO_INCREMENT for table `refstudentfamily`
 --
 ALTER TABLE `refstudentfamily`
-  MODIFY `family_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20650;
+  MODIFY `family_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20651;
 --
 -- AUTO_INCREMENT for table `refsubjectofferinghdr`
 --
@@ -1453,7 +1931,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=448;
 --
 -- AUTO_INCREMENT for table `system_skins`
 --
@@ -1478,7 +1956,7 @@ ALTER TABLE `user_passport_groups`
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
