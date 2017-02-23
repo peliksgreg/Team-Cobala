@@ -13,7 +13,7 @@ class medicine_dd
                                           'length'=>20,
                                           'required'=>FALSE,
                                           'attribute'=>'primary key',
-                                          'control_type'=>'textbox',
+                                          'control_type'=>'none',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
                                           'label'=>'Medicine ID',
