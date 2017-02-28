@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2017 at 07:13 PM
+-- Generation Time: Feb 28, 2017 at 04:46 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -222,19 +222,32 @@ INSERT INTO `log_info` (`log_id`, `date`, `time`, `log_detail_id`, `complaints`,
 CREATE TABLE `medicine` (
   `medicine_id` int(11) NOT NULL,
   `medicine_name` varchar(45) DEFAULT NULL,
-  `qty` char(1) DEFAULT NULL
+  `date_expiration` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `medicine`
 --
 
-INSERT INTO `medicine` (`medicine_id`, `medicine_name`, `qty`) VALUES
-(1, 'Paracetamol', '1'),
-(2, 'Ibuprofen', '1'),
-(3, 'Cetirizine', '1'),
-(4, 'Imodium', '1'),
-(5, 'Decolgen', '1');
+INSERT INTO `medicine` (`medicine_id`, `medicine_name`, `date_expiration`) VALUES
+(1, 'Paracetamol', '0000-00-00'),
+(2, 'Ibuprofen', '0000-00-00'),
+(3, 'Cetirizine', '0000-00-00'),
+(4, 'Imodium', '0000-00-00'),
+(5, 'Decolgen', '0000-00-00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medicine_count`
+--
+
+CREATE TABLE `medicine_count` (
+  `medicine_count_id` int(11) NOT NULL,
+  `medicine_id` int(11) NOT NULL,
+  `beggining_qty` int(11) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -911,7 +924,22 @@ INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`
 (444, '::1', 'root', '2017-02-22 02:11:54', 'Pressed submit button', '/clinic/modules/Clinic/log_info/edit_log_info.php'),
 (445, '::1', 'root', '2017-02-22 02:11:58', 'Pressed cancel button', '/clinic/modules/Clinic/log_info/edit_log_info.php'),
 (446, '::1', 'root', '2017-02-22 02:12:39', 'Logged out', '/clinic/end.php'),
-(447, '::1', 'nurse', '2017-02-22 02:12:53', 'Logged in', '/clinic/login.php');
+(447, '::1', 'nurse', '2017-02-22 02:12:53', 'Logged in', '/clinic/login.php'),
+(448, '::1', 'root', '2017-02-28 22:53:18', 'Logged in', '/clinic/login.php'),
+(449, '::1', 'root', '2017-02-28 22:53:21', 'Logged out', '/clinic/end.php'),
+(450, '::1', 'nurse', '2017-02-28 22:53:24', 'Logged in', '/clinic/login.php'),
+(451, '::1', 'nurse', '2017-02-28 22:53:28', 'Logged out', '/clinic/end.php'),
+(452, '::1', 'root', '2017-02-28 22:53:32', 'Logged in', '/clinic/login.php'),
+(453, '::1', 'root', '2017-02-28 22:56:39', 'Pressed cancel button', '/clinic/sysadmin/listview_user_links.php'),
+(454, '::1', 'nurse', '2017-02-28 23:35:18', 'Logged in', '/clinic/login.php'),
+(455, '::1', 'nurse', '2017-02-28 23:35:22', 'Logged out', '/clinic/end.php'),
+(456, '::1', 'root', '2017-02-28 23:35:27', 'Logged in', '/clinic/login.php'),
+(457, '::1', 'root', '2017-02-28 23:38:48', 'Pressed cancel button', '/clinic/modules/Clinic/medicine/add_medicine.php'),
+(458, '::1', 'root', '2017-02-28 23:44:32', 'Pressed cancel button', '/clinic/sysadmin/detailview_user_links.php'),
+(459, '::1', 'root', '2017-02-28 23:45:15', 'Pressed submit button', '/clinic/sysadmin/add_user_links.php'),
+(460, '::1', 'root', '2017-02-28 23:45:23', 'Pressed submit button', '/clinic/sysadmin/add_user_links.php'),
+(461, '::1', 'root', '2017-02-28 23:45:23', 'Query Executed: INSERT INTO user_links(link_id, name, target, descriptive_title, description, passport_group_id, show_in_tasklist, status, icon, priority) VALUES(?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issssisssi\n    [1] => \n    [2] => View Medicine Count\n    [3] => modules/Clinic/hospital/listview_medicine_count.php\n    [4] => View Medicine Count\n    [5] => \n    [6] => 1\n    [7] => Yes\n    [8] => On\n    [9] => blue_folder3.png\n    [10] => \n)\n', '/clinic/sysadmin/add_user_links.php'),
+(462, '::1', 'root', '2017-02-28 23:45:50', 'Logged out', '/clinic/end.php');
 
 -- --------------------------------------------------------
 
@@ -1229,7 +1257,8 @@ INSERT INTO `user_links` (`link_id`, `name`, `target`, `descriptive_title`, `des
 (97, 'Add xrefstudentschedule', 'modules/Registrar/student_schedule/add_xrefstudentschedule.php', 'Add Xrefstudentschedule', '', 1, 'No', 'On', 'form3.png', 0),
 (98, 'Edit xrefstudentschedule', 'modules/Registrar/student_schedule/edit_xrefstudentschedule.php', 'Edit Xrefstudentschedule', '', 1, 'No', 'On', 'form3.png', 0),
 (99, 'View xrefstudentschedule', 'modules/Registrar/student_schedule/listview_xrefstudentschedule.php', 'Student Schedule', '', 4, 'Yes', 'On', 'form3.png', 0),
-(100, 'Delete xrefstudentschedule', 'modules/Registrar/student_schedule/delete_xrefstudentschedule.php', 'Delete Xrefstudentschedule', '', 1, 'No', 'On', 'form3.png', 0);
+(100, 'Delete xrefstudentschedule', 'modules/Registrar/student_schedule/delete_xrefstudentschedule.php', 'Delete Xrefstudentschedule', '', 1, 'No', 'On', 'form3.png', 0),
+(101, 'View Medicine Count', 'modules/Clinic/hospital/listview_medicine_count.php', 'View Medicine Count', '', 1, 'Yes', 'On', 'blue_folder3.png', 0);
 
 -- --------------------------------------------------------
 
@@ -1722,6 +1751,12 @@ ALTER TABLE `medicine`
   ADD PRIMARY KEY (`medicine_id`);
 
 --
+-- Indexes for table `medicine_count`
+--
+ALTER TABLE `medicine_count`
+  ADD PRIMARY KEY (`medicine_count_id`);
+
+--
 -- Indexes for table `person`
 --
 ALTER TABLE `person`
@@ -1893,6 +1928,11 @@ ALTER TABLE `log_info`
 ALTER TABLE `medicine`
   MODIFY `medicine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `medicine_count`
+--
+ALTER TABLE `medicine_count`
+  MODIFY `medicine_count_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
@@ -1931,7 +1971,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=448;
+  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=463;
 --
 -- AUTO_INCREMENT for table `system_skins`
 --
@@ -1946,7 +1986,7 @@ ALTER TABLE `term`
 -- AUTO_INCREMENT for table `user_links`
 --
 ALTER TABLE `user_links`
-  MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT for table `user_passport_groups`
 --
