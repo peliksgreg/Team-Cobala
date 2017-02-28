@@ -21,13 +21,13 @@ class medicine extends data_abstraction
         if($this->stmt_template=='')
         {
             $this->set_query_type('INSERT');
-            $this->set_fields('medicine_id, medicine_name, qty');
+            $this->set_fields('medicine_id, medicine_name, date_expiration');
             $this->set_values("?,?,?");
 
             $bind_params = array('iss',
                                  &$this->fields['medicine_id']['value'],
                                  &$this->fields['medicine_name']['value'],
-                                 &$this->fields['qty']['value']);
+                                 &$this->fields['date_expiration']['value']);
 
             $this->stmt_prepare($bind_params);
         }
@@ -43,14 +43,13 @@ class medicine extends data_abstraction
         if($this->stmt_template=='')
         {
             $this->set_query_type('UPDATE');
-            $this->set_update("medicine_id = ?, medicine_name = ?, qty = ?");
+            $this->set_update("medicine_name = ?, date_expiration = ?");
             $this->set_where("medicine_id = ?");
 
-            $bind_params = array('issi',
-                                 &$this->fields['medicine_id']['value'],
+            $bind_params = array('ssi',
                                  &$this->fields['medicine_name']['value'],
-                                 &$this->fields['qty']['value'],
-                                 $param['orig_medicine_id']);
+                                 &$this->fields['date_expiration']['value'],
+                                 &$this->fields['medicine_id']['value']);
 
             $this->stmt_prepare($bind_params);
         }
@@ -79,10 +78,10 @@ class medicine extends data_abstraction
     {
         $this->set_parameters($param);
         $this->set_query_type('DELETE');
-        $this->set_where("medicine_id = ?");
+        $this->set_where("");
 
-        $bind_params = array('i',
-                             &$this->fields['medicine_id']['value']);
+        $bind_params = array('',
+                             );
 
         $this->stmt_prepare($bind_params);
         $this->stmt_execute();
@@ -120,14 +119,13 @@ class medicine extends data_abstraction
     function check_uniqueness_for_editing($param)
     {
         $this->set_parameters($param);
-        //Next two lines just to get the orig_ pkey(s) from $param
-        $this->escape_arguments($param);
-        extract($param);
+
 
         $this->set_query_type('SELECT');
-        $this->set_where("medicine_id = ? AND (medicine_id != '$orig_medicine_id')");
+        $this->set_where("medicine_id = ? AND (medicine_id != ?)");
 
-        $bind_params = array('i',
+        $bind_params = array('ii',
+                             &$this->fields['medicine_id']['value'],
                              &$this->fields['medicine_id']['value']);
 
         $this->stmt_prepare($bind_params);
