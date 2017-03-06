@@ -1,6 +1,6 @@
 <?php
 $config = array(
-                ['location'=>'modules/Clinic/medicine/add_medicine.php',
+                ['location'=>'modules/add_medicine.php',
                 'pre'=>'medicine_sst_add.php',
                 'post'=>''],
                );
