@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2017 at 09:06 AM
+-- Generation Time: Mar 06, 2017 at 09:48 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -201,7 +201,6 @@ CREATE TABLE `log_info` (
   `time` time NOT NULL,
   `log_detail_id` int(11) NOT NULL,
   `complaints` varchar(255) NOT NULL,
-  `patient_type` enum('Student','Employee','','') NOT NULL,
   `student_id` char(11) DEFAULT NULL,
   `emp_id` char(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -210,9 +209,9 @@ CREATE TABLE `log_info` (
 -- Dumping data for table `log_info`
 --
 
-INSERT INTO `log_info` (`log_id`, `date`, `time`, `log_detail_id`, `complaints`, `patient_type`, `student_id`, `emp_id`) VALUES
-(1, '2017-02-22', '05:30:00', 0, 'Headache', 'Student', '2014-100360', '2014-10030'),
-(2, '2017-02-22', '07:30:00', 0, 'Small cut', 'Student', '2014-100360', '2014-10030');
+INSERT INTO `log_info` (`log_id`, `date`, `time`, `log_detail_id`, `complaints`, `student_id`, `emp_id`) VALUES
+(1, '2017-02-22', '05:30:00', 0, 'Headache', '2014-100360', '2014-10030'),
+(2, '2017-02-22', '07:30:00', 0, 'Small cut', '2014-100360', '2014-10030');
 
 -- --------------------------------------------------------
 
@@ -356,14 +355,6 @@ CREATE TABLE `refstudentclearance` (
   `emp_id` varchar(250) NOT NULL,
   `dept_id` varchar(250) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `refstudentclearance`
---
-
-INSERT INTO `refstudentclearance` (`id`, `term_id`, `date`, `student_id`, `remarks`, `is_clear`, `emp_id`, `dept_id`) VALUES
-(47770, '1', '2017-03-09', '2014-100360', 'test', 'YES', 'test', 'test'),
-(47771, '3', '2017-08-09', '2014-300234', 'test1', 'NO', 'test1', 'test1');
 
 -- --------------------------------------------------------
 
@@ -1019,12 +1010,7 @@ INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`
 (528, '::1', 'root', '2017-03-06 16:44:07', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
 (529, '::1', 'root', '2017-03-06 16:44:07', 'Query Executed: UPDATE medicine SET medicine_name = ?, date_expiration = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => ssi\n    [1] => Imodium\n    [2] => 2017-03-06\n    [3] => 4\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
 (530, '::1', 'root', '2017-03-06 16:44:08', 'Pressed submit button', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
-(531, '::1', 'root', '2017-03-06 16:44:08', 'Query Executed: UPDATE medicine SET medicine_name = ?, date_expiration = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => ssi\n    [1] => Decolgen\n    [2] => 2017-03-06\n    [3] => 5\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php'),
-(532, '::1', 'root', '2017-03-09 15:11:41', 'Logged in', '/clinic/login.php'),
-(533, '::1', 'root', '2017-03-09 16:04:40', 'Pressed submit button', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
-(534, '::1', 'root', '2017-03-09 16:04:40', 'Query Executed: INSERT INTO refstudentclearance(id, term_id, date, student_id, remarks, is_clear, emp_id, dept_id) VALUES(?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => isssssss\n    [1] => \n    [2] => 1\n    [3] => 2017-03-09\n    [4] => 2014-100360\n    [5] => test\n    [6] => Yes\n    [7] => test\n    [8] => test\n)\n', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
-(535, '::1', 'root', '2017-03-09 16:05:00', 'Pressed submit button', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
-(536, '::1', 'root', '2017-03-09 16:05:00', 'Query Executed: INSERT INTO refstudentclearance(id, term_id, date, student_id, remarks, is_clear, emp_id, dept_id) VALUES(?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => isssssss\n    [1] => \n    [2] => 3\n    [3] => 2017-08-09\n    [4] => 2014-300234\n    [5] => test1\n    [6] => No\n    [7] => test1\n    [8] => test1\n)\n', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php');
+(531, '::1', 'root', '2017-03-06 16:44:08', 'Query Executed: UPDATE medicine SET medicine_name = ?, date_expiration = ? WHERE medicine_id = ?\r\nArray\n(\n    [0] => ssi\n    [1] => Decolgen\n    [2] => 2017-03-06\n    [3] => 5\n)\n', '/clinic/modules/Clinic/medicine/edit_medicine.php');
 
 -- --------------------------------------------------------
 
@@ -2202,7 +2188,7 @@ ALTER TABLE `refempfamily`
 -- AUTO_INCREMENT for table `refstudentclearance`
 --
 ALTER TABLE `refstudentclearance`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47772;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47770;
 --
 -- AUTO_INCREMENT for table `refstudentfamily`
 --
@@ -2227,7 +2213,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=537;
+  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=532;
 --
 -- AUTO_INCREMENT for table `system_skins`
 --
