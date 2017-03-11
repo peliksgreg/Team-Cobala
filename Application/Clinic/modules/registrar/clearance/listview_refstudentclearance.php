@@ -36,7 +36,7 @@ $arr_alignment    = array();
 //For custom join & select clause, you need to set the following variables so that the default
 //listview components do not rely on DD data
 $join_clause       = '';
-$where_clause      = "refstudentclearance.is_clear = 'No'";
+$where_clause      = "";
 $lst_fields        = '';
 $arr_fields        = '';
 $arr_field_labels  = '';

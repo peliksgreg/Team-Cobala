@@ -97,7 +97,7 @@ class refstudentclearance_dd
                                           'length'=>11,
                                           'required'=>TRUE,
                                           'attribute'=>'foreign key',
-                                          'control_type'=>'textbox',
+                                          'control_type'=>'drop-down list',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
                                           'label'=>'Student',

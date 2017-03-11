@@ -48,7 +48,7 @@ $arr_subtext_separators  = '';
 $default_sort_order = '';
 
 //Uncomment $print_settings and enable DEBUG_MODE to show the values of the settings for custom join & select
-$print_settings=TRUE;
+//$print_settings=TRUE;
 
 
 require 'components/listview_proc_head.php';
