@@ -71,7 +71,7 @@ class medicine_receiving_dd
                                           'required'=>TRUE,
                                           'attribute'=>'',
                                           'control_type'=>'textbox',
-                                          'size'=>'60',
+                                          'size'=>'40',
                                           'drop_down_has_blank'=>TRUE,
                                           'label'=>'Qty',
                                           'extra'=>'',
