@@ -21,14 +21,13 @@ class log_info extends data_abstraction
         if($this->stmt_template=='')
         {
             $this->set_query_type('INSERT');
-            $this->set_fields('log_id, date, time, log_detail_id, complaints, patient_type, student_id, emp_id');
-            $this->set_values("?,?,?,?,?,?,?,?");
+            $this->set_fields('log_id, date, time, complaints, patient_type, student_id, emp_id');
+            $this->set_values("?,?,?,?,?,?,?");
 
-            $bind_params = array('ississss',
+            $bind_params = array('issssss',
                                  &$this->fields['log_id']['value'],
                                  &$this->fields['date']['value'],
                                  &$this->fields['time']['value'],
-                                 &$this->fields['log_detail_id']['value'],
                                  &$this->fields['complaints']['value'],
                                  &$this->fields['patient_type']['value'],
                                  &$this->fields['student_id']['value'],
@@ -48,13 +47,12 @@ class log_info extends data_abstraction
         if($this->stmt_template=='')
         {
             $this->set_query_type('UPDATE');
-            $this->set_update("date = ?, time = ?, log_detail_id = ?, complaints = ?, patient_type = ?, student_id = ?, emp_id = ?");
+            $this->set_update("date = ?, time = ?, complaints = ?, patient_type = ?, student_id = ?, emp_id = ?");
             $this->set_where("log_id = ?");
 
-            $bind_params = array('ssissssi',
+            $bind_params = array('ssssssi',
                                  &$this->fields['date']['value'],
                                  &$this->fields['time']['value'],
-                                 &$this->fields['log_detail_id']['value'],
                                  &$this->fields['complaints']['value'],
                                  &$this->fields['patient_type']['value'],
                                  &$this->fields['student_id']['value'],

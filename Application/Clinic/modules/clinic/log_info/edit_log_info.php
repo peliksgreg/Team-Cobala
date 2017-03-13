@@ -59,7 +59,7 @@ if(xsrf_guard())
             {
                 
                 $param = array(
-                               'log_detail_id'=>$log_id,
+                               'log_id'=>$log_id,
                                'medicine_id'=>$cf_log_detail_medicine_id[$a],
                                'qty'=>$cf_log_detail_qty[$a]
                               );
