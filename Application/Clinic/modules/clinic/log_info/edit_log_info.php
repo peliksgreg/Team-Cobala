@@ -37,6 +37,15 @@ if(xsrf_guard())
     {
         log_action('Pressed submit button');
 
+                if($arr_form_data['patient_type'] == 'Student')
+        {
+            $dbh_log_info->fields['emp_id']['required'] = FALSE;
+        }
+        else
+        {
+            $dbh_log_info->fields['student_id']['required'] = FALSE;   
+        }
+
         $message .= $dbh_log_info->sanitize($arr_form_data)->lst_error;
         extract($arr_form_data);
 
@@ -78,6 +87,18 @@ $html = new log_info_html;
 $html->draw_header('Edit %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
 $html->draw_hidden('log_id');
+
+if(isset($patient_type) && $patient_type == 'Employee')
+{
+    //Show only Employee ID textbox
+    $html->fields['student_id']['control_type'] = 'hidden';
+}
+else
+{
+    //Show only Student ID textbox
+    $html->fields['emp_id']['control_type'] = 'hidden';
+    $patient_type = 'Student';
+}
 
 $html->draw_controls('edit');
 

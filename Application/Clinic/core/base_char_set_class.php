@@ -63,4 +63,12 @@ class base_char_set
 
         $this->add_allowed_chars($allow);
     }
+
+    function generate_time($allow=null)
+    {
+        $this->allowed_chars = array(
+            '0','1','2','3','4','5','6','7','8','9',
+            'A','M','P',' ',':'
+            );
+    }
 }

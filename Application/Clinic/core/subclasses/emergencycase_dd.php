@@ -207,7 +207,7 @@ class emergencycase_dd
                                           'control_type'=>'drop-down list',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Hospital',
+                                          'label'=>'Sent to',
                                           'extra'=>'',
                                           'companion'=>'',
                                           'in_listview'=>TRUE,
