@@ -27,7 +27,7 @@ $csv_page         = 'csv_medicine.php';
 $report_page      = 'reporter_medicine.php';
 
 //Extra entries under operations column (name of include file, not html code)
-$operations_extra = 'current_quantity.php';
+$operations_extra = 'current_qty.php';
 
 //Formatting and alignment options for data columns
 $arr_formatting   = array();

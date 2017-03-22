@@ -21,15 +21,15 @@ class emergencycase extends data_abstraction
         if($this->stmt_template=='')
         {
             $this->set_query_type('INSERT');
-            $this->set_fields('id, date, type, name, id_number, location, diagnosis, hospital_id, escorted_by, guarantee_control_no');
+            $this->set_fields('id, date, patient_type, student_id, emp_id, location, diagnosis, hospital_id, escorted_by, guarantee_control_no');
             $this->set_values("?,?,?,?,?,?,?,?,?,?");
 
             $bind_params = array('issssssiss',
                                  &$this->fields['id']['value'],
                                  &$this->fields['date']['value'],
-                                 &$this->fields['type']['value'],
-                                 &$this->fields['name']['value'],
-                                 &$this->fields['id_number']['value'],
+                                 &$this->fields['patient_type']['value'],
+                                 &$this->fields['student_id']['value'],
+                                 &$this->fields['emp_id']['value'],
                                  &$this->fields['location']['value'],
                                  &$this->fields['diagnosis']['value'],
                                  &$this->fields['hospital_id']['value'],
@@ -50,14 +50,14 @@ class emergencycase extends data_abstraction
         if($this->stmt_template=='')
         {
             $this->set_query_type('UPDATE');
-            $this->set_update("date = ?, type = ?, name = ?, id_number = ?, location = ?, diagnosis = ?, hospital_id = ?, escorted_by = ?, guarantee_control_no = ?");
+            $this->set_update("date = ?, patient_type = ?, student_id = ?, emp_id = ?, location = ?, diagnosis = ?, hospital_id = ?, escorted_by = ?, guarantee_control_no = ?");
             $this->set_where("id = ?");
 
             $bind_params = array('ssssssissi',
                                  &$this->fields['date']['value'],
-                                 &$this->fields['type']['value'],
-                                 &$this->fields['name']['value'],
-                                 &$this->fields['id_number']['value'],
+                                 &$this->fields['patient_type']['value'],
+                                 &$this->fields['student_id']['value'],
+                                 &$this->fields['emp_id']['value'],
                                  &$this->fields['location']['value'],
                                  &$this->fields['diagnosis']['value'],
                                  &$this->fields['hospital_id']['value'],

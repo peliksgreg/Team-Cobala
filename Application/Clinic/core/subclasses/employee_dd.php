@@ -78,7 +78,7 @@ class employee_dd
                                           'in_listview'=>TRUE,
                                            'char_set_method'=>'generate_alpha_set',
                                           'char_set_allow_space'=>TRUE,
-                                          'extra_chars_allowed'=>'',
+                                          'extra_chars_allowed'=>'.',
                                           'allow_html_tags'=>FALSE,
                                           'trim'=>'trim',
                                           'valid_set'=>array(),
