@@ -9,7 +9,7 @@ init_cobalt('View log info');
 require 'reporter_class.php';
 $reporter = cobalt_load_class('log_info_rpt');
 
-//$reporter->print_settings(); //You can uncomment this line to get the PHP code for the settings arrays. You can
+$reporter->print_settings(); //You can uncomment this line to get the PHP code for the settings arrays. You can
                                //use one or more of the arrays to customize the report output or deal with special cases 
                                //(adding special aliases, overriding labels for tables with similar field names, etc)
 
