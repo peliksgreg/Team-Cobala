@@ -4,7 +4,7 @@
 //Cobalt developed by JV Roig (jvroig@jvroig.com)
 //****************************************************************************************
 require 'path.php';
-init_cobalt('Add Emergency Case');
+init_cobalt('Add Emergencycase');
 
 require 'components/get_listview_referrer.php';
 

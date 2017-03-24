@@ -8,8 +8,8 @@ $dbh = cobalt_load_class('medicine_receiving');
 
 // debug($_GET['medicine_id']);
 
-//The function of cancel button
-if($_POST['btn_cancel'])
+//The function of back button
+if($_POST['btn_back'])
     {
         log_action('Pressed cancel button');
         redirect("listview_medicine.php");
@@ -52,6 +52,6 @@ echo '</table>';
 $html->draw_fieldset_body_end();
 $html->draw_fieldset_footer_start();
 //Prints the cancel button
-$html->draw_button('cancel');
+$html->draw_button('back');
 $html->draw_fieldset_footer_end();
 $html->draw_container_div_end();
