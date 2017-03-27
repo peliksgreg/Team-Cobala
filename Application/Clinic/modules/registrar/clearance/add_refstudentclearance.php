@@ -26,6 +26,20 @@ if(xsrf_guard())
         redirect("listview_refstudentclearance.php?$query_string");
     }
 
+     if($_POST)
+    {
+    $dbh = cobalt_load_class('refstudent');
+   
+    $result = $dbh->execute_query("SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id ='".$_POST['student_id']."'")->result;
+       
+   $row = $result->fetch_assoc();
+   
+
+   $student_name = $row['student_first_name'].' '.$row['student_middle_name'].' '.$row['student_last_name'];
+  
+
+    }
+
 
     if($_POST['btn_submit'])
     {
@@ -56,6 +70,9 @@ require 'subclasses/refstudentclearance_html.php';
 $html = new refstudentclearance_html;
 $html->draw_header('Add %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
+
+$html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'">';
+
 $html->draw_controls('add');
 
 $html->draw_footer();

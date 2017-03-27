@@ -101,7 +101,7 @@ class refstudentclearance_dd
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
                                           'label'=>'Student',
-                                          'extra'=>'',
+                                          'extra'=>'onChange="this.form.submit()"',
                                           'companion'=>'',
                                           'in_listview'=>TRUE,
                                           'char_set_method'=>'',
