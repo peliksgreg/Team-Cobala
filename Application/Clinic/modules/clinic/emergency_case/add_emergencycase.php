@@ -26,7 +26,7 @@ if(xsrf_guard())
         redirect("listview_emergencycase.php?$query_string");
     }
 
-        if($_POST)
+    if($_POST)
     {
         $dbh = cobalt_load_class('refstudent');
         $dbh1 = cobalt_load_class('employee');

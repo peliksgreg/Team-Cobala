@@ -2,7 +2,7 @@
 class refstudentclearance_dd
 {
     static $table_name = 'refstudentclearance';
-    static $readable_name = 'Student Clearance';
+    static $readable_name = 'Refstudentclearance';
 
     static function load_dictionary()
     {
@@ -182,7 +182,7 @@ class refstudentclearance_dd
                                           'data_type'=>'varchar',
                                           'length'=>250,
                                           'required'=>TRUE,
-                                          'attribute'=>'none',
+                                          'attribute'=>'',
                                           'control_type'=>'textbox',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
@@ -209,11 +209,11 @@ class refstudentclearance_dd
                                           'data_type'=>'varchar',
                                           'length'=>250,
                                           'required'=>TRUE,
-                                          'attribute'=>'none',
-                                          'control_type'=>'textbox',
+                                          'attribute'=>'foreign key',
+                                          'control_type'=>'drop-down list',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Dept ID',
+                                          'label'=>'Dept',
                                           'extra'=>'',
                                           'companion'=>'',
                                           'in_listview'=>TRUE,
@@ -225,8 +225,11 @@ class refstudentclearance_dd
                                           'valid_set'=>array(),
                                           'date_elements'=>array('','',''),
                                           'date_default'=>'',
-                                          'list_type'=>'',
-                                          'list_settings'=>array(''),
+                                          'list_type'=>'sql generated',
+                                          'list_settings'=>array('query' => "SELECT dept.dept_id AS `Queried_dept_id`, dept.dept_code FROM dept ORDER BY `dept_code`",
+                                                                     'list_value' => 'Queried_dept_id',
+                                                                     'list_items' => array('dept_code'),
+                                                                     'list_separators' => array()),
                                           'rpt_in_report'=>TRUE,
                                           'rpt_column_format'=>'normal',
                                           'rpt_column_alignment'=>'center',
@@ -238,6 +241,13 @@ class refstudentclearance_dd
     static function load_relationships()
     {
         $relations = array(array('type'=>'1-1',
+                                 'table'=>'dept',
+                                 'alias'=>'',
+                                 'link_parent'=>'dept_id',
+                                 'link_child'=>'dept_id',
+                                 'link_subtext'=>array('dept_code'),
+                                 'where_clause'=>''),
+                           array('type'=>'1-1',
                                  'table'=>'term',
                                  'alias'=>'',
                                  'link_parent'=>'term_id',

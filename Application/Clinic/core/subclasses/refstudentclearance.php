@@ -147,4 +147,25 @@ class refstudentclearance extends data_abstraction
 
         return $this;
     }
+
+    function edit_clearance($param)
+    {
+        $this->set_parameters($param);
+
+        if($this->stmt_template=='')
+        {
+            $this->set_query_type('UPDATE');
+            $this->set_update("is_clear = ?");
+            $this->set_where("id = ?");
+
+            $bind_params = array('si',
+                                 &$this->fields['is_clear']['value'],
+                                 &$this->fields['id']['value']);
+
+            $this->stmt_prepare($bind_params);
+        }
+        $this->stmt_execute();
+
+        return $this;
+    }
 }
