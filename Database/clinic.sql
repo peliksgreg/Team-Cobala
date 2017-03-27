@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2017 at 10:45 AM
+-- Generation Time: Mar 25, 2017 at 12:08 AM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -100,8 +100,8 @@ CREATE TABLE `emergencycase` (
 --
 
 INSERT INTO `emergencycase` (`id`, `date`, `patient_type`, `student_id`, `emp_id`, `location`, `diagnosis`, `hospital_id`, `escorted_by`, `guarantee_control_no`) VALUES
-(49, '2017-03-22', 'Student', '2014-100450', '2014-12312', 'Cafeteria', 'Heart broken', 3, 'Daveson Romblon', 'N/A'),
-(50, '2017-03-22', 'Student', '2014-100353', '', 'Gym', 'Broken Arms', 3, 'Justine', 'N/A');
+(50, '2017-03-22', 'Student', '2014-100353', '', 'Gym', 'Broken Arms', 3, 'Justine', 'N/A'),
+(52, '2017-03-24', 'Employee', '', '2014-10030', 'Gym', 'Heart Broken', 3, 'Juan Dela Cruz', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -189,7 +189,8 @@ CREATE TABLE `log_detail` (
 --
 
 INSERT INTO `log_detail` (`log_detail_id`, `log_id`, `medicine_id`, `qty`) VALUES
-(10, 6, 3, 300);
+(12, 6, 3, 300),
+(13, 7, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -212,7 +213,8 @@ CREATE TABLE `log_info` (
 --
 
 INSERT INTO `log_info` (`log_id`, `date`, `time`, `complaints`, `patient_type`, `student_id`, `emp_id`) VALUES
-(6, '2017-03-22', '05:32:52', 'Cold', 'Student', '2014-100353', '');
+(6, '2017-03-22', '05:32:52', 'Cold', 'Student', '2014-100353', ''),
+(7, '2017-03-24', '10:48:00', 'test', 'Employee', '', '2014-12312');
 
 -- --------------------------------------------------------
 
@@ -1770,7 +1772,267 @@ INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`
 (1257, '::1', 'root', '2017-03-22 17:32:52', 'Query Executed: INSERT INTO log_detail(log_detail_id, log_id, medicine_id, qty) VALUES(?,?,?,?)\r\nArray\n(\n    [0] => iiii\n    [1] => \n    [2] => 6\n    [3] => 3\n    [4] => 300\n)\n', '/clinic/modules/clinic/log_info/add_log_info.php'),
 (1258, '::1', 'root', '2017-03-22 17:32:57', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
 (1259, '::1', 'root', '2017-03-22 17:32:58', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
-(1260, '::1', 'root', '2017-03-22 17:33:13', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php');
+(1260, '::1', 'root', '2017-03-22 17:33:13', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1261, '::1', 'nurse', '2017-03-23 22:12:29', 'Logged in', '/clinic/login.php'),
+(1262, '::1', 'nurse', '2017-03-23 22:12:46', 'Logged out', '/clinic/end.php'),
+(1263, '::1', 'root', '2017-03-23 22:12:51', 'Logged in', '/clinic/login.php'),
+(1264, '::1', 'root', '2017-03-23 22:13:00', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1265, '::1', 'root', '2017-03-23 22:13:00', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1266, '::1', 'root', '2017-03-23 22:13:02', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1267, '::1', 'root', '2017-03-23 22:13:04', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 2', '/clinic/modules/clinic/medicine/current.php'),
+(1268, '::1', 'root', '2017-03-23 22:13:04', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 2', '/clinic/modules/clinic/medicine/current.php'),
+(1269, '::1', 'root', '2017-03-23 22:13:06', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1270, '::1', 'root', '2017-03-23 22:13:09', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1271, '::1', 'root', '2017-03-23 22:13:09', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1272, '::1', 'root', '2017-03-23 22:13:11', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1273, '::1', 'root', '2017-03-23 22:13:14', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 4', '/clinic/modules/clinic/medicine/current.php'),
+(1274, '::1', 'root', '2017-03-23 22:13:14', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 4', '/clinic/modules/clinic/medicine/current.php'),
+(1275, '::1', 'root', '2017-03-23 22:13:24', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1276, '::1', 'root', '2017-03-23 22:13:26', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 5', '/clinic/modules/clinic/medicine/current.php'),
+(1277, '::1', 'root', '2017-03-23 22:13:26', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 5', '/clinic/modules/clinic/medicine/current.php'),
+(1278, '::1', 'root', '2017-03-23 22:13:28', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1279, '::1', 'root', '2017-03-23 22:13:57', 'Pressed cancel button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1280, '::1', 'root', '2017-03-23 22:15:45', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1281, '::1', 'root', '2017-03-23 22:15:45', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1282, '::1', 'root', '2017-03-23 22:15:46', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1283, '::1', 'root', '2017-03-23 22:27:35', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1284, '::1', 'root', '2017-03-23 22:27:35', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1285, '::1', 'root', '2017-03-23 22:27:45', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1286, '::1', 'root', '2017-03-23 22:27:47', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1287, '::1', 'root', '2017-03-23 22:27:47', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1288, '::1', 'root', '2017-03-23 22:27:49', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1289, '::1', 'root', '2017-03-23 22:28:11', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1290, '::1', 'root', '2017-03-23 22:28:11', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1291, '::1', 'root', '2017-03-23 22:28:26', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1292, '::1', 'root', '2017-03-23 22:28:28', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1293, '::1', 'root', '2017-03-23 22:28:28', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1294, '::1', 'root', '2017-03-23 22:35:53', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1295, '::1', 'root', '2017-03-23 22:35:55', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1296, '::1', 'root', '2017-03-23 22:35:55', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1297, '::1', 'root', '2017-03-23 22:36:14', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1298, '::1', 'root', '2017-03-23 22:36:17', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1299, '::1', 'root', '2017-03-23 22:36:17', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1300, '::1', 'root', '2017-03-23 22:36:19', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1301, '::1', 'root', '2017-03-23 22:36:23', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1302, '::1', 'root', '2017-03-23 22:36:24', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1303, '::1', 'root', '2017-03-23 22:36:26', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1304, '::1', 'root', '2017-03-24 20:13:08', 'Logged in', '/clinic/login.php'),
+(1305, '::1', 'root', '2017-03-24 20:13:34', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1306, '::1', 'root', '2017-03-24 20:13:34', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1307, '::1', 'root', '2017-03-24 20:13:36', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1308, '::1', 'root', '2017-03-24 21:22:31', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1309, '::1', 'root', '2017-03-24 21:22:31', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1310, '::1', 'root', '2017-03-24 21:31:00', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1311, '::1', 'root', '2017-03-24 21:31:00', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1312, '::1', 'root', '2017-03-24 21:31:02', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1313, '::1', 'root', '2017-03-24 21:31:04', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1314, '::1', 'root', '2017-03-24 21:31:04', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1315, '::1', 'root', '2017-03-24 21:31:08', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1316, '::1', 'root', '2017-03-24 21:31:37', 'Logged out', '/clinic/end.php'),
+(1317, '::1', 'nurse', '2017-03-24 21:31:47', 'Logged in', '/clinic/login.php'),
+(1318, '::1', 'nurse', '2017-03-24 21:32:12', 'Logged out', '/clinic/end.php'),
+(1319, '::1', 'root', '2017-03-24 21:32:17', 'Logged in', '/clinic/login.php'),
+(1320, '::1', 'root', '2017-03-24 21:32:41', 'Query executed: DELETE FROM user_passport WHERE username=''nurse'' AND link_id IN (''97'',''98'',''99'',''100'',''109'',''110'',''111'',''112'')', '/clinic/sysadmin/set_user_passports.php'),
+(1321, '::1', 'root', '2017-03-24 21:32:41', 'Query executed: INSERT INTO user_passport(username, link_id) VALUES(''nurse'', ''97''),(''nurse'', ''98''),(''nurse'', ''99'')', '/clinic/sysadmin/set_user_passports.php'),
+(1322, '::1', 'root', '2017-03-24 21:32:41', 'Query executed: UPDATE user SET role_id=''0'' WHERE username=''nurse''', '/clinic/sysadmin/set_user_passports.php'),
+(1323, '::1', 'root', '2017-03-24 21:32:50', 'Query executed: DELETE FROM user_passport WHERE username=''doctor'' AND link_id IN (''97'',''98'',''99'',''100'',''109'',''110'',''111'',''112'')', '/clinic/sysadmin/set_user_passports.php'),
+(1324, '::1', 'root', '2017-03-24 21:32:50', 'Query executed: INSERT INTO user_passport(username, link_id) VALUES(''doctor'', ''97''),(''doctor'', ''98''),(''doctor'', ''99'')', '/clinic/sysadmin/set_user_passports.php'),
+(1325, '::1', 'root', '2017-03-24 21:32:51', 'Query executed: UPDATE user SET role_id=''0'' WHERE username=''doctor''', '/clinic/sysadmin/set_user_passports.php'),
+(1326, '::1', 'root', '2017-03-24 21:32:57', 'Logged out', '/clinic/end.php'),
+(1327, '::1', 'nurse', '2017-03-24 21:33:01', 'Logged in', '/clinic/login.php'),
+(1328, '::1', 'nurse', '2017-03-24 21:33:12', 'ILLEGAL ACCESS ATTEMPT - Tried to access ''/clinic/modules/clinic/medicine/current.php'' without sufficient privileges.', '/clinic/modules/clinic/medicine/current.php'),
+(1329, '::1', 'root', '2017-03-24 21:33:22', 'Logged in', '/clinic/login.php'),
+(1330, '::1', 'root', '2017-03-24 21:33:45', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(1331, '::1', 'root', '2017-03-24 21:34:00', 'Pressed submit button', '/clinic/sysadmin/edit_user.php'),
+(1332, '::1', 'root', '2017-03-24 21:34:00', 'Query Executed: UPDATE user SET username = ?, person_id = ?, role_id = ?, skin_id = ? WHERE username = ?\r\nArray\n(\n    [0] => siiis\n    [1] => doctor\n    [2] => 3\n    [3] => 4\n    [4] => 7\n    [5] => doctor\n)\n', '/clinic/sysadmin/edit_user.php'),
+(1333, '::1', 'root', '2017-03-24 21:34:00', 'Query executed: DELETE FROM user_passport WHERE username = ''doctor''', '/clinic/sysadmin/edit_user.php'),
+(1334, '::1', 'root', '2017-03-24 21:34:00', 'Query executed: INSERT `user_passport` SELECT ''doctor'', `link_id` FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/edit_user.php'),
+(1335, '::1', 'root', '2017-03-24 21:34:06', 'Pressed submit button', '/clinic/sysadmin/edit_user.php');
+INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`, `module`) VALUES
+(1336, '::1', 'root', '2017-03-24 21:34:06', 'Query Executed: UPDATE user SET username = ?, person_id = ?, role_id = ?, skin_id = ? WHERE username = ?\r\nArray\n(\n    [0] => siiis\n    [1] => nurse\n    [2] => 2\n    [3] => 3\n    [4] => 6\n    [5] => nurse\n)\n', '/clinic/sysadmin/edit_user.php'),
+(1337, '::1', 'root', '2017-03-24 21:34:06', 'Query executed: DELETE FROM user_passport WHERE username = ''nurse''', '/clinic/sysadmin/edit_user.php'),
+(1338, '::1', 'root', '2017-03-24 21:34:06', 'Query executed: INSERT `user_passport` SELECT ''nurse'', `link_id` FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/edit_user.php'),
+(1339, '::1', 'root', '2017-03-24 21:34:22', 'Query executed: DELETE FROM user_passport WHERE username IN (''nurse'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(1340, '::1', 'root', '2017-03-24 21:34:22', 'Query executed: INSERT `user_passport` SELECT ''nurse'', `link_id` FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(1341, '::1', 'root', '2017-03-24 21:34:24', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(1342, '::1', 'root', '2017-03-24 21:34:27', 'Query executed: DELETE FROM user_passport WHERE username IN (''doctor'')', '/clinic/sysadmin/role_permissions_cascade.php'),
+(1343, '::1', 'root', '2017-03-24 21:34:27', 'Query executed: INSERT `user_passport` SELECT ''doctor'', `link_id` FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/role_permissions_cascade.php'),
+(1344, '::1', 'root', '2017-03-24 21:34:30', 'Logged out', '/clinic/end.php'),
+(1345, '::1', 'nurse', '2017-03-24 21:34:42', 'Logged in', '/clinic/login.php'),
+(1346, '::1', 'nurse', '2017-03-24 21:34:52', 'Logged out', '/clinic/end.php'),
+(1347, '::1', 'root', '2017-03-24 21:34:56', 'Logged in', '/clinic/login.php'),
+(1348, '::1', 'root', '2017-03-24 21:35:35', 'Query executed: DELETE FROM user_passport WHERE username=''nurse'' AND link_id IN (''97'',''98'',''99'',''100'',''109'',''110'',''111'',''112'')', '/clinic/sysadmin/set_user_passports.php'),
+(1349, '::1', 'root', '2017-03-24 21:35:36', 'Query executed: INSERT INTO user_passport(username, link_id) VALUES(''nurse'', ''97''),(''nurse'', ''98''),(''nurse'', ''99'')', '/clinic/sysadmin/set_user_passports.php'),
+(1350, '::1', 'root', '2017-03-24 21:35:36', 'Query executed: UPDATE user SET role_id=''0'' WHERE username=''nurse''', '/clinic/sysadmin/set_user_passports.php'),
+(1351, '::1', 'root', '2017-03-24 21:35:53', 'Query executed: DELETE FROM user_passport WHERE username=''doctor'' AND link_id IN (''97'',''98'',''99'',''100'',''109'',''110'',''111'',''112'')', '/clinic/sysadmin/set_user_passports.php'),
+(1352, '::1', 'root', '2017-03-24 21:35:53', 'Query executed: INSERT INTO user_passport(username, link_id) VALUES(''doctor'', ''97''),(''doctor'', ''98''),(''doctor'', ''99'')', '/clinic/sysadmin/set_user_passports.php'),
+(1353, '::1', 'root', '2017-03-24 21:35:53', 'Query executed: UPDATE user SET role_id=''0'' WHERE username=''doctor''', '/clinic/sysadmin/set_user_passports.php'),
+(1354, '::1', 'root', '2017-03-24 21:36:23', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3'' AND link_id IN (''97'',''98'',''99'',''100'',''109'',''110'',''111'',''112'')', '/clinic/sysadmin/role_permissions.php'),
+(1355, '::1', 'root', '2017-03-24 21:36:23', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''97'')', '/clinic/sysadmin/role_permissions.php'),
+(1356, '::1', 'root', '2017-03-24 21:36:23', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''98'')', '/clinic/sysadmin/role_permissions.php'),
+(1357, '::1', 'root', '2017-03-24 21:36:23', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(1358, '::1', 'root', '2017-03-24 21:36:26', 'Pressed cancel button', '/clinic/sysadmin/role_permissions.php'),
+(1359, '::1', 'root', '2017-03-24 21:36:35', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4'' AND link_id IN (''97'',''98'',''99'',''100'',''109'',''110'',''111'',''112'')', '/clinic/sysadmin/role_permissions.php'),
+(1360, '::1', 'root', '2017-03-24 21:36:35', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''97'')', '/clinic/sysadmin/role_permissions.php'),
+(1361, '::1', 'root', '2017-03-24 21:36:35', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''98'')', '/clinic/sysadmin/role_permissions.php'),
+(1362, '::1', 'root', '2017-03-24 21:36:35', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''99'')', '/clinic/sysadmin/role_permissions.php'),
+(1363, '::1', 'root', '2017-03-24 21:36:41', 'Logged out', '/clinic/end.php'),
+(1364, '::1', 'nurse', '2017-03-24 21:36:46', 'Logged in', '/clinic/login.php'),
+(1365, '::1', 'nurse', '2017-03-24 21:37:03', 'ILLEGAL ACCESS ATTEMPT - Tried to access ''/clinic/modules/clinic/medicine/current.php'' without sufficient privileges.', '/clinic/modules/clinic/medicine/current.php'),
+(1366, '::1', 'root', '2017-03-24 21:37:13', 'Logged in', '/clinic/login.php'),
+(1367, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: DELETE FROM user_role_links WHERE role_id=''3'' AND link_id IN (''41'',''42'',''43'',''44'',''49'',''50'',''51'',''52'',''53'',''54'',''55'',''56'',''57'',''58'',''59'',''60'',''61'',''62'',''63'',''64'',''69'',''70'',''71'',''72'',''113'')', '/clinic/sysadmin/role_permissions.php'),
+(1368, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''41'')', '/clinic/sysadmin/role_permissions.php'),
+(1369, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''49'')', '/clinic/sysadmin/role_permissions.php'),
+(1370, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''53'')', '/clinic/sysadmin/role_permissions.php'),
+(1371, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''57'')', '/clinic/sysadmin/role_permissions.php'),
+(1372, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''69'')', '/clinic/sysadmin/role_permissions.php'),
+(1373, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''113'')', '/clinic/sysadmin/role_permissions.php'),
+(1374, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''42'')', '/clinic/sysadmin/role_permissions.php'),
+(1375, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''50'')', '/clinic/sysadmin/role_permissions.php'),
+(1376, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''54'')', '/clinic/sysadmin/role_permissions.php'),
+(1377, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''58'')', '/clinic/sysadmin/role_permissions.php'),
+(1378, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''62'')', '/clinic/sysadmin/role_permissions.php'),
+(1379, '::1', 'root', '2017-03-24 21:37:37', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''70'')', '/clinic/sysadmin/role_permissions.php'),
+(1380, '::1', 'root', '2017-03-24 21:37:38', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(1381, '::1', 'root', '2017-03-24 21:37:38', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''51'')', '/clinic/sysadmin/role_permissions.php'),
+(1382, '::1', 'root', '2017-03-24 21:37:38', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(1383, '::1', 'root', '2017-03-24 21:37:38', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''59'')', '/clinic/sysadmin/role_permissions.php'),
+(1384, '::1', 'root', '2017-03-24 21:37:38', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(1385, '::1', 'root', '2017-03-24 21:37:38', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''3'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(1386, '::1', 'root', '2017-03-24 21:37:43', 'Pressed cancel button', '/clinic/sysadmin/role_permissions.php'),
+(1387, '::1', 'root', '2017-03-24 21:37:56', 'Query executed: DELETE FROM user_role_links WHERE role_id=''4'' AND link_id IN (''41'',''42'',''43'',''44'',''49'',''50'',''51'',''52'',''53'',''54'',''55'',''56'',''57'',''58'',''59'',''60'',''61'',''62'',''63'',''64'',''69'',''70'',''71'',''72'',''113'')', '/clinic/sysadmin/role_permissions.php'),
+(1388, '::1', 'root', '2017-03-24 21:37:56', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''49'')', '/clinic/sysadmin/role_permissions.php'),
+(1389, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''53'')', '/clinic/sysadmin/role_permissions.php'),
+(1390, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''57'')', '/clinic/sysadmin/role_permissions.php'),
+(1391, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''69'')', '/clinic/sysadmin/role_permissions.php'),
+(1392, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''113'')', '/clinic/sysadmin/role_permissions.php'),
+(1393, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''50'')', '/clinic/sysadmin/role_permissions.php'),
+(1394, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''54'')', '/clinic/sysadmin/role_permissions.php'),
+(1395, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''58'')', '/clinic/sysadmin/role_permissions.php'),
+(1396, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''43'')', '/clinic/sysadmin/role_permissions.php'),
+(1397, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''51'')', '/clinic/sysadmin/role_permissions.php'),
+(1398, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''55'')', '/clinic/sysadmin/role_permissions.php'),
+(1399, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''59'')', '/clinic/sysadmin/role_permissions.php'),
+(1400, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''63'')', '/clinic/sysadmin/role_permissions.php'),
+(1401, '::1', 'root', '2017-03-24 21:37:57', 'Query executed: INSERT INTO user_role_links(role_id, link_id) VALUES(''4'', ''71'')', '/clinic/sysadmin/role_permissions.php'),
+(1402, '::1', 'root', '2017-03-24 21:38:01', 'Logged out', '/clinic/end.php'),
+(1403, '::1', 'nurse', '2017-03-24 21:38:05', 'Logged in', '/clinic/login.php'),
+(1404, '::1', 'nurse', '2017-03-24 21:38:12', 'ILLEGAL ACCESS ATTEMPT - Tried to access ''/clinic/modules/clinic/medicine/current.php'' without sufficient privileges.', '/clinic/modules/clinic/medicine/current.php'),
+(1405, '::1', 'root', '2017-03-24 21:38:29', 'Logged in', '/clinic/login.php'),
+(1406, '::1', 'root', '2017-03-24 21:38:53', 'Pressed cancel button', '/clinic/sysadmin/role_permissions_cascade.php'),
+(1407, '::1', 'root', '2017-03-24 21:39:15', 'Pressed submit button', '/clinic/sysadmin/edit_user.php'),
+(1408, '::1', 'root', '2017-03-24 21:39:15', 'Query Executed: UPDATE user SET username = ?, person_id = ?, role_id = ?, skin_id = ? WHERE username = ?\r\nArray\n(\n    [0] => siiis\n    [1] => doctor\n    [2] => 3\n    [3] => 4\n    [4] => 7\n    [5] => doctor\n)\n', '/clinic/sysadmin/edit_user.php'),
+(1409, '::1', 'root', '2017-03-24 21:39:15', 'Query executed: DELETE FROM user_passport WHERE username = ''doctor''', '/clinic/sysadmin/edit_user.php'),
+(1410, '::1', 'root', '2017-03-24 21:39:15', 'Query executed: INSERT `user_passport` SELECT ''doctor'', `link_id` FROM user_role_links WHERE role_id=''4''', '/clinic/sysadmin/edit_user.php'),
+(1411, '::1', 'root', '2017-03-24 21:39:22', 'Pressed submit button', '/clinic/sysadmin/edit_user.php'),
+(1412, '::1', 'root', '2017-03-24 21:39:22', 'Query Executed: UPDATE user SET username = ?, person_id = ?, role_id = ?, skin_id = ? WHERE username = ?\r\nArray\n(\n    [0] => siiis\n    [1] => nurse\n    [2] => 2\n    [3] => 3\n    [4] => 6\n    [5] => nurse\n)\n', '/clinic/sysadmin/edit_user.php'),
+(1413, '::1', 'root', '2017-03-24 21:39:22', 'Query executed: DELETE FROM user_passport WHERE username = ''nurse''', '/clinic/sysadmin/edit_user.php'),
+(1414, '::1', 'root', '2017-03-24 21:39:22', 'Query executed: INSERT `user_passport` SELECT ''nurse'', `link_id` FROM user_role_links WHERE role_id=''3''', '/clinic/sysadmin/edit_user.php'),
+(1415, '::1', 'root', '2017-03-24 21:39:25', 'Logged out', '/clinic/end.php'),
+(1416, '::1', 'root', '2017-03-24 21:39:29', 'Logged in', '/clinic/login.php'),
+(1417, '::1', 'root', '2017-03-24 21:39:35', 'Logged out', '/clinic/end.php'),
+(1418, '::1', 'nurse', '2017-03-24 21:39:41', 'Logged in', '/clinic/login.php'),
+(1419, '::1', 'nurse', '2017-03-24 21:39:48', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1420, '::1', 'nurse', '2017-03-24 21:39:48', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1421, '::1', 'nurse', '2017-03-24 21:39:50', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1422, '::1', 'nurse', '2017-03-24 21:39:52', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 5', '/clinic/modules/clinic/medicine/current.php'),
+(1423, '::1', 'nurse', '2017-03-24 21:39:52', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 5', '/clinic/modules/clinic/medicine/current.php'),
+(1424, '::1', 'nurse', '2017-03-24 21:39:54', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1425, '::1', 'nurse', '2017-03-24 21:40:10', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 5', '/clinic/modules/clinic/medicine/current.php'),
+(1426, '::1', 'nurse', '2017-03-24 21:40:10', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 5', '/clinic/modules/clinic/medicine/current.php'),
+(1427, '::1', 'nurse', '2017-03-24 22:14:16', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1428, '::1', 'nurse', '2017-03-24 22:14:22', 'Logged out', '/clinic/end.php'),
+(1429, '::1', 'root', '2017-03-24 22:14:46', 'Logged in', '/clinic/login.php'),
+(1430, '::1', 'root', '2017-03-24 22:16:46', 'Pressed cancel button', '/clinic/sysadmin/role_permissions.php'),
+(1431, '::1', 'root', '2017-03-24 22:18:14', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1432, '::1', 'root', '2017-03-24 22:18:14', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1433, '::1', 'root', '2017-03-24 22:18:17', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1434, '::1', 'root', '2017-03-24 22:18:17', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1435, '::1', 'root', '2017-03-24 22:18:18', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1436, '::1', 'root', '2017-03-24 22:18:19', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-10030''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1437, '::1', 'root', '2017-03-24 22:18:25', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1438, '::1', 'root', '2017-03-24 22:18:25', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-10030''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1439, '::1', 'root', '2017-03-24 22:18:31', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1440, '::1', 'root', '2017-03-24 22:18:31', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-10030''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1441, '::1', 'root', '2017-03-24 22:19:06', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1442, '::1', 'root', '2017-03-24 22:19:07', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-10030''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1443, '::1', 'root', '2017-03-24 22:19:07', 'Pressed submit button', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1444, '::1', 'root', '2017-03-24 22:19:07', 'Query Executed: INSERT INTO emergencycase(id, date, patient_type, student_id, emp_id, location, diagnosis, hospital_id, escorted_by, guarantee_control_no) VALUES(?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issssssiss\n    [1] => \n    [2] => 2017-03-24\n    [3] => Student\n    [4] => 2014-100450\n    [5] => 2014-10030\n    [6] => Gym\n    [7] => Nadapa\n    [8] => 5\n    [9] => Lukas Graham\n    [10] => N/A\n)\n', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1445, '::1', 'root', '2017-03-24 22:19:27', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/detailview_emergencycase.php'),
+(1446, '::1', 'root', '2017-03-24 22:19:37', 'Pressed submit button', '/clinic/modules/Clinic/emergency_case/edit_emergencycase.php'),
+(1447, '::1', 'root', '2017-03-24 22:20:05', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1448, '::1', 'root', '2017-03-24 22:20:05', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1449, '::1', 'root', '2017-03-24 22:20:07', 'Pressed cancel button', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1450, '::1', 'root', '2017-03-24 22:20:21', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1451, '::1', 'root', '2017-03-24 22:21:50', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1452, '::1', 'root', '2017-03-24 22:37:43', 'Pressed cancel button', '/clinic/modules/clinic/log_info/detailview_log_info.php'),
+(1453, '::1', 'root', '2017-03-24 22:39:13', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/detailview_emergencycase.php'),
+(1454, '::1', 'root', '2017-03-24 22:39:17', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/detailview_emergencycase.php'),
+(1455, '::1', 'root', '2017-03-24 22:39:29', 'Pressed submit button', '/clinic/modules/Clinic/emergency_case/edit_emergencycase.php'),
+(1456, '::1', 'root', '2017-03-24 22:39:33', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/edit_emergencycase.php'),
+(1457, '::1', 'root', '2017-03-24 22:39:37', 'Pressed delete button', '/clinic/modules/Clinic/emergency_case/delete_emergencycase.php'),
+(1458, '::1', 'root', '2017-03-24 22:39:37', 'Query Executed: DELETE FROM emergencycase WHERE id = ?\r\nArray\n(\n    [0] => i\n    [1] => 49\n)\n', '/clinic/modules/Clinic/emergency_case/delete_emergencycase.php'),
+(1459, '::1', 'root', '2017-03-24 22:39:42', 'Pressed delete button', '/clinic/modules/Clinic/emergency_case/delete_emergencycase.php'),
+(1460, '::1', 'root', '2017-03-24 22:39:42', 'Query Executed: DELETE FROM emergencycase WHERE id = ?\r\nArray\n(\n    [0] => i\n    [1] => 51\n)\n', '/clinic/modules/Clinic/emergency_case/delete_emergencycase.php'),
+(1461, '::1', 'root', '2017-03-24 22:39:48', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/detailview_emergencycase.php'),
+(1462, '::1', 'root', '2017-03-24 22:40:06', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/detailview_emergencycase.php'),
+(1463, '::1', 'root', '2017-03-24 22:40:10', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1464, '::1', 'root', '2017-03-24 22:40:10', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1465, '::1', 'root', '2017-03-24 22:40:14', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1466, '::1', 'root', '2017-03-24 22:40:14', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-10030''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1467, '::1', 'root', '2017-03-24 22:40:32', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1468, '::1', 'root', '2017-03-24 22:40:32', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-10030''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1469, '::1', 'root', '2017-03-24 22:40:32', 'Pressed submit button', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1470, '::1', 'root', '2017-03-24 22:40:32', 'Query Executed: INSERT INTO emergencycase(id, date, patient_type, student_id, emp_id, location, diagnosis, hospital_id, escorted_by, guarantee_control_no) VALUES(?,?,?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issssssiss\n    [1] => \n    [2] => 2017-03-24\n    [3] => Employee\n    [4] => \n    [5] => 2014-10030\n    [6] => Gym\n    [7] => Heart Broken\n    [8] => 3\n    [9] => Juan Dela Cruz\n    [10] => N/A\n)\n', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1471, '::1', 'root', '2017-03-24 22:40:39', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/detailview_emergencycase.php'),
+(1472, '::1', 'root', '2017-03-24 22:43:18', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1473, '::1', 'root', '2017-03-24 22:43:24', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1474, '::1', 'root', '2017-03-24 22:45:55', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1475, '::1', 'root', '2017-03-24 22:47:46', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1476, '::1', 'root', '2017-03-24 22:47:53', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1477, '::1', 'root', '2017-03-24 22:47:53', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1478, '::1', 'root', '2017-03-24 22:47:56', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1479, '::1', 'root', '2017-03-24 22:47:56', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-10030''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1480, '::1', 'root', '2017-03-24 22:48:00', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1481, '::1', 'root', '2017-03-24 22:48:00', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-10030''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1482, '::1', 'root', '2017-03-24 22:48:00', 'Pressed submit button', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1483, '::1', 'root', '2017-03-24 22:48:00', 'Query Executed: INSERT INTO log_info(log_id, date, time, complaints, patient_type, student_id, emp_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issssss\n    [1] => \n    [2] => 2017-03-24\n    [3] => 10:48:00\n    [4] => test\n    [5] => Employee\n    [6] => \n    [7] => 2014-10030\n)\n', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1484, '::1', 'root', '2017-03-24 22:48:00', 'Query Executed: INSERT INTO log_detail(log_detail_id, log_id, medicine_id, qty) VALUES(?,?,?,?)\r\nArray\n(\n    [0] => iiii\n    [1] => \n    [2] => 7\n    [3] => 3\n    [4] => 1\n)\n', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1485, '::1', 'root', '2017-03-24 22:48:30', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1486, '::1', 'root', '2017-03-24 22:49:26', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1487, '::1', 'root', '2017-03-24 22:50:24', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1488, '::1', 'root', '2017-03-24 22:52:01', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1489, '::1', 'root', '2017-03-24 22:52:36', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1490, '::1', 'root', '2017-03-24 22:55:04', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1491, '::1', 'root', '2017-03-24 22:55:04', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1492, '::1', 'root', '2017-03-24 22:55:07', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1493, '::1', 'root', '2017-03-24 22:55:07', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1494, '::1', 'root', '2017-03-24 22:55:14', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1495, '::1', 'root', '2017-03-24 22:55:14', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1496, '::1', 'root', '2017-03-24 22:55:23', 'Pressed cancel button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1497, '::1', 'root', '2017-03-24 22:56:48', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1498, '::1', 'root', '2017-03-24 22:56:48', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1499, '::1', 'root', '2017-03-24 22:56:50', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1500, '::1', 'root', '2017-03-24 22:56:50', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1501, '::1', 'root', '2017-03-24 22:56:54', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1502, '::1', 'root', '2017-03-24 22:56:54', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1503, '::1', 'root', '2017-03-24 22:56:54', 'Pressed submit button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1504, '::1', 'root', '2017-03-24 22:56:54', 'Query Executed: DELETE FROM log_detail WHERE log_id = ?\r\nArray\n(\n    [0] => i\n    [1] => 6\n)\n', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1505, '::1', 'root', '2017-03-24 22:56:54', 'Query Executed: INSERT INTO log_detail(log_detail_id, log_id, medicine_id, qty) VALUES(?,?,?,?)\r\nArray\n(\n    [0] => iiii\n    [1] => \n    [2] => 6\n    [3] => 3\n    [4] => 300\n)\n', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1506, '::1', 'root', '2017-03-24 22:56:54', 'Query Executed: UPDATE log_info SET date = ?, time = ?, complaints = ?, patient_type = ?, student_id = ?, emp_id = ? WHERE log_id = ?\r\nArray\n(\n    [0] => ssssssi\n    [1] => 2017-03-22\n    [2] => 05:32:52\n    [3] => Cold\n    [4] => Student\n    [5] => 2014-100353\n    [6] => \n    [7] => 6\n)\n', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1507, '::1', 'root', '2017-03-24 22:56:59', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1508, '::1', 'root', '2017-03-24 22:56:59', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-12312''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1509, '::1', 'root', '2017-03-24 22:57:04', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1510, '::1', 'root', '2017-03-24 22:57:04', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''2014-12312''', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1511, '::1', 'root', '2017-03-24 22:57:04', 'Pressed submit button', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1512, '::1', 'root', '2017-03-24 22:57:04', 'Query Executed: DELETE FROM log_detail WHERE log_id = ?\r\nArray\n(\n    [0] => i\n    [1] => 7\n)\n', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1513, '::1', 'root', '2017-03-24 22:57:04', 'Query Executed: INSERT INTO log_detail(log_detail_id, log_id, medicine_id, qty) VALUES(?,?,?,?)\r\nArray\n(\n    [0] => iiii\n    [1] => \n    [2] => 7\n    [3] => 3\n    [4] => 1\n)\n', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1514, '::1', 'root', '2017-03-24 22:57:04', 'Query Executed: UPDATE log_info SET date = ?, time = ?, complaints = ?, patient_type = ?, student_id = ?, emp_id = ? WHERE log_id = ?\r\nArray\n(\n    [0] => ssssssi\n    [1] => 2017-03-24\n    [2] => 10:48:00\n    [3] => test\n    [4] => Employee\n    [5] => \n    [6] => 2014-12312\n    [7] => 7\n)\n', '/clinic/modules/clinic/log_info/edit_log_info.php'),
+(1515, '::1', 'root', '2017-03-24 22:57:20', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/detailview_emergencycase.php'),
+(1516, '::1', 'root', '2017-03-24 22:59:41', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/detailview_emergencycase.php'),
+(1517, '::1', 'root', '2017-03-24 22:59:49', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/emergency_case/edit_emergencycase.php'),
+(1518, '::1', 'root', '2017-03-24 22:59:49', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/Clinic/emergency_case/edit_emergencycase.php'),
+(1519, '::1', 'root', '2017-03-24 22:59:52', 'Pressed cancel button', '/clinic/modules/Clinic/emergency_case/edit_emergencycase.php');
 
 -- --------------------------------------------------------
 
@@ -1961,8 +2223,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `salt`, `iteration`, `method`, `person_id`, `role_id`, `skin_id`) VALUES
-('doctor', '$2y$12$UsZcXA9NrQ6W6uJFFQX96.GZPuomOlB2/KVspODmUhCGTXD1lnpky', 'UsZcXA9NrQ6W6uJFFQX96A', 12, 'blowfish', 3, 0, 7),
-('nurse', '$2y$12$pxuwB7LWk18IfmgAA6kJBeJxVGrw77LA2y7/CkapBcHDqgUl2K/06', 'pxuwB7LWk18IfmgAA6kJBg', 12, 'blowfish', 2, 0, 6),
+('doctor', '$2y$12$UsZcXA9NrQ6W6uJFFQX96.GZPuomOlB2/KVspODmUhCGTXD1lnpky', 'UsZcXA9NrQ6W6uJFFQX96A', 12, 'blowfish', 3, 4, 7),
+('nurse', '$2y$12$pxuwB7LWk18IfmgAA6kJBeJxVGrw77LA2y7/CkapBcHDqgUl2K/06', 'pxuwB7LWk18IfmgAA6kJBg', 12, 'blowfish', 2, 3, 6),
 ('root', '$2y$12$QU29gqrc8P.IkjvVNG6DB.7JXbCmLhKm.vh1Ci9mnpnuD7eDm3P6a', 'QU29gqrc8P+IkjvVNG6DBA', 12, 'blowfish', 1, 1, 1);
 
 -- --------------------------------------------------------
@@ -2122,23 +2384,22 @@ INSERT INTO `user_passport` (`username`, `link_id`) VALUES
 ('doctor', 51),
 ('doctor', 53),
 ('doctor', 54),
+('doctor', 55),
 ('doctor', 57),
 ('doctor', 58),
 ('doctor', 59),
-('doctor', 61),
 ('doctor', 63),
 ('doctor', 67),
 ('doctor', 69),
 ('doctor', 71),
 ('doctor', 75),
-('doctor', 79),
 ('doctor', 85),
 ('doctor', 86),
 ('doctor', 87),
+('doctor', 97),
+('doctor', 98),
 ('doctor', 99),
-('doctor', 278),
-('doctor', 279),
-('doctor', 280),
+('doctor', 113),
 ('nurse', 41),
 ('nurse', 42),
 ('nurse', 43),
@@ -2148,10 +2409,10 @@ INSERT INTO `user_passport` (`username`, `link_id`) VALUES
 ('nurse', 51),
 ('nurse', 53),
 ('nurse', 54),
+('nurse', 55),
 ('nurse', 57),
 ('nurse', 58),
 ('nurse', 59),
-('nurse', 61),
 ('nurse', 62),
 ('nurse', 63),
 ('nurse', 66),
@@ -2162,15 +2423,14 @@ INSERT INTO `user_passport` (`username`, `link_id`) VALUES
 ('nurse', 74),
 ('nurse', 75),
 ('nurse', 78),
-('nurse', 79),
 ('nurse', 82),
 ('nurse', 85),
 ('nurse', 86),
 ('nurse', 87),
+('nurse', 97),
+('nurse', 98),
 ('nurse', 99),
-('nurse', 278),
-('nurse', 279),
-('nurse', 280),
+('nurse', 113),
 ('root', 1),
 ('root', 2),
 ('root', 3),
@@ -2500,7 +2760,10 @@ INSERT INTO `user_role_links` (`role_id`, `link_id`) VALUES
 (3, 85),
 (3, 86),
 (3, 87),
+(3, 97),
+(3, 98),
 (3, 99),
+(3, 113),
 (4, 43),
 (4, 47),
 (4, 49),
@@ -2520,7 +2783,10 @@ INSERT INTO `user_role_links` (`role_id`, `link_id`) VALUES
 (4, 85),
 (4, 86),
 (4, 87),
-(4, 99);
+(4, 97),
+(4, 98),
+(4, 99),
+(4, 113);
 
 -- --------------------------------------------------------
 
@@ -2754,7 +3020,7 @@ ALTER TABLE `dept`
 -- AUTO_INCREMENT for table `emergencycase`
 --
 ALTER TABLE `emergencycase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `hospital`
 --
@@ -2764,12 +3030,12 @@ ALTER TABLE `hospital`
 -- AUTO_INCREMENT for table `log_detail`
 --
 ALTER TABLE `log_detail`
-  MODIFY `log_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `log_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `log_info`
 --
 ALTER TABLE `log_info`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `medicine`
 --
@@ -2819,7 +3085,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1261;
+  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1520;
 --
 -- AUTO_INCREMENT for table `system_skins`
 --
