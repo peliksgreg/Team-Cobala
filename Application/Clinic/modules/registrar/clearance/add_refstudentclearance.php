@@ -36,6 +36,8 @@ if(xsrf_guard())
    
 
    $student_name = $row['student_first_name'].' '.$row['student_middle_name'].' '.$row['student_last_name'];
+
+   // $emp_id = $_SESSION['last_name'] . ', ' . $_SESSION['first_name'] . ' ' . $_SESSION['middle_name'];
   
 
     }
@@ -71,6 +73,7 @@ $html = new refstudentclearance_html;
 $html->draw_header('Add %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
 
+init_var($student_name);
 $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'">';
 
 $html->draw_controls('add');

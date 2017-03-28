@@ -2,7 +2,7 @@
 require 'path.php';
 init_cobalt('Current Quantity');
 
-init_var($_POST['btn_cancel']);
+init_var($_POST['btn_back']);
 $html = cobalt_load_class('employee_html');
 $dbh = cobalt_load_class('medicine_receiving');
 
@@ -40,6 +40,11 @@ $difference = $row['current_status'] - $row1['current_status'];
     
 //This is used to draw the HTML fields needed to display the 'cobalt feel'
 $html->draw_header('Medical Stock');	
+echo '<style>';
+echo 'table td {
+	padding:10px 10px 10px 10px;
+}';		
+echo '</style>';
 $html->draw_container_div_start();
 $html->draw_fieldset_header('Supplies');
 $html->draw_fieldset_body_start();

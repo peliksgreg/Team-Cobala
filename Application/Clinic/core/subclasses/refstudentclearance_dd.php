@@ -1,11 +1,17 @@
 <?php
+   $emp_id = $_SESSION['last_name'] . ', ' . $_SESSION['first_name'] . ' ' . $_SESSION['middle_name'];
+
 class refstudentclearance_dd
 {
+
     static $table_name = 'refstudentclearance';
-    static $readable_name = 'Refstudentclearance';
+    static $readable_name = 'Student Clearance';
 
     static function load_dictionary()
     {
+
+   // debug($emp_id);
+
         $fields = array(
                     'id' => array('value'=>'',
                                           'nullable'=>FALSE,
