@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2017 at 05:02 PM
+-- Generation Time: Mar 28, 2017 at 12:18 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -189,7 +189,6 @@ CREATE TABLE `log_detail` (
 --
 
 INSERT INTO `log_detail` (`log_detail_id`, `log_id`, `medicine_id`, `qty`) VALUES
-(12, 6, 3, 300),
 (13, 7, 3, 1);
 
 -- --------------------------------------------------------
@@ -328,7 +327,8 @@ INSERT INTO `medicine_receiving` (`medicine_count_id`, `medicine_id`, `qty`, `da
 (7, 5, 500, '2017-03-22', 'Beginning balance'),
 (8, 2, 500, '2017-03-22', 'Beginning balance'),
 (9, 4, 500, '2017-03-22', 'Beginning balance'),
-(10, 1, 500, '2017-03-22', 'Beginning balance');
+(10, 1, 500, '2017-03-22', 'Beginning balance'),
+(11, 3, 100, '2017-03-28', 'Delivery');
 
 -- --------------------------------------------------------
 
@@ -447,7 +447,8 @@ CREATE TABLE `refstudentclearance` (
 
 INSERT INTO `refstudentclearance` (`id`, `term_id`, `date`, `student_id`, `remarks`, `is_clear`, `emp_id`, `dept_id`) VALUES
 (47770, '1', '2017-03-09', '2014-100360', 'test', 'YES', 'test', 'test'),
-(47771, '3', '2017-08-09', '2014-300234', 'test1', 'NO', 'test1', 'test1');
+(47771, '3', '2017-08-09', '2014-300234', 'test1', 'NO', 'test1', 'test1'),
+(47772, '88', '2017-03-28', '2015-100016', 'test', 'YES', 'Root, Super User X', '54');
 
 -- --------------------------------------------------------
 
@@ -521,11 +522,24 @@ CREATE TABLE `required_appointment` (
   `required_appointment_id` int(11) NOT NULL,
   `student_id` char(11) NOT NULL,
   `date` date NOT NULL,
-  `time_start` int(11) NOT NULL,
-  `time_end` int(11) NOT NULL,
+  `time_start` varchar(255) NOT NULL,
+  `time_end` varchar(255) NOT NULL,
   `status` enum('Pending','Complete','','') DEFAULT NULL,
   `subject_offering_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `required_appointment`
+--
+
+INSERT INTO `required_appointment` (`required_appointment_id`, `student_id`, `date`, `time_start`, `time_end`, `status`, `subject_offering_id`) VALUES
+(3, '2014-100353', '2017-03-28', '2', '4', '', NULL),
+(4, '2014-100353', '2017-03-28', '2', '4', '', NULL),
+(5, '2014-100353', '2017-03-28', '2', '2', '', NULL),
+(6, '2014-100450', '2017-03-28', '2', '2', '', NULL),
+(7, '2014-100450', '2017-03-28', '3', '3', '', NULL),
+(8, '2014-100450', '2017-03-28', '2', '2', 'Pending', NULL),
+(9, '2014-100353', '2017-03-28', '2:12 AM', '3:12 AM', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -2260,7 +2274,120 @@ INSERT INTO `system_log` (`entry_id`, `ip_address`, `user`, `datetime`, `action`
 (1677, '::1', 'root', '2017-03-27 22:59:38', 'Pressed submit button', '/clinic/modules/clinic/medicine/add_medicine.php'),
 (1678, '::1', 'root', '2017-03-27 22:59:38', 'Query Executed: INSERT INTO medicine(medicine_id, medicine_name, date_expiration) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => \n    [2] => Tetrahydrozoline (refresh)\n    [3] => \n)\n', '/clinic/modules/clinic/medicine/add_medicine.php'),
 (1679, '::1', 'root', '2017-03-27 22:59:46', 'Pressed submit button', '/clinic/modules/clinic/medicine/add_medicine.php'),
-(1680, '::1', 'root', '2017-03-27 22:59:46', 'Query Executed: INSERT INTO medicine(medicine_id, medicine_name, date_expiration) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => \n    [2] => Triderm\n    [3] => \n)\n', '/clinic/modules/clinic/medicine/add_medicine.php');
+(1680, '::1', 'root', '2017-03-27 22:59:46', 'Query Executed: INSERT INTO medicine(medicine_id, medicine_name, date_expiration) VALUES(?,?,?)\r\nArray\n(\n    [0] => iss\n    [1] => \n    [2] => Triderm\n    [3] => \n)\n', '/clinic/modules/clinic/medicine/add_medicine.php'),
+(1681, '::1', 'root', '2017-03-28 16:27:47', 'Logged in', '/clinic/login.php'),
+(1682, '::1', 'root', '2017-03-28 16:28:59', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-123112''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1683, '::1', 'root', '2017-03-28 16:31:42', 'Pressed cancel button', '/clinic/modules/clinic/medicine/add_medicine.php'),
+(1684, '::1', 'root', '2017-03-28 16:32:45', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 7', '/clinic/modules/clinic/medicine/current.php'),
+(1685, '::1', 'root', '2017-03-28 16:32:45', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 7', '/clinic/modules/clinic/medicine/current.php'),
+(1686, '::1', 'root', '2017-03-28 16:34:42', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1687, '::1', 'root', '2017-03-28 16:34:42', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 1', '/clinic/modules/clinic/medicine/current.php'),
+(1688, '::1', 'root', '2017-03-28 16:50:13', 'Pressed cancel button', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1689, '::1', 'root', '2017-03-28 16:50:27', 'Pressed cancel button', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1690, '::1', 'root', '2017-03-28 16:51:52', 'Pressed cancel button', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1691, '::1', 'root', '2017-03-28 16:55:04', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1692, '::1', 'root', '2017-03-28 16:55:47', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1693, '::1', 'root', '2017-03-28 17:03:43', 'Logged out', '/clinic/end.php'),
+(1694, '::1', 'nurse', '2017-03-28 17:03:50', 'Logged in', '/clinic/login.php'),
+(1695, '::1', 'nurse', '2017-03-28 17:04:05', 'Logged out', '/clinic/end.php'),
+(1696, '::1', 'root', '2017-03-28 17:04:12', 'Logged in', '/clinic/login.php'),
+(1697, '::1', 'root', '2017-03-28 17:04:37', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-123112''', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1698, '::1', 'root', '2017-03-28 17:05:24', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2015-100016''', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1699, '::1', 'root', '2017-03-28 17:05:35', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2015-100016''', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1700, '::1', 'root', '2017-03-28 17:05:35', 'Pressed submit button', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1701, '::1', 'root', '2017-03-28 17:05:35', 'Query Executed: INSERT INTO refstudentclearance(id, term_id, date, student_id, remarks, is_clear, emp_id, dept_id) VALUES(?,?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => isssssss\n    [1] => \n    [2] => 88\n    [3] => 2017-03-28\n    [4] => 2015-100016\n    [5] => test\n    [6] => No\n    [7] => Root, Super User X\n    [8] => 54\n)\n', '/clinic/modules/Registrar/clearance/add_refstudentclearance.php'),
+(1702, '::1', 'root', '2017-03-28 17:05:49', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2015-100016''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1703, '::1', 'root', '2017-03-28 17:06:07', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2015-100016''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1704, '::1', 'root', '2017-03-28 17:06:07', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1705, '::1', 'root', '2017-03-28 17:06:07', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issiisi\n    [1] => \n    [2] => 2015-100016\n    [3] => 2017-03-28\n    [4] => 5:30\n    [5] => 5:35\n    [6] => Completed\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1706, '::1', 'root', '2017-03-28 17:06:07', 'Query Executed: UPDATE refstudentclearance SET is_clear = ? WHERE id = ?\r\nArray\n(\n    [0] => si\n    [1] => YES\n    [2] => 47772\n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1707, '::1', 'root', '2017-03-28 17:06:54', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1708, '::1', 'root', '2017-03-28 17:06:54', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1709, '::1', 'root', '2017-03-28 17:06:56', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1710, '::1', 'root', '2017-03-28 17:06:56', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1711, '::1', 'root', '2017-03-28 17:06:58', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2015-100016''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1712, '::1', 'root', '2017-03-28 17:06:58', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/Clinic/emergency_case/add_emergencycase.php'),
+(1713, '::1', 'root', '2017-03-28 17:07:54', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2015-100016''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1714, '::1', 'root', '2017-03-28 17:07:54', 'Query executed: SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id =''''', '/clinic/modules/clinic/log_info/add_log_info.php'),
+(1715, '::1', 'root', '2017-03-28 17:09:16', 'Pressed submit button', '/clinic/modules/clinic/medicine_receiving/add_medicine_receiving.php'),
+(1716, '::1', 'root', '2017-03-28 17:09:16', 'Query Executed: INSERT INTO medicine_receiving(medicine_count_id, medicine_id, qty, date, type) VALUES(?,?,?,?,?)\r\nArray\n(\n    [0] => iiiss\n    [1] => \n    [2] => 3\n    [3] => 100\n    [4] => 2017-03-28\n    [5] => Delivery\n)\n', '/clinic/modules/clinic/medicine_receiving/add_medicine_receiving.php'),
+(1717, '::1', 'root', '2017-03-28 17:09:36', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1718, '::1', 'root', '2017-03-28 17:09:36', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1719, '::1', 'root', '2017-03-28 17:09:39', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1720, '::1', 'root', '2017-03-28 17:09:49', 'Pressed cancel button', '/clinic/modules/clinic/log_detail/edit_log_detail.php'),
+(1721, '::1', 'root', '2017-03-28 17:09:52', 'Pressed delete button', '/clinic/modules/clinic/log_detail/delete_log_detail.php'),
+(1722, '::1', 'root', '2017-03-28 17:09:52', 'Query Executed: DELETE FROM log_detail WHERE log_detail_id = ?\r\nArray\n(\n    [0] => i\n    [1] => 12\n)\n', '/clinic/modules/clinic/log_detail/delete_log_detail.php'),
+(1723, '::1', 'root', '2017-03-28 17:09:57', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1724, '::1', 'root', '2017-03-28 17:09:57', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1725, '::1', 'root', '2017-03-28 17:10:02', 'Pressed cancel button', '/clinic/modules/clinic/medicine/current.php'),
+(1726, '::1', 'root', '2017-03-28 17:10:17', 'Pressed cancel button', '/clinic/modules/clinic/medicine/add_medicine.php'),
+(1727, '::1', 'root', '2017-03-28 17:12:29', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1728, '::1', 'root', '2017-03-28 17:12:29', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1729, '::1', 'root', '2017-03-28 17:13:39', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1730, '::1', 'root', '2017-03-28 17:13:39', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1731, '::1', 'root', '2017-03-28 17:13:56', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1732, '::1', 'root', '2017-03-28 17:13:56', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1733, '::1', 'root', '2017-03-28 17:16:58', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1734, '::1', 'root', '2017-03-28 17:16:58', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1735, '::1', 'root', '2017-03-28 17:17:46', 'Query executed: SELECT sum(qty) as ''current_status'',medicine_name FROM medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id WHERE medicine_receiving.medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1736, '::1', 'root', '2017-03-28 17:17:46', 'Query executed: SELECT sum(qty) as ''current_status'' FROM log_detail WHERE medicine_id = 3', '/clinic/modules/clinic/medicine/current.php'),
+(1737, '::1', 'root', '2017-03-28 17:18:50', 'Pressed cancel button', '/clinic/modules/clinic/log_detail/detailview_log_detail.php'),
+(1738, '::1', 'root', '2017-03-28 17:19:05', 'Pressed cancel button', '/clinic/modules/clinic/log_info/detailview_log_info.php'),
+(1739, '::1', 'root', '2017-03-28 17:24:15', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1740, '::1', 'root', '2017-03-28 17:24:15', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1741, '::1', 'root', '2017-03-28 17:31:54', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1742, '::1', 'root', '2017-03-28 17:32:10', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1743, '::1', 'root', '2017-03-28 17:32:10', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1744, '::1', 'root', '2017-03-28 17:34:25', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1745, '::1', 'root', '2017-03-28 17:34:25', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1746, '::1', 'root', '2017-03-28 17:35:23', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1747, '::1', 'root', '2017-03-28 17:35:23', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1748, '::1', 'root', '2017-03-28 17:35:58', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1749, '::1', 'root', '2017-03-28 17:35:58', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1750, '::1', 'root', '2017-03-28 17:35:58', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issiisi\n    [1] => \n    [2] => 2014-100353\n    [3] => 2017-03-28\n    [4] => 2:50 PM\n    [5] => 2:55 PM\n    [6] => Completed\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1751, '::1', 'root', '2017-03-28 17:35:58', 'Query Executed: UPDATE refstudentclearance SET is_clear = ? WHERE id = ?\r\nArray\n(\n    [0] => si\n    [1] => YES\n    [2] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1752, '::1', 'root', '2017-03-28 17:36:22', 'Pressed delete button', '/clinic/modules/Clinic/required_appointment/delete_required_appointment.php'),
+(1753, '::1', 'root', '2017-03-28 17:36:22', 'Query Executed: DELETE FROM required_appointment WHERE required_appointment_id = ?\r\nArray\n(\n    [0] => i\n    [1] => 1\n)\n', '/clinic/modules/Clinic/required_appointment/delete_required_appointment.php'),
+(1754, '::1', 'root', '2017-03-28 17:36:24', 'Pressed delete button', '/clinic/modules/Clinic/required_appointment/delete_required_appointment.php'),
+(1755, '::1', 'root', '2017-03-28 17:36:24', 'Query Executed: DELETE FROM required_appointment WHERE required_appointment_id = ?\r\nArray\n(\n    [0] => i\n    [1] => 2\n)\n', '/clinic/modules/Clinic/required_appointment/delete_required_appointment.php'),
+(1756, '::1', 'root', '2017-03-28 17:36:30', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1757, '::1', 'root', '2017-03-28 17:36:30', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1758, '::1', 'root', '2017-03-28 17:36:39', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1759, '::1', 'root', '2017-03-28 17:36:46', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1760, '::1', 'root', '2017-03-28 17:36:46', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1761, '::1', 'root', '2017-03-28 17:36:46', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issiisi\n    [1] => \n    [2] => 2014-100353\n    [3] => 2017-03-28\n    [4] => 2:40 AM\n    [5] => 4:41 AM\n    [6] => Completed\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1762, '::1', 'root', '2017-03-28 17:36:46', 'Query Executed: UPDATE refstudentclearance SET is_clear = ? WHERE id = ?\r\nArray\n(\n    [0] => si\n    [1] => YES\n    [2] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1763, '::1', 'root', '2017-03-28 17:37:35', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1764, '::1', 'root', '2017-03-28 17:37:35', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1765, '::1', 'root', '2017-03-28 17:37:35', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issiisi\n    [1] => \n    [2] => 2014-100353\n    [3] => 2017-03-28\n    [4] => 2:40 AM\n    [5] => 4:41 AM\n    [6] => Completed\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1766, '::1', 'root', '2017-03-28 17:37:35', 'Query Executed: UPDATE refstudentclearance SET is_clear = ? WHERE id = ?\r\nArray\n(\n    [0] => si\n    [1] => YES\n    [2] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1767, '::1', 'root', '2017-03-28 17:38:40', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1768, '::1', 'root', '2017-03-28 17:38:53', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1769, '::1', 'root', '2017-03-28 17:38:53', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1770, '::1', 'root', '2017-03-28 17:38:53', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issiisi\n    [1] => \n    [2] => 2014-100353\n    [3] => 2017-03-28\n    [4] => 2:23 AM\n    [5] => 2:23 AM\n    [6] => Completed\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1771, '::1', 'root', '2017-03-28 17:38:53', 'Query Executed: UPDATE refstudentclearance SET is_clear = ? WHERE id = ?\r\nArray\n(\n    [0] => si\n    [1] => YES\n    [2] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1772, '::1', 'root', '2017-03-28 17:40:26', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1773, '::1', 'root', '2017-03-28 17:40:45', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1774, '::1', 'root', '2017-03-28 17:40:45', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1775, '::1', 'root', '2017-03-28 17:40:45', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issiisi\n    [1] => \n    [2] => 2014-100450\n    [3] => 2017-03-28\n    [4] => 2:50 AM\n    [5] => 2:50 AM\n    [6] => Completed\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1776, '::1', 'root', '2017-03-28 17:40:45', 'Query Executed: UPDATE refstudentclearance SET is_clear = ? WHERE id = ?\r\nArray\n(\n    [0] => si\n    [1] => YES\n    [2] => Array\n        (\n        )\n\n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1777, '::1', 'root', '2017-03-28 17:41:17', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1778, '::1', 'root', '2017-03-28 17:41:31', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1779, '::1', 'root', '2017-03-28 17:41:31', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1780, '::1', 'root', '2017-03-28 17:41:31', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issiisi\n    [1] => \n    [2] => 2014-100450\n    [3] => 2017-03-28\n    [4] => 3:43 AM\n    [5] => 3:12 AM\n    [6] => Completed\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1781, '::1', 'root', '2017-03-28 17:41:31', 'Query Executed: UPDATE refstudentclearance SET is_clear = ? WHERE id = ?\r\nArray\n(\n    [0] => si\n    [1] => YES\n    [2] => Array\n        (\n        )\n\n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1782, '::1', 'root', '2017-03-28 17:41:56', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1783, '::1', 'root', '2017-03-28 17:42:10', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100450''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1784, '::1', 'root', '2017-03-28 17:42:10', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1785, '::1', 'root', '2017-03-28 17:42:10', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => issiisi\n    [1] => \n    [2] => 2014-100450\n    [3] => 2017-03-28\n    [4] => 2:21 AM\n    [5] => 2:22 AM\n    [6] => Pending\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1786, '::1', 'root', '2017-03-28 17:43:43', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1787, '::1', 'root', '2017-03-28 17:43:50', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''2014-100353''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1788, '::1', 'root', '2017-03-28 17:43:50', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1789, '::1', 'root', '2017-03-28 17:43:50', 'Query Executed: INSERT INTO required_appointment(required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id) VALUES(?,?,?,?,?,?,?)\r\nArray\n(\n    [0] => isssssi\n    [1] => \n    [2] => 2014-100353\n    [3] => 2017-03-28\n    [4] => 2:12 AM\n    [5] => 3:12 AM\n    [6] => Completed\n    [7] => \n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1790, '::1', 'root', '2017-03-28 17:43:50', 'Query Executed: UPDATE refstudentclearance SET is_clear = ? WHERE id = ?\r\nArray\n(\n    [0] => si\n    [1] => YES\n    [2] => Array\n        (\n        )\n\n)\n', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1791, '::1', 'root', '2017-03-28 17:44:19', 'Query executed: SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id =''''', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1792, '::1', 'root', '2017-03-28 17:44:19', 'Pressed submit button', '/clinic/modules/Clinic/required_appointment/add_required_appointment.php'),
+(1793, '::1', 'root', '2017-03-28 17:44:40', 'Logged out', '/clinic/end.php');
 
 -- --------------------------------------------------------
 
@@ -3273,7 +3400,7 @@ ALTER TABLE `medicine`
 -- AUTO_INCREMENT for table `medicine_receiving`
 --
 ALTER TABLE `medicine_receiving`
-  MODIFY `medicine_count_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `medicine_count_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `person`
 --
@@ -3288,7 +3415,7 @@ ALTER TABLE `refempfamily`
 -- AUTO_INCREMENT for table `refstudentclearance`
 --
 ALTER TABLE `refstudentclearance`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47772;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47773;
 --
 -- AUTO_INCREMENT for table `refstudentfamily`
 --
@@ -3303,7 +3430,7 @@ ALTER TABLE `refsubjectofferinghdr`
 -- AUTO_INCREMENT for table `required_appointment`
 --
 ALTER TABLE `required_appointment`
-  MODIFY `required_appointment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `required_appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `subject`
 --
@@ -3313,7 +3440,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1681;
+  MODIFY `entry_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1794;
 --
 -- AUTO_INCREMENT for table `system_skins`
 --
