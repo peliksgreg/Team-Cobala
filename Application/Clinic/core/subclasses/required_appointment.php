@@ -24,7 +24,7 @@ class required_appointment extends data_abstraction
             $this->set_fields('required_appointment_id, student_id, date, time_start, time_end, status, subject_offering_id');
             $this->set_values("?,?,?,?,?,?,?");
 
-            $bind_params = array('isssssi',
+            $bind_params = array('issiisi',
                                  &$this->fields['required_appointment_id']['value'],
                                  &$this->fields['student_id']['value'],
                                  &$this->fields['date']['value'],

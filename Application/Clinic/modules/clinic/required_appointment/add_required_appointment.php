@@ -12,7 +12,6 @@ if(xsrf_guard())
 {
     init_var($_POST['btn_cancel']);
     init_var($_POST['btn_submit']);
-
     require 'components/query_string_standard.php';
     require 'subclasses/required_appointment.php';
     $dbh_required_appointment = new required_appointment;
@@ -60,24 +59,16 @@ if(xsrf_guard())
 
         if($message=="")
         {
-            $arr_form_data['time_start'] = $_POST['time_start'].':'.$_POST['minutes'].' '.$_POST['ampm'];
-            $arr_form_data['time_end'] = $_POST['time_end'].':'.$_POST['minutes_and'].' '.$_POST['am_pm'];
-
-           // debug($arr_form_data);
-           // die();
-
-
             $dbh_required_appointment->add($arr_form_data);
             //add here
             if($_POST['status'] == 'Completed')
             {
                 $dbh = cobalt_load_class('refstudentclearance');
-                $dbh->set_fields('id');
                 $dbh->set_where('student_id ="'.$_POST['student_id'].'" AND dept_id = 54 AND is_clear= "NO" ');
                 $dbh->set_order('date DESC');
                 // debug($dbh);
                 $dbh->exec_fetch('single');
-                $clearance_id = $dbh->dump;
+                $clearance_id = $dbh->dump['id'];
                 $param = array();
 
                 $param['is_clear'] = "YES";
@@ -96,7 +87,7 @@ require 'subclasses/required_appointment_html.php';
 $html = new required_appointment_html;
 $html->draw_header('Add %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
-init_var($student_name);
+
 $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'">';
 
 
