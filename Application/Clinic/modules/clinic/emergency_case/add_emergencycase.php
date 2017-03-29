@@ -4,7 +4,7 @@
 //Cobalt developed by JV Roig (jvroig@jvroig.com)
 //****************************************************************************************
 require 'path.php';
-init_cobalt('Add Emergencycase');
+init_cobalt('Add emergencycase');
 
 require 'components/get_listview_referrer.php';
 
@@ -26,36 +26,10 @@ if(xsrf_guard())
         redirect("listview_emergencycase.php?$query_string");
     }
 
-    if($_POST)
-    {
-        $dbh = cobalt_load_class('refstudent');
-        $dbh1 = cobalt_load_class('employee');
-        $result = $dbh->execute_query("SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id ='".$_POST['student_id']."'")->result;
-        $result1 = $dbh->execute_query("SELECT emp_first_name, emp_middle_name, emp_last_name FROM employee WHERE emp_id ='".$_POST['emp_id']."'")->result;
-   $row = $result->fetch_assoc();
-   $row1 = $result1->fetch_assoc();
-
-   $student_name = $row['student_first_name'].' '.$row['student_middle_name'].' '.$row['student_last_name'];
-   $employee_name = $row1['emp_first_name'].' '.$row1['emp_middle_name'].' '.$row1['emp_last_name'];
-
-
-    }
-
-
 
     if($_POST['btn_submit'])
     {
         log_action('Pressed submit button');
-
-           if($arr_form_data['patient_type'] == 'Student')
-        {
-            $dbh_emergencycase->fields['emp_id']['required'] = FALSE;
-        }
-        else
-        {
-            $dbh_emergencycase->fields['student_id']['required'] = FALSE;   
-        }
-
 
         $message .= $dbh_emergencycase->sanitize($arr_form_data)->lst_error;
         extract($arr_form_data);
@@ -71,7 +45,6 @@ if(xsrf_guard())
 
         if($message=="")
         {
-            $arr_form_data['date'] = date('Y-m-d');
             $dbh_emergencycase->add($arr_form_data);
             
 
@@ -83,23 +56,6 @@ require 'subclasses/emergencycase_html.php';
 $html = new emergencycase_html;
 $html->draw_header('Add %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
-
-if(isset($patient_type) && $patient_type == 'Employee')
-{
-    //Show only Employee ID textbox
-    $html->fields['student_id']['control_type'] = 'hidden';
-    $html->fields['emp_id']['companion'] = '<input type="text" name="employee_name" placeholder="patient name" value="'.$employee_name.'">';
-
-}
-else
-{
-    //Show only Student ID textbox
-    $html->fields['emp_id']['control_type'] = 'hidden';
-    $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'">';
-
-    $patient_type = 'Student';
-}
-
 $html->draw_controls('add');
 
 $html->draw_footer();
