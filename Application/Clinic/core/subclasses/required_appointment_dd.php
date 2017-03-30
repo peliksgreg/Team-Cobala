@@ -129,7 +129,7 @@ class required_appointment_dd
                                           'drop_down_has_blank'=>TRUE,
                                           'label'=>'Time End',
                                           'extra'=>'',
-                                          'companion'=>': <input type="text" size="5" name="minutes_and"> <select name="am_pm"> <option value="AM"> AM</option> <option value="PM"> PM</option> </select>',
+                                          'companion'=>': <input type="text" size="5" name="minutes_and" maxlength="2"> <select name="am_pm"> <option value="AM"> AM</option> <option value="PM"> PM</option> </select>',
                                           'in_listview'=>TRUE,
                                           'char_set_method'=>'generate_num_set',
                                           'char_set_allow_space'=>FALSE,

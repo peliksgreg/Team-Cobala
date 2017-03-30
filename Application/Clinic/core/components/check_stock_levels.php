@@ -26,17 +26,14 @@ function check_stock_levels()
 // debug($row1); 
 //In this variable, we subtracted the total balance of the medicine
 	$difference = $row['current_status'] - $row1['current_status'];
+		$reorder = 20;
+	if($difference <= $reorder){
+		return TRUE;
+	}else{
+		return FALSE;
+	}
+	
 }
-//for displaying of single record
 
 	
-	//Get reorder point
-	
-	//If current stock < reorder point, add to list of items to restock
-	
-	
-	//If items to restock > 0, return TRUE
-	//else, return FALSE
-	
-	return TRUE;
 }
