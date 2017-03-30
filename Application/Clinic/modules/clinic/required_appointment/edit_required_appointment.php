@@ -5,6 +5,11 @@
 //****************************************************************************************
 require 'path.php';
 init_cobalt('Edit required appointment');
+init_var($filter_field_used);
+init_var($filter_used);
+init_var($page_from);
+init_var($filter_sort_asc);
+init_var($filter_sort_desc);
 
 if(isset($_GET['required_appointment_id']))
 {
@@ -62,6 +67,8 @@ require 'subclasses/required_appointment_html.php';
 $html = new required_appointment_html;
 $html->draw_header('Edit %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
+init_var($student_name);
+$html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'" disabled>';
 $html->draw_hidden('required_appointment_id');
 
 $html->draw_controls('edit');

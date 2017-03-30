@@ -10,6 +10,8 @@ if(isset($_GET['id']))
 {
     $id = urldecode($_GET['id']);
     require 'form_data_emergencycase.php';
+	init_var($employee_name);
+	init_var($student_name);
 
 }
 
@@ -17,8 +19,8 @@ if(xsrf_guard())
 {
     init_var($_POST['btn_cancel']);
     init_var($_POST['btn_submit']);
-    init_var($student_name);
-    init_var($employee_name);
+ 
+    
     require 'components/query_string_standard.php';
     require 'subclasses/emergencycase.php';
     $dbh_emergencycase = new emergencycase;
@@ -36,6 +38,7 @@ if(xsrf_guard())
 
         if($_POST)
     {
+		
         $dbh = cobalt_load_class('refstudent');
         $dbh1 = cobalt_load_class('employee');
         $result = $dbh->execute_query("SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id ='".$_POST['student_id']."'")->result;
@@ -53,7 +56,7 @@ if(xsrf_guard())
     if($_POST['btn_submit'])
     {
         log_action('Pressed submit button');
-
+		
         $message .= $dbh_emergencycase->sanitize($arr_form_data)->lst_error;
         extract($arr_form_data);
 
@@ -97,13 +100,13 @@ if(isset($patient_type) && $patient_type == 'Employee')
 {
     //Show only Employee ID textbox
     $html->fields['patient_type']['control_type'] = 'hidden';
-    $html->fields['emp_id']['companion'] = '<input type="text" name="employee_name" placeholder="patient name" value="'.$employee_name.'">';
+    $html->fields['emp_id']['companion'] = '<input type="text" name="employee_name" placeholder="patient name" value="'.$employee_name.'" disabled>';
 }
 else if(isset($patient_type) && $patient_type == 'Student')
 {
    //Show only Student ID textbox
     $html->fields['patient_type']['control_type'] = 'hidden';
-    $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'">';
+    $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'" disabled>';
 }
 
 $html->draw_controls('edit');

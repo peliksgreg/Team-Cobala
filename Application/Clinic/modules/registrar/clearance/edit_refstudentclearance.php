@@ -5,12 +5,17 @@
 //****************************************************************************************
 require 'path.php';
 init_cobalt('Edit refstudentclearance');
-
+init_var($filter_field_used);
+init_var($filter_used);
+init_var($page_from);
+init_var($filter_sort_asc);
+init_var($filter_sort_desc);
 if(isset($_GET['id']))
 {
     $id = urldecode($_GET['id']);
     require 'form_data_refstudentclearance.php';
-
+	
+	//  
 }
 
 if(xsrf_guard())
@@ -31,7 +36,21 @@ if(xsrf_guard())
         log_action('Pressed cancel button');
         redirect("listview_refstudentclearance.php?$query_string");
     }
+     if($_POST)
+    {
+    $dbh = cobalt_load_class('refstudent');
+   
+    $result = $dbh->execute_query("SELECT student_first_name, student_middle_name, student_last_name FROM refstudent WHERE student_id ='".$_POST['student_id']."'")->result;
+       
+   $row = $result->fetch_assoc();
+   
 
+   $student_name = $row['student_first_name'].' '.$row['student_middle_name'].' '.$row['student_last_name'];
+
+   // $emp_id = $_SESSION['last_name'] . ', ' . $_SESSION['first_name'] . ' ' . $_SESSION['middle_name'];
+  
+
+    }
 
     if($_POST['btn_submit'])
     {
@@ -62,6 +81,8 @@ require 'subclasses/refstudentclearance_html.php';
 $html = new refstudentclearance_html;
 $html->draw_header('Edit %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
+init_var($student_name);
+$html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'" disabled>';
 $html->draw_hidden('id');
 
 $html->draw_controls('edit');

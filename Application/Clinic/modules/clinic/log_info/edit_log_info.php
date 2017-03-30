@@ -5,12 +5,19 @@
 //****************************************************************************************
 require 'path.php';
 init_cobalt('Edit log info');
-
+init_var($filter_field_used);
+init_var($filter_used);
+init_var($page_from);
+init_var($filter_sort_asc);
+init_var($filter_sort_desc);
+init_var($student_name);
+  
 if(isset($_GET['log_id']))
 {
     $log_id = urldecode($_GET['log_id']);
     require 'form_data_log_info.php';
-
+	init_var($employee_name);
+	init_var($student_name);
 }
 
 if(xsrf_guard())
@@ -120,13 +127,13 @@ if(isset($patient_type) && $patient_type == 'Employee')
 {
     //Show only Employee ID textbox
     $html->fields['patient_type']['control_type'] = 'hidden';
-    $html->fields['emp_id']['companion'] = '<input type="text" name="employee_name" placeholder="patient name" value="'.$employee_name.'">';
+    $html->fields['emp_id']['companion'] = '<input type="text" name="employee_name" placeholder="patient name" value="'.$employee_name.'" disabled>';
 }
 else if(isset($patient_type) && $patient_type == 'Student')
 {
    //Show only Student ID textbox
     $html->fields['patient_type']['control_type'] = 'hidden';
-    $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'">';
+    $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'" disabled>';
 }
 
 $html->draw_controls('edit');

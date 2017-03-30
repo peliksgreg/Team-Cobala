@@ -7,7 +7,8 @@ require 'path.php';
 init_cobalt('Add Emergencycase');
 
 require 'components/get_listview_referrer.php';
-
+init_var($employee_name);
+	init_var($student_name);
 if(xsrf_guard())
 {
     init_var($_POST['btn_cancel']);
@@ -88,14 +89,15 @@ if(isset($patient_type) && $patient_type == 'Employee')
 {
     //Show only Employee ID textbox
     $html->fields['student_id']['control_type'] = 'hidden';
-    $html->fields['emp_id']['companion'] = '<input type="text" name="employee_name" placeholder="patient name" value="'.$employee_name.'">';
+
+    $html->fields['emp_id']['companion'] = '<input type="text" name="employee_name" placeholder="patient name" value="'.$employee_name.'" disabled>';
 
 }
 else
 {
     //Show only Student ID textbox
     $html->fields['emp_id']['control_type'] = 'hidden';
-    $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'">';
+    $html->fields['student_id']['companion'] = '<input type="text" name="student_name" placeholder="patient name" value="'.$student_name.'" disabled>';
 
     $patient_type = 'Student';
 }

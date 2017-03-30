@@ -22,6 +22,14 @@ if(DEBUG_MODE)
     $html->display_error('System is running in DEBUG MODE. Please contact the system administrator ASAP.');
 }
 
+require 'components/check_stock_levels.php';
+$need_to_reorder = check_stock_levels();
+
+if($need_to_reorder === TRUE)
+{
+	$html->display_info('Some items need to be re-supplied. <a href="modules/items_to_restock.php">Click here for the complete list.</a>');
+}
+
 $menu_links = '';
 $data_con = new data_abstraction;
 $data_con->set_fields('a.link_id, a.descriptive_title, a.target, a.description, c.passport_group, a.icon as link_icon, c.icon as `group_icon`');
