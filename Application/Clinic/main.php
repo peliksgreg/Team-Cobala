@@ -22,6 +22,42 @@ if(DEBUG_MODE)
     $html->display_error('System is running in DEBUG MODE. Please contact the system administrator ASAP.');
 }
 
+$dbh = cobalt_load_class('medicine_receiving');
+$dbh->set_fields('sum(qty) as qty, medicine_name, medicine.medicine_id'); //reorder point field
+$dbh->set_table('medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id');
+$dbh->set_group_by('medicine_name');
+$dbh->exec_fetch('array');
+$arr = $dbh->dump;
+
+// debug($arr);
+$reorder_point = 400;
+for ($i=0; $i < count($arr['medicine_name']); $i++) 
+{ 
+// debug($arr['qty'][$i]);
+    $dbh1 = cobalt_load_class('log_detail');
+    $dbh1->set_fields('sum(qty) as current_status');
+    $dbh1->set_where('medicine_id = "'.$arr['medicine_id'][$i].'" ');
+    $dbh1->exec_fetch();
+    $arr1 = $dbh1->dump;
+    // debug($arr1['current_status'][0]);
+
+
+    $diff = $arr['qty'][$i] - $arr1['current_status'][0];
+    // debug($diff);
+
+
+ if($diff < $reorder_point) 
+ {
+    // brpt();
+    $message .= '<br>' . $diff . ' ' . $arr['medicine_name'][$i];
+ }
+
+   
+}
+
+
+$html->display_tip('Ooops! Some medicine are running out of stock!' . $message);
+
 require 'components/check_stock_levels.php';
 $need_to_reorder = check_stock_levels();
 

@@ -28,9 +28,9 @@ function check_stock_levels()
 	$difference = $row['current_status'] - $row1['current_status'];
 		$reorder = 20;
 	if($difference <= $reorder){
-		return TRUE;
-	}else{
 		return FALSE;
+	}else{
+		return TRUE;
 	}
 	
 }
