@@ -2,7 +2,7 @@
 class emergencycase_dd
 {
     static $table_name = 'emergencycase';
-    static $readable_name = 'Emergencycase';
+    static $readable_name = 'Emergency case';
 
     static function load_dictionary()
     {
@@ -157,7 +157,7 @@ class emergencycase_dd
                                           'required'=>TRUE,
                                           'attribute'=>'',
                                           'control_type'=>'textbox',
-                                          'size'=>'60',
+                                          'size'=>'30',
                                           'drop_down_has_blank'=>TRUE,
                                           'label'=>'Location',
                                           'extra'=>'',
@@ -241,7 +241,7 @@ class emergencycase_dd
                                           'required'=>TRUE,
                                           'attribute'=>'',
                                           'control_type'=>'textbox',
-                                          'size'=>'60',
+                                          'size'=>'20',
                                           'drop_down_has_blank'=>TRUE,
                                           'label'=>'Escorted By',
                                           'extra'=>'',
@@ -263,16 +263,16 @@ class emergencycase_dd
                                           'rpt_show_sum'=>FALSE),
                      'guarantee_control_no' => array('value'=>'',
                                           'nullable'=>TRUE,
-                                          'data_type'=>'integer',
+                                          'data_type'=>'varchar',
                                           'length'=>255,
                                           'required'=>TRUE,
-                                          'attribute'=>'primary key',
-                                          'control_type'=>'hidden',
-                                          'size'=>'40',
+                                          'attribute'=>'',
+                                          'control_type'=>'textbox',
+                                          'size'=>'20',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Guarantee Control No',
-                                          'extra'=>'',
-                                          'companion'=>'',
+                                          'label'=>'Guarantee Control Number',
+                                          'extra'=>'disabled',
+                                          'companion'=>'<input type="submit" name ="btn_generate" value ="GENERATE" action="generate.php"',
                                           'in_listview'=>FALSE,
                                           'char_set_method'=>'',
                                           'char_set_allow_space'=>TRUE,
