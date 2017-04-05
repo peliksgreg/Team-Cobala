@@ -33,6 +33,7 @@ if(isset($patient_type) && $patient_type == 'Employee')
 {
     //Show only Employee ID textbox
     $html->fields['student_id']['control_type'] = 'hidden';
+	$patient_type = 'Employee';
 }
 else
 {
