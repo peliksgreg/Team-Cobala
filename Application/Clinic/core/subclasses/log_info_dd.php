@@ -153,7 +153,7 @@ class log_info_dd
                                           'control_type'=>'drop-down list',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Student',
+                                          'label'=>'Student ID',
                                           'extra'=>'onChange="this.form.submit()"',
                                           'companion'=>'',
                                           'in_listview'=>TRUE,

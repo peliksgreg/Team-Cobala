@@ -37,8 +37,8 @@ if(xsrf_guard())
 
    $student_name = $row['student_first_name'].' '.$row['student_middle_name'].' '.$row['student_last_name'];
 
-   // $emp_id = $_SESSION['last_name'] . ', ' . $_SESSION['first_name'] . ' ' . $_SESSION['middle_name'];
-  
+    //$emp_id = $_SESSION['last_name'] . ', ' . $_SESSION['first_name'] . ' ' . $_SESSION['middle_name'];
+    
 
     }
 

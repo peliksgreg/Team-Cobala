@@ -192,7 +192,7 @@ class refstudentclearance_dd
                                           'control_type'=>'textbox',
                                           'size'=>'60',
                                           'drop_down_has_blank'=>TRUE,
-                                          'label'=>'Emp ID',
+                                          'label'=>'Employee',
                                           'extra'=>'',
                                           'companion'=>'',
                                           'in_listview'=>TRUE,
