@@ -33,6 +33,7 @@ if(xsrf_guard())
 
         $message .= $dbh_refstudentclearance->sanitize($arr_form_data)->lst_error;
         extract($arr_form_data);
+        debug($arr_form_data['is_clear']);
 
         if($dbh_refstudentclearance->check_uniqueness($arr_form_data)->is_unique)
         {

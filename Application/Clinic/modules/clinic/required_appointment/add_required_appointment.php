@@ -38,12 +38,15 @@ if(xsrf_guard())
 
    $student_name = $row['student_first_name'].' '.$row['student_middle_name'].' '.$row['student_last_name'];
   
-
+    //debug($arr_form_data['time_start']);
+    //debug($arr_form_data['time_end']);
     }
 
 
     if($_POST['btn_submit'])
     {
+
+        
         log_action('Pressed submit button');
 
         $message .= $dbh_required_appointment->sanitize($arr_form_data)->lst_error;
@@ -60,9 +63,10 @@ if(xsrf_guard())
 
         if($message=="")
         {
-            $arr_form_data['time_start'] = $_POST['time_start'].':'.$_POST['minutes'].' '.$_POST['ampm'];
-            $arr_form_data['time_end'] = $_POST['time_end'].':'.$_POST['minutes_and'].' '.$_POST['am_pm'];
 
+            $arr_form_data['time_start'] = $_POST['time_start'].':'.$_POST['minutes'].' '.$_POST['ampm'];
+            $arr_form_data['time_end'] = $_POST['time_end'].':'.$_POST['minutes2'].' '.$_POST['am_pm'];
+           
            // debug($arr_form_data);
            // die();
 
@@ -75,7 +79,7 @@ if(xsrf_guard())
                 $dbh->set_fields('id');
                 $dbh->set_where('student_id ="'.$_POST['student_id'].'" AND dept_id = 54 AND is_clear= "NO" ');
                 $dbh->set_order('date DESC');
-                // debug($dbh);
+                //debug($dbh);
                 $dbh->exec_fetch('single');
                 $clearance_id = $dbh->dump;
                 $param = array();

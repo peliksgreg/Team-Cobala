@@ -50,7 +50,7 @@ class required_appointment extends data_abstraction
             $this->set_update("student_id = ?, date = ?, time_start = ?, time_end = ?, status = ?, subject_offering_id = ?");
             $this->set_where("required_appointment_id = ?");
 
-            $bind_params = array('ssiisii',
+            $bind_params = array('sssssii',
                                  &$this->fields['student_id']['value'],
                                  &$this->fields['date']['value'],
                                  &$this->fields['time_start']['value'],
