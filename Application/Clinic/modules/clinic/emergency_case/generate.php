@@ -1,5 +1,17 @@
 <?php
 
+if($arr_form_data['patient_type'] == "Student")
+{
+    $patient_type = "S";
+} else {
+    $patient_type = "E";
+}
+
+
+
+
+$patient_type = $arr_form_data['patient_type'];
+
 $location = $arr_form_data['location'];
 $location = strtoupper($location);
 $location_length = strlen($location);
@@ -23,4 +35,4 @@ for($i=0; $i < $location_length; ++$i)
     }
 }
 
-//$generated_code = $arr_form_data['student_id'].''.$code;
+$generated_code = $patient_type.''.$code;

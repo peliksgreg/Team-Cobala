@@ -88,7 +88,9 @@ if(xsrf_guard())
                                'medicine_id'=>$cf_log_detail_medicine_id[$a],
                                'qty'=>$cf_log_detail_qty[$a]
                               );
+
                 $dbh_log_info->add($param); 
+
             }
 
 

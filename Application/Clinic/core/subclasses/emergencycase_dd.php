@@ -265,7 +265,7 @@ class emergencycase_dd
                                           'nullable'=>TRUE,
                                           'data_type'=>'varchar',
                                           'length'=>255,
-                                          'required'=>TRUE,
+                                          'required'=>FALSE,
                                           'attribute'=>'',
                                           'control_type'=>'textbox',
                                           'size'=>'20',

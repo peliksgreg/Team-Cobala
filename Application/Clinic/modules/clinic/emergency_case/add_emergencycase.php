@@ -40,9 +40,8 @@ if(xsrf_guard())
         {
             require_once "generate.php";
 
-            $arr_form_data['guarantee_control_no'] = $code;
-
-            debug($arr_form_data['guarantee_control_no']);
+            $arr_form_data['guarantee_control_no']['value'] = $generated_code;
+            $guarantee_control_no = $arr_form_data['guarantee_control_no']['value'];
          }
       
       }
@@ -58,8 +57,6 @@ if(xsrf_guard())
 
            $student_name = $row['student_first_name'].' '.$row['student_middle_name'].' '.$row['student_last_name'];
            $employee_name = $row1['emp_first_name'].' '.$row1['emp_middle_name'].' '.$row1['emp_last_name'];
-
-
 
     }
 
