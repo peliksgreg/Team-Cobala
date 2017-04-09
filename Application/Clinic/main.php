@@ -30,7 +30,11 @@ $dbh->exec_fetch('array');
 $arr = $dbh->dump;
 
 // debug($arr);
-$reorder_point = 400;
+$reorder_point = 200;
+$ubos = 0;
+$message1 = '';
+$need_to_reorder = FALSE;
+$out_of_stock = FALSE;
 for ($i=0; $i < count($arr['medicine_name']); $i++) 
 { 
 // debug($arr['qty'][$i]);
@@ -46,24 +50,30 @@ for ($i=0; $i < count($arr['medicine_name']); $i++)
     // debug($diff);
 
 
- if($diff < $reorder_point) 
+ if($diff < $reorder_point && $diff > 0) 
  {
     // brpt();
     $message .= '<br>' . $diff . ' ' . $arr['medicine_name'][$i];
+    $need_to_reorder = TRUE;
  }
-
+ if($diff == 0) 
+ {
+    // brpt();
+    $message1 .= '<br>' . $ubos . ' ' . $arr['medicine_name'][$i];
+    $out_of_stock = TRUE;
+ }
    
 }
 
 
-$html->display_tip('Ooops! Some medicine are running out of stock!' . $message);
-
-require 'components/check_stock_levels.php';
-$need_to_reorder = check_stock_levels();
 
 if($need_to_reorder === TRUE)
 {
-	$html->display_info('Some items need to be re-supplied. <a href="modules/items_to_restock.php">Click here for the complete list.</a>');
+	$html->display_tip('Ooops! Some medicine are running low of stock!' . $message);
+}
+if($out_of_stock === TRUE)
+{
+    $html->display_error('These medicine out of stock!' . $message1);
 }
 
 $menu_links = '';
