@@ -69,6 +69,11 @@ require 'subclasses/log_info_html.php';
 $html = new log_info_html;
 $html->draw_header('Add %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
+
+// $html_details = cobalt_load_class('log_detail_html');
+// $html_details->fields['medicine_id']['list_settings']['query'] = ""
+
+
 $html->draw_controls('add');
 
 $html->draw_footer();

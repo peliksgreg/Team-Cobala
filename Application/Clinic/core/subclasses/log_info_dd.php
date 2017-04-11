@@ -1,4 +1,7 @@
 <?php
+
+$dbh = cobalt_load_class('medicine_receiving');
+
 class log_info_dd
 {
     static $table_name = 'log_info';

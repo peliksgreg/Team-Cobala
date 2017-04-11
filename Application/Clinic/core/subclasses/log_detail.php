@@ -139,4 +139,17 @@ class log_detail extends data_abstraction
 
         return $this;
     }
+
+
+    function total_minus()
+    {
+        $this->set_fields('medicine_id, qty');
+        $this->exec_fetch('');
+        
+
+        return $this;
+
+        // debug($this);
+    }
+
 }

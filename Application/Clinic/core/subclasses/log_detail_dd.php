@@ -1,4 +1,8 @@
 <?php
+
+
+
+
 class log_detail_dd
 {
     static $table_name = 'log_detail';

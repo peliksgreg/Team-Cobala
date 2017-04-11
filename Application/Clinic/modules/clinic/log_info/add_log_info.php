@@ -24,6 +24,7 @@ if(xsrf_guard())
     require 'components/create_form_data.php';
     extract($arr_form_data);
 
+
     if($_POST['btn_cancel'])
     {
         log_action('Pressed cancel button');
@@ -103,6 +104,131 @@ $html = new log_info_html;
 $html->draw_header('Add %%', $message, $message_type);
 $html->draw_listview_referrer_info($filter_field_used, $filter_used, $page_from, $filter_sort_asc, $filter_sort_desc);
 
+// $dbh->set_fields('sum(qty) as current_qty, medicine_name, medicine.medicine_id'); //reorder point field
+// $dbh->set_table('medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id');
+// $dbh->set_order('medicine_id ASC');
+// $dbh->set_group_by('medicine_name');
+// $dbh->exec_fetch('array');
+// $arr1 = $dbh->dump;
+
+// // debug($arr['qty'][$i]);
+//     $dbh1 = cobalt_load_class('log_detail');
+//     $dbh1->set_fields('qty as current_status, medicine_id');
+//     $dbh1->set_group_by('medicine_id');
+//     // $dbh1->set_where('medicine_id = "'.$arr['medicine_id'][$i].'" ');
+//     $dbh1->exec_fetch();
+//     $arr2 = $dbh1->dump;
+//     debug($dbh1->query);
+
+//     // debug($arr1);
+//     // debug($arr2);
+// // debug($a);
+//     $c = 0;
+//     $arr_options = array();
+//     $arr_not_in_list = array();
+//     for($a = 0;$a <count($arr1['medicine_id']); ++$a)
+//     {
+//         for($b = 0; $b < count($arr2['medicine_id']); ++$b)
+//         {
+//             if($arr1['medicine_id'][$a] == $arr2['medicine_id'][$b])
+//             {
+
+//                 $arr_options['current_qty'][$c] = $arr1['current_qty'][$a] - $arr2['current_status'][$b];
+//                 $arr_options['medicine_id'][$c] = $arr1['medicine_id'][$a];
+//                 $arr_options['medicine_name'][$c] = $arr1['medicine_name'][$a];            
+//             }
+
+
+//         }
+
+        
+//         ++$c;
+//     }
+
+//     // debug($a);
+//             // unset($arr_options['current_qty'][array_search(0, $arr_options['current_qty'])]);
+
+
+//     // $key = array_search('0', $arr_options['current_qty']);
+//     // debug($key);
+
+//     for($d = 1; $d < count($arr1['medicine_id']);++$d)
+//     {   
+//         if(array_search($arr1['medicine_id'][$d],array_values($arr_options['medicine_id']),FALSE))
+//         {
+//             // debug($arr_options['current_qty']);
+//             // brpt();
+//             // debug($arr1['medicine_id'][$d]);
+//             // debug($arr1['medicine_id'][$d]);
+
+//             // unset($arr_options['current_qty'][$key]);
+//         }
+//         else
+//         {
+
+//             // debug($arr_options['current_qty']);
+            
+//             array_push($arr_options['current_qty'],$arr1['current_qty'][$d]);
+//             array_push($arr_options['medicine_id'],$arr1['medicine_id'][$d]);
+//             array_push($arr_options['medicine_name'],$arr1['medicine_name'][$d]);
+    
+            
+            
+//             // debug($arr_options);
+//         }
+//     }
+            // debug($arr_options);
+$dbh = cobalt_load_class('medicine_receiving');
+$dbh->set_fields('sum(qty) as qty, medicine_name, medicine.medicine_id'); //reorder point field
+$dbh->set_table('medicine_receiving LEFT JOIN medicine ON medicine_receiving.medicine_id = medicine.medicine_id');
+$dbh->set_group_by('medicine_name');
+$dbh->exec_fetch('array');
+$arr = $dbh->dump;
+
+
+$reorder_point = 200;
+$ubos = 0;
+$message1 = '';
+$need_to_reorder = FALSE;
+$out_of_stock = FALSE;
+for ($i=0; $i < count($arr['medicine_name']); $i++) 
+{ 
+// debug($arr['qty'][$i]);
+    $dbh1 = cobalt_load_class('log_detail');
+    $dbh1->set_fields('sum(qty) as current_status');
+    $dbh1->set_where('medicine_id = "'.$arr['medicine_id'][$i].'" ');
+    $dbh1->exec_fetch();
+    $arr1 = $dbh1->dump;
+    // debug($arr1['current_status'][0]);
+
+
+    $diff = $arr['qty'][$i] - $arr1['current_status'][0];
+    // debug($diff);
+
+
+ if($diff < $reorder_point && $diff > 0) 
+ {
+    // brpt();
+    $message .= '<br>' . $diff . ' ' . $arr['medicine_name'][$i];
+    $need_to_reorder = TRUE;
+ }
+ if($diff == 0) 
+ {
+    // brpt();
+    $message1 .= '<br>' . $ubos . ' ' . $arr['medicine_name'][$i];
+    $out_of_stock = TRUE;
+ }
+
+
+
+$html2 = cobalt_load_class('log_detail_html');
+$html2->fields['medicine_id']['list_settings']['query'] = 'SELECT medicine.medicine_id AS `Queried_medicine_id`, medicine.medicine_name FROM medicine where medicine.medicine_name != "'.$arr['medicine_name'][$i].'" ORDER BY `medicine_name`';
+$html->bind_child('log_detail',$html2);
+
+
+}
+    
+        // debug($arr_options);    // debug(array_merge($arr1,$arr_options));
 if(isset($patient_type) && $patient_type == 'Employee')
 {
     //Show only Employee ID textbox
@@ -119,5 +245,11 @@ else
     $patient_type = 'Student';
 }
 
+
+// debug($arr_options['current_qty']); 
+
+
+
+// debug($html2->fields['medicine_id']['list_type']);
 $html->draw_controls('add');
 $html->draw_footer();

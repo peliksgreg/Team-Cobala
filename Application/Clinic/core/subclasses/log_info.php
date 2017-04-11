@@ -1,4 +1,5 @@
 <?php
+
 require_once 'log_info_dd.php';
 class log_info extends data_abstraction
 {

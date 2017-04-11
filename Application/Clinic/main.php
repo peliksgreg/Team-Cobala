@@ -29,7 +29,7 @@ $dbh->set_group_by('medicine_name');
 $dbh->exec_fetch('array');
 $arr = $dbh->dump;
 
-// debug($arr);
+// debug($dbh->query);
 $reorder_point = 200;
 $ubos = 0;
 $message1 = '';
@@ -62,7 +62,10 @@ for ($i=0; $i < count($arr['medicine_name']); $i++)
     $message1 .= '<br>' . $ubos . ' ' . $arr['medicine_name'][$i];
     $out_of_stock = TRUE;
  }
-   
+
+
+
+
 }
 
 
